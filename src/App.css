@@ -1,28 +1,268 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+body
+{
+  background-color: #f7f7f7;
+  font-size: 'Open Sans';
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+.header
+{
+  background-color: #4f5050;
   padding: 20px;
-  color: white;
+  font-size: 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #cbcbcb;
+  max-height: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.noPadd
+{
+  padding-left: 0;
+  padding-right: 0;
+}
+.removePaddRight
+{
+  padding-right: 0;
+}
+.todoWrapper
+{
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.sectionHeader
+{
+  font-size: 18px;
+  font-weight: 400;
+  padding-bottom: 20px;
+}
+.addPadTop
+{
+  padding-top: 50px;
+}
+.formInput input
+{
+  height: 60px;
+  padding: 16px 16px 16px 60px;
+  border: none;
+  background-color: #fff;
+  width: 100%;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  opacity: 0.6;
+}
+.formInput input:focus
+{
+  outline: none;
+}
+.formInput
+{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.downArrow
+{
+  position: absolute;
+  left: 15px;
+  font-size: 25px;
+  opacity: 0.6;
+}
+.todoListwrapper
+{
+  border-top: 1px solid #e6e6e6;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+}
+.todoListwrapper ul
+{
+  -webkit-padding-start: 0px;
+  margin-bottom: 0;
+}
+.todoListwrapper ul li
+{
+  list-style-type: none;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  background-color: #fff;
+  position: relative;
+}
+.closeBtn
+{
+  background-color: transparent;
+  border: none;
+  color: #cc9a9a;
+  position: absolute;
+  right: 15px;
+  padding: 0;
+  font-size: 25px;
+}
+.closeBtn i
+{
+  font-size: 20px;
+}
+.closeBtn:hover
+{
+  color: #af5b5e;
+}
+.labelContent
+{
+  /* padding-left: 15px; */
+  color: #777;
+}
+.view
+{
+  width: 28px;
+  height: 28px;
+  margin: 0 15px;
+}
+.footerList
+{
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #ededed;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+.footerList:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+.footerList ul
+{
+  -webkit-padding-start: 0px;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+.footerList ul li
+{
+  list-style-type: none;
+  display: inline-block;
+}
+.footerList ul li a
+{
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #777;
+  cursor: pointer;
+}
+.footerList ul li a.selected
+{
+  border-color: rgba(175, 47, 47, 0.2);
+}
+.clearComp
+{
+  background-color: transparent;
+  border: none;
+  color: #777;
+  position: absolute;
+  right: 15px;
+  padding: 0;
+}
+.todoMainWrapper
+{
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  padding-bottom: 30px;
+}
+.sliderMenu
+{
+  height: calc(100vh - 50px);
+  background-color: #efeded;
+  overflow-y: auto;
+}
+.sliderHeader
+{
+  padding: 10px 0;
+  padding-left: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.userInfo
+{
+  padding: 10px 0;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.userInfo:hover
+{
+  background-color: #d1d0d0;
+}
+.userImg
+{
+  text-align: center;
+  padding-right: 10px;
+}
+.userImg i
+{
+  font-size: 20px;
+
+}
+.userImg img
+{
+  width: 30px;
+}
+/*Custom  Checkbox */
+.round {
+  position: relative;
 }
 
-.App-title {
-  font-size: 1.5em;
+.round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+  min-width: 28px;
 }
 
-.App-intro {
-  font-size: large;
+.round label:after {
+  border: 2px solid #66bb6a;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #fff;
+  border-color: #66bb6a;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
