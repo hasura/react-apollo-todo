@@ -9,21 +9,25 @@ class App extends Component {
           This is a sample todo app
         </div>
         <div className="col-md-9 noPadd todoMainWrapper">
-          <div className="col-md-6 addPadTop">
-            <div className="sectionHeader">
-               Public todos
+          <div className="col-md-6">
+            <div className="wd95 addPaddTopBottom">
+              <div className="sectionHeader">
+                 Private todos
+              </div>
+              <ToDoWrapper />
             </div>
-            <ToDoWrapper />
           </div>
-          <div className="col-md-6 addPadTop">
-            <div className="sectionHeader">
-              Private todos
+          <div className="col-md-6 grayBgColor commonBorRight">
+            <div className="wd95 addPaddTopBottom">
+              <div className="sectionHeader">
+                Public todos
+              </div>
+              <ToDoWrapper />
             </div>
-            <ToDoWrapper />
           </div>
         </div>
-        <div className="col-md-3 removePaddRight">
-          <div className="sliderMenu">
+        <div className="col-md-3 noPadd">
+          <div className="sliderMenu grayBgColor">
             <div className="sliderHeader">
               Online users - 3
             </div>
