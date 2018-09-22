@@ -1,62 +1,69 @@
 import React, { Component } from 'react';
+import { Navbar, Button } from 'react-bootstrap';
 import './App.css';
-import ToDoWrapper from './ToDoWrapper';
+
 class App extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated()) {
+      this.props.history.push('/home');
+    }
+  }
+
   render() {
+    const { isAuthenticated } = this.props.auth;
+
     return (
-      <div className="container-fluid noPadd">
-        <div className="header">
-          This is a sample todo app
-        </div>
-        <div className="col-md-9 noPadd todoMainWrapper">
-          <div className="col-md-6">
-            <div className="wd95 addPaddTopBottom">
-              <div className="sectionHeader">
-                 Private todos
-              </div>
-              <ToDoWrapper />
-            </div>
-          </div>
-          <div className="col-md-6 grayBgColor commonBorRight">
-            <div className="wd95 addPaddTopBottom">
-              <div className="sectionHeader">
-                Public todos
-              </div>
-              <ToDoWrapper />
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 noPadd">
-          <div className="sliderMenu grayBgColor">
-            <div className="sliderHeader">
-              Online users - 3
-            </div>
-            <div className="userInfo">
-              <div className="userImg">
-                <i className="far fa-user"></i>
-              </div>
-              <div className="userName">
-                Praveen
-              </div>
-            </div>
-            <div className="userInfo">
-              <div className="userImg">
-                <i className="far fa-user"></i>
-              </div>
-              <div className="userName">
-                Karthik
-              </div>
-            </div>
-            <div className="userInfo">
-              <div className="userImg">
-                <i className="far fa-user"></i>
-              </div>
-              <div className="userName">
-                Suree
-              </div>
-            </div>
-          </div>
-        </div>
+      <div>
+        <Navbar fluid>
+          <Navbar.Header>
+            <Navbar.Brand>
+              React Apollo Todo GraphQL
+            </Navbar.Brand>
+            <Button
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, 'home')}
+            >
+              Home
+            </Button>
+            {
+              !isAuthenticated() && (
+                  <Button
+                    id="qsLoginBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </Button>
+                )
+            }
+            {
+              isAuthenticated() && (
+                  <Button
+                    id="qsLogoutBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </Button>
+                )
+            }
+          </Navbar.Header>
+        </Navbar>
       </div>
     );
   }
