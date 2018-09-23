@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import TodoPrivateList from './TodoPrivateList';
+import TodoPublicList from './TodoPublicList';
 import TodoInput from './TodoInput';
 import '../App.css';
 
-class TodoWrapper extends Component {
+class TodoPublicWrapper extends Component {
   render() {
     const userId = localStorage.getItem('auth0:id_token:sub');
     return (
       <div className="todoWrapper">
-        <TodoInput userId={userId} />
-        <TodoPrivateList />
+        <TodoInput userId={userId} type="public" />
+        <TodoPublicList userId={userId} type="public" />
         <div className="footerList">
           <span> 0 items left </span>
           <ul>
@@ -30,4 +30,4 @@ class TodoWrapper extends Component {
   }
 }
 
-export default TodoWrapper;
+export default TodoPublicWrapper;

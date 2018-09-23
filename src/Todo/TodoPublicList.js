@@ -1,12 +1,12 @@
 import React from 'react';
-import { Query } from "react-apollo";
+import { Subscription } from "react-apollo";
 import TodoItem from './TodoItem';
 import {
-  QUERY_PUBLIC_TODO,
+  SUBSCRIPTION_TODO_PUBLIC_LIST,
 } from './TodoQueries';
 
-const TodoPublicList = () => (
-  <Query query={QUERY_PUBLIC_TODO}>
+const TodoPublicList = ({userId, type}) => (
+  <Subscription subscription={SUBSCRIPTION_TODO_PUBLIC_LIST}>
     {({loading, error, data}) => {
       if (loading) {
         return (
@@ -18,14 +18,13 @@ const TodoPublicList = () => (
           <div>{""}</div>
         );
       }
-      console.log(data);
       return (
         <div className="todoListwrapper">
           <ul>
           {
             data.todos.map((todo, index) => {
               return (
-                <TodoItem key={index} todo={todo} />
+                <TodoItem key={index} todo={todo} type={type} userId={userId} />
               );
             })
           }
@@ -33,7 +32,7 @@ const TodoPublicList = () => (
         </div>
       )
     }}
-  </Query>
+  </Subscription>
 );
 
 export default TodoPublicList;

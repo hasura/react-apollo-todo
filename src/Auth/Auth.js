@@ -1,7 +1,8 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
-
+import { query } from 'graphqurl';
+import { GRAPHQL_URL } from '../constants';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -10,7 +11,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor() {
@@ -28,7 +29,39 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/home');
+        // store in db
+        this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+        // Now you have the user's information
+          query(
+            {
+              query: `
+                mutation ($userId: String!, $nickname: String) {
+                  insert_users (
+                    objects: [{auth0_id: $userId, name: $nickname}],
+                    on_conflict: {constraint: users_pkey, update_columns: [last_seen, name]}
+                  ) {
+                    affected_rows
+                  }
+                }
+              `,
+              endpoint: GRAPHQL_URL,
+              /*
+              headers: {
+                'x-access-key': 'mysecretxxx',
+              },
+              */
+              variables: {
+                userId: user.sub,
+                nickname: user.nickname
+              }
+            }
+          ).then((response) => {
+            history.replace('/home');
+          }).catch((error) => {
+            console.error(error);
+            alert(JSON.stringify(error));
+          });
+        });
       } else if (err) {
         history.replace('/home');
         console.error(err);

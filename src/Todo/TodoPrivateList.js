@@ -5,8 +5,8 @@ import {
   QUERY_PRIVATE_TODO,
 } from './TodoQueries';
 
-const TodoPrivateList = () => (
-  <Query query={QUERY_PRIVATE_TODO}>
+const TodoPrivateList = ({userId, type}) => (
+  <Query query={QUERY_PRIVATE_TODO} variables={ {userId: userId} }>
     {({loading, error, data}) => {
       if (loading) {
         return (
@@ -24,7 +24,7 @@ const TodoPrivateList = () => (
           {
             data.todos.map((todo, index) => {
               return (
-                <TodoItem key={index} todo={todo} />
+                <TodoItem key={index} todo={todo} type={type} userId={userId} />
               );
             })
           }

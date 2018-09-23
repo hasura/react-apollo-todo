@@ -105,6 +105,7 @@ body
   list-style-type: none;
   height: 60px;
   display: flex;
+  font-size: 14px;
   align-items: center;
   border-bottom: 1px solid #ededed;
   background-color: #fff;
@@ -127,6 +128,10 @@ body
 .closeBtn:hover
 {
   color: #af5b5e;
+}
+.closeBtn:focus
+{
+  outline: none;
 }
 .labelContent
 {
@@ -167,6 +172,7 @@ body
   -moz-padding-start: 0px;
   margin-bottom: 0;
   padding-left: 20px;
+  z-index: 1;
 }
 .footerList ul li
 {

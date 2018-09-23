@@ -4,10 +4,11 @@ import '../App.css';
 
 import {
   QUERY_PRIVATE_TODO,
+  QUERY_PUBLIC_TODO,
   MUTATION_TODO_ADD
 } from './TodoQueries';
 
-export default class TodoInput extends React.Component {
+class TodoInput extends React.Component {
 
   constructor() {
     super();
@@ -27,23 +28,34 @@ export default class TodoInput extends React.Component {
     if (e.key === 'Enter') {
       const newTodo = this.state.textboxValue;
       const userId = this.props.userId;
+      const isPublic = this.props.type === 'public' ? true : false;
       addTodo({
         variables: {
           objects: [{
             text: newTodo,
             user_id: userId,
             is_completed: false,
-            is_public: false
+            is_public: isPublic
           }]
         },
         update: (store, { data: { insert_todos }}) => {
-          const data = store.readQuery({ query: QUERY_PRIVATE_TODO })
-          const insertedTodo = insert_todos.returning;
-          data.todos.splice(0, 0, insertedTodo[0])
-          store.writeQuery({
-            query: QUERY_PRIVATE_TODO,
-            data
-          })
+          const query = this.props.type === 'private' ? QUERY_PRIVATE_TODO : QUERY_PUBLIC_TODO;
+          try {
+            if (this.props.type === 'private') {
+              const data = store.readQuery({ query: query, variables: {userId: this.props.userId} })
+              const insertedTodo = insert_todos.returning;
+              data.todos.splice(0, 0, insertedTodo[0]);
+              store.writeQuery({
+                query: query,
+                variables: {
+                  userId: this.props.userId
+                },
+                data,
+              });
+            }
+          } catch(e) {
+            console.error(e);
+          }
           this.setState({
             ...this.state,
             textboxValue: ''
@@ -73,3 +85,5 @@ export default class TodoInput extends React.Component {
     )
   }
 }
+
+export default TodoInput

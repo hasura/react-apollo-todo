@@ -21,12 +21,17 @@ GraphQL is a query language.
   `npm install react-router react-router-dom --save`
 
   Apollo Client Setup
-  `npm install apollo-boost apollo-link-context react-apollo graphql-tag graphql --save`
+  `npm install apollo-client apollo-link-http apollo-link-context apollo-cache-inmemory react-apollo graphql-tag graphql --save`
 
-  Note: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults, such as InMemoryCache and HttpLink
+  Subscriptions Setup
+  `npm install --save apollo-link-ws subscriptions-transport-ws`
+  `npm install moment --save` // for date/time manipulation
+
+  Note: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults, such as InMemoryCache and HttpLink. But it doesn't support subscriptions.
 
   Auth0
   `npm install auth0-js --save`
+  `npm install graphqurl --save`
 
   <insert-gif>
 
@@ -72,11 +77,15 @@ For simple use-cases, you can use `graphqurl` as a replacement to `fetch` librar
 
 ## Mutation using variables.
 
+Passing variables is important. Including when cache is updated.
+
 ## Update / Delete todos
 
 # Subscriptions
 
 ## How does subscriptions work? websocket / apollo-subscriptions-transport-ws
+
+A very common way of using refetchQueries is to import queries defined for other components to make sure that those components will be updated:
 
 ## Public todos / Online member count
 
@@ -84,7 +93,15 @@ For simple use-cases, you can use `graphqurl` as a replacement to `fetch` librar
 
 ## Integrate with Auth0 API
 
+npm install --save graphqurl
+
+Make a mutation query to store user's auth0 id into db
+Initiate auth0 client with scope : openid profile (to get user's metadata)
+
 ## Login redirect logic and apply filters
+
+After login, update last_seen for online users
+Setup a subscription to update last_seen in the background
 
 # Summary
 
