@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import "../App.css";
 
@@ -74,7 +75,7 @@ const TodoItem = ({ todo, type, userId }) => (
           {deleteTodo => {
             return (
               <li
-                onClick={e => {
+                onClick={() => {
                   handleTodoToggle(updateTodo, todo, type, userId);
                 }}
               >
@@ -85,7 +86,7 @@ const TodoItem = ({ todo, type, userId }) => (
                         checked={true}
                         type="checkbox"
                         id={todo.id}
-                        onChange={e => {
+                        onChange={() => {
                           handleTodoToggle(updateTodo, todo, type, userId);
                         }}
                       />
@@ -97,7 +98,7 @@ const TodoItem = ({ todo, type, userId }) => (
                         type="checkbox"
                         checked={false}
                         id={todo.id}
-                        onChange={e => {
+                        onChange={() => {
                           handleTodoToggle(updateTodo, todo, type, userId);
                         }}
                       />
@@ -130,5 +131,11 @@ const TodoItem = ({ todo, type, userId }) => (
     }}
   </Mutation>
 );
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired,
+  type: PropTypes.string,
+  userId: PropTypes.string
+};
 
 export default TodoItem;

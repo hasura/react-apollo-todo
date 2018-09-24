@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { query } from "graphqurl";
 import moment from "moment";
 import "../App.css";
@@ -34,12 +35,11 @@ class App extends Component {
         timestamp: timestamp
       }
     })
-      .then(response => {
+      .then(() => {
         // handle response if required
       })
       .catch(error => {
         console.error(error);
-        // alert(JSON.stringify(error));
       });
   }
   componentDidMount() {
@@ -84,5 +84,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  auth: PropTypes.object,
+  isAuthenticated: PropTypes.bool
+};
 
 export default App;

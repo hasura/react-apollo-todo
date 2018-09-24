@@ -13,10 +13,11 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "indent": ["error", "tab"],
+    "indent": "off",
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-console": "off"
   }
 }
