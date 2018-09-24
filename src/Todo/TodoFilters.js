@@ -10,10 +10,24 @@ const TodoFilters = ({ todos, userId, type, currentFilter, filterResults }) => {
           <a className={currentFilter === "all" ? "selected" : ""}>All</a>
         </li>
         <li onClick={e => filterResults("active")}>
-          <a className={currentFilter === "active" ? "selected" : ""}>Active</a>
+          <a
+            className={
+              currentFilter === "active"
+                ? "selected removePaddLeft"
+                : "removePaddLeft"
+            }
+          >
+            Active
+          </a>
         </li>
         <li onClick={e => filterResults("completed")}>
-          <a className={currentFilter === "completed" ? "selected" : ""}>
+          <a
+            className={
+              currentFilter === "completed"
+                ? "selected removePaddLeft"
+                : "removePaddLeft"
+            }
+          >
             Completed
           </a>
         </li>

@@ -26,14 +26,16 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar fluid>
-          <Navbar.Header>
-            <Navbar.Brand>React Apollo Todo GraphQL</Navbar.Brand>
+        <Navbar fluid className="removeMarBottom">
+          <Navbar.Header className="navheader">
+            <Navbar.Brand className="navBrand">
+              React Apollo Todo GraphQL
+            </Navbar.Brand>
             {!isAuthenticated() && (
               <Button
                 id="qsLoginBtn"
                 bsStyle="primary"
-                className="btn-margin"
+                className="btn-margin logoutBtn"
                 onClick={this.login.bind(this)}
               >
                 Log In
@@ -43,7 +45,7 @@ class App extends Component {
               <Button
                 id="qsLogoutBtn"
                 bsStyle="primary"
-                className="btn-margin"
+                className="btn-margin logoutBtn"
                 onClick={this.logout.bind(this)}
               >
                 Log Out

@@ -1,19 +1,26 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
-body
-{
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+body {
   background-color: #f7f7f7;
-  font-size: 'Open Sans';
+  font-size: "Open Sans";
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.wd95
-{
+.wd95 {
   width: 95%;
   margin: 0 auto;
 }
-.header
-{
+.navheader {
+  width: 100%;
+}
+.navBrand {
+  padding-top: 14px;
+}
+.logoutBtn {
+  margin-top: 12px;
+  float: right;
+}
+.header {
   background-color: #4f5050;
   padding: 20px;
   font-size: 20px;
@@ -26,82 +33,68 @@ body
   align-items: center;
   padding: 0 20px;
 }
-.noPadd
-{
+.noPadd {
   padding-left: 0;
   padding-right: 0;
 }
-.grayBgColor
-{
+.grayBgColor {
   background-color: #efeded;
 }
-.removePaddRight
-{
+.removePaddRight {
   padding-right: 0;
 }
-.todoWrapper
-{
+.todoWrapper {
   width: 100%;
   position: relative;
 }
-.sectionHeader
-{
+.sectionHeader {
   font-size: 18px;
   font-weight: 400;
   padding-bottom: 20px;
 }
-.addPaddTopBottom
-{
+.addPaddTopBottom {
   padding: 30px 0;
 }
-.commonBorRight
-{
+.commonBorRight {
   border-right: 1px solid #ccc;
 }
-.formInput input
-{
+.formInput input {
   height: 60px;
   padding: 16px 16px 16px 60px;
   border: none;
   background-color: #fff;
   width: 100%;
-  -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
-  -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
-  box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   opacity: 0.6;
 }
-.formInput input:focus
-{
+.formInput input:focus {
   outline: none;
 }
-.formInput
-{
+.formInput {
   position: relative;
   display: flex;
   align-items: center;
 }
-.downArrow
-{
+.downArrow {
   position: absolute;
   left: 15px;
   font-size: 25px;
   opacity: 0.6;
 }
-.todoListwrapper
-{
+.todoListwrapper {
   border-top: 1px solid #e6e6e6;
-  -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
-  -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
-  box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 }
-.todoListwrapper ul
-{
+.todoListwrapper ul {
   -webkit-padding-start: 0px;
   -moz-padding-start: 0px;
   margin-bottom: 0;
 }
-.todoListwrapper ul li
-{
+.todoListwrapper ul li {
   list-style-type: none;
   height: 60px;
   display: flex;
@@ -111,8 +104,7 @@ body
   background-color: #fff;
   position: relative;
 }
-.closeBtn
-{
+.closeBtn {
   background-color: transparent;
   border: none;
   color: #cc9a9a;
@@ -121,31 +113,25 @@ body
   padding: 0;
   font-size: 25px;
 }
-.closeBtn i
-{
+.closeBtn i {
   font-size: 20px;
 }
-.closeBtn:hover
-{
+.closeBtn:hover {
   color: #af5b5e;
 }
-.closeBtn:focus
-{
+.closeBtn:focus {
   outline: none;
 }
-.labelContent
-{
+.labelContent {
   /* padding-left: 15px; */
   color: #777;
 }
-.view
-{
+.view {
   width: 28px;
   height: 28px;
   margin: 0 15px;
 }
-.footerList
-{
+.footerList {
   height: 60px;
   background-color: #fff;
   border-bottom: 1px solid #ededed;
@@ -155,44 +141,45 @@ body
   margin-bottom: 30px;
 }
 .footerList:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 50px;
-    overflow: hidden;
-    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  overflow: hidden;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
-.footerList ul
-{
+.footerList ul {
   -webkit-padding-start: 0px;
   -moz-padding-start: 0px;
   margin-bottom: 0;
   padding-left: 20px;
   z-index: 1;
 }
-.footerList ul li
-{
+.footerList ul li {
   list-style-type: none;
   display: inline-block;
 }
-.footerList ul li a
-{
+.footerList ul li a {
   padding: 3px 7px;
   border: 1px solid transparent;
   border-radius: 3px;
   color: #777;
   cursor: pointer;
 }
-.footerList ul li a.selected
-{
+.footerList ul li a.selected {
   border-color: rgba(175, 47, 47, 0.2);
 }
-.clearComp
-{
+.clearComp {
   background-color: transparent;
   border: none;
   color: #777;
@@ -200,48 +187,45 @@ body
   right: 15px;
   padding: 0;
 }
-.todoMainWrapper
-{
+.todoMainWrapper {
   height: calc(100vh - 50px);
   overflow-y: auto;
 }
-.sliderMenu
-{
+.displayBlock {
+  display: block;
+}
+.removeMarBottom {
+  margin-bottom: 0;
+}
+.sliderMenu {
   height: calc(100vh - 50px);
   overflow-y: auto;
 }
-.sliderHeader
-{
+.sliderHeader {
   padding: 10px 0;
   padding-left: 15px;
   padding-top: 30px;
   text-transform: uppercase;
   font-weight: 600;
 }
-.userInfo
-{
+.userInfo {
   padding: 10px 0;
   padding-left: 15px;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-.userInfo:hover
-{
+.userInfo:hover {
   background-color: #d1d0d0;
 }
-.userImg
-{
+.userImg {
   text-align: center;
   padding-right: 10px;
 }
-.userImg i
-{
+.userImg i {
   font-size: 20px;
-
 }
-.userImg img
-{
+.userImg img {
   width: 30px;
 }
 /*Custom  Checkbox */
@@ -284,7 +268,16 @@ body
   background-color: #fff;
   border-color: #66bb6a;
 }
-
+.removePaddLeft {
+  padding-left: 0;
+}
+.removePaddLeft {
+}
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
+}
+@media (max-width: 991px) {
+  .sliderMenu {
+    height: auto;
+  }
 }
