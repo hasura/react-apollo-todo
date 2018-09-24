@@ -63,21 +63,21 @@ class App extends Component {
     }
     return (
       <div className="container-fluid noPadd">
-        <div className="col-md-9 noPadd todoMainWrapper">
-          <div className="col-md-6">
+        <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
+          <div className="col-md-6 col-sm-12">
             <div className="wd95 addPaddTopBottom">
               <div className="sectionHeader">Private todos</div>
               <TodoPrivateWrapper />
             </div>
           </div>
-          <div className="col-md-6 grayBgColor commonBorRight">
+          <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">
             <div className="wd95 addPaddTopBottom">
               <div className="sectionHeader">Public todos</div>
               <TodoPublicWrapper />
             </div>
           </div>
         </div>
-        <div className="col-md-3 noPadd">
+        <div className="col-xs-12 col-lg-3 col-md-12 col-sm-12 noPadd">
           <OnlineUsers />
         </div>
       </div>

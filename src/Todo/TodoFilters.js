@@ -10,11 +10,25 @@ const TodoFilters = ({ todos, currentFilter, filterResults }) => {
         <li onClick={() => filterResults("all")}>
           <a className={currentFilter === "all" ? "selected" : ""}>All</a>
         </li>
-        <li onClick={() => filterResults("active")}>
-          <a className={currentFilter === "active" ? "selected" : ""}>Active</a>
+        <li onClick={e => filterResults("active")}>
+          <a
+            className={
+              currentFilter === "active"
+                ? "selected removePaddLeft"
+                : "removePaddLeft"
+            }
+          >
+            Active
+          </a>
         </li>
-        <li onClick={() => filterResults("completed")}>
-          <a className={currentFilter === "completed" ? "selected" : ""}>
+        <li onClick={e => filterResults("completed")}>
+          <a
+            className={
+              currentFilter === "completed"
+                ? "selected removePaddLeft"
+                : "removePaddLeft"
+            }
+          >
             Completed
           </a>
         </li>
