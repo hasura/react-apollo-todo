@@ -108,6 +108,8 @@ Use GraphQL subscriptions to notify us about updates
 
 Optimistic UI for smooth rendering without delay
 
+Subscriptions will only listen for new changes
+
 ## Public todos / Online member count
 
 # Adding Authentication

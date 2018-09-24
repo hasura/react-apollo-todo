@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import "../App.css";
 
@@ -16,14 +17,14 @@ class TodoInput extends React.Component {
     };
   }
 
-  handleTextboxValueChange = e => {
+  handleTextboxValueChange(e) {
     this.setState({
       ...this.state,
       textboxValue: e.target.value
     });
-  };
+  }
 
-  handleTextboxKeyPress = (e, addTodo) => {
+  handleTextboxKeyPress(e, addTodo) {
     if (e.key === "Enter") {
       const newTodo = this.state.textboxValue;
       const userId = this.props.userId;
@@ -70,12 +71,12 @@ class TodoInput extends React.Component {
         }
       });
     }
-  };
+  }
 
   render() {
     return (
       <Mutation mutation={MUTATION_TODO_ADD}>
-        {(addTodo, { data, loading, called, error }) => {
+        {(addTodo, { error }) => {
           if (error) {
             alert("Something went wrong");
           }
@@ -98,5 +99,10 @@ class TodoInput extends React.Component {
     );
   }
 }
+
+TodoInput.propTypes = {
+  userId: PropTypes.string,
+  type: PropTypes.string
+};
 
 export default TodoInput;

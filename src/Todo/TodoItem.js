@@ -20,6 +20,7 @@ const handleTodoToggle = (toggleTodo, todo, type, userId) => {
       }
     },
     update: (cache, { data: { update_todo } }) => {
+      // eslint-disable-line
       const query = type === "private" ? QUERY_PRIVATE_TODO : QUERY_PUBLIC_TODO;
       if (type === "private") {
         const data = cache.readQuery({
@@ -46,6 +47,7 @@ const handleTodoDelete = (deleteTodo, todo, type, userId) => {
       todoId: todo.id
     },
     update: (cache, { data: { update_todo } }) => {
+      // eslint-disable-line
       const query = type === "private" ? QUERY_PRIVATE_TODO : QUERY_PUBLIC_TODO;
       if (type === "private") {
         const data = cache.readQuery({

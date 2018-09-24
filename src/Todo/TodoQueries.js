@@ -72,7 +72,7 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
 
 const SUBSCRIPTION_ONLINE_USERS = gql`
   subscription($timestamp: timestamptz!) {
-    users(where: { last_seen: { _gt: $timestamp } }, order_by: last_seen_desc) {
+    users(where: { last_seen: { _gt: $timestamp } }, order_by: name_asc) {
       id
       name
     }

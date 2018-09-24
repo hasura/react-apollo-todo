@@ -1,44 +1,65 @@
-import React from "react";
+import React, { Component } from "react";
 import { Subscription } from "react-apollo";
 import moment from "moment";
 import { SUBSCRIPTION_ONLINE_USERS } from "./TodoQueries";
 
-const OnlineUsers = () => {
-  const timestamp = moment()
-    .subtract(30, "seconds")
-    .format();
-  return (
-    <Subscription
-      subscription={SUBSCRIPTION_ONLINE_USERS}
-      variables={{ timestamp: timestamp }}
-    >
-      {({ loading, error, data }) => {
-        if (loading) {
-          return <div>Loading. Please wait...</div>;
-        }
-        if (error) {
-          return <div>{""}</div>;
-        }
-        return (
-          <div className="sliderMenu grayBgColor">
-            <div className="sliderHeader">
-              Online users - {data.users.length}
-            </div>
-            {data.users.map(user => {
-              return (
-                <div key={user.id} className="userInfo">
-                  <div className="userImg">
-                    <i className="far fa-user" />
+class OnlineUsers extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: moment()
+        .subtract(0.5, "seconds")
+        .format()
+    };
+  }
+  componentDidMount() {
+    setInterval(
+      () =>
+        this.setState({
+          time: moment()
+            .subtract(2, "seconds")
+            .format()
+        }),
+      5000
+    );
+  }
+  render() {
+    const timestamp = moment()
+      .subtract(30, "seconds")
+      .format();
+    return (
+      <Subscription
+        subscription={SUBSCRIPTION_ONLINE_USERS}
+        variables={{ timestamp: timestamp }}
+      >
+        {({ loading, error, data }) => {
+          if (loading) {
+            return <div>Loading. Please wait...</div>;
+          }
+          if (error) {
+            return <div>{""}</div>;
+          }
+          return (
+            <div className="sliderMenu grayBgColor">
+              <div className="sliderHeader">
+                Online users - {data.users.length}
+              </div>
+              {data.users.map(user => {
+                return (
+                  <div key={user.id} className="userInfo">
+                    <div className="userImg">
+                      <i className="far fa-user" />
+                    </div>
+                    <div className="userName">{user.name}</div>
                   </div>
-                  <div className="userName">{user.name}</div>
-                </div>
-              );
-            })}
-          </div>
-        );
-      }}
-    </Subscription>
-  );
-};
+                );
+              })}
+            </div>
+          );
+        }}
+      </Subscription>
+    );
+  }
+}
 
 export default OnlineUsers;
