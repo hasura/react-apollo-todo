@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TodoPrivateList from './TodoPrivateList';
-import TodoPrivateFilters from './TodoPrivateFilters';
 import TodoInput from './TodoInput';
 import '../App.css';
 
@@ -11,7 +10,6 @@ class TodoPrivateWrapper extends Component {
       <div className="todoWrapper">
         <TodoInput userId={userId} type="private" />
         <TodoPrivateList userId={userId} type="private" />
-        <TodoPrivateFilters userId={userId} type="private" />
       </div>
     );
   }

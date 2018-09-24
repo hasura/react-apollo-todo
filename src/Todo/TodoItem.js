@@ -75,11 +75,25 @@ const TodoItem = ({ todo, type, userId }) => (
                     {
                       todo.is_completed ?
                       (<div className="round">
-                        <input defaultChecked type="checkbox" id={todo.id} />
+                        <input 
+                          checked={true}
+                          type="checkbox" 
+                          id={todo.id}
+                          onChange={e => { 
+                            handleTodoToggle(updateTodo, todo, type, userId)
+                          }}
+                        />
                         <label htmlFor={todo.id}></label>
                       </div>) :
                       (<div className="round">
-                        <input type="checkbox" id={todo.id} />
+                        <input 
+                          type="checkbox" 
+                          checked={false}
+                          id={todo.id}
+                          onChange={e => { 
+                            handleTodoToggle(updateTodo, todo, type, userId)
+                          }}
+                        />
                         <label htmlFor={todo.id}></label>)
                       </div>)
                     }

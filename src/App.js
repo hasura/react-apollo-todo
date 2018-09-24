@@ -31,13 +31,6 @@ class App extends Component {
             <Navbar.Brand>
               React Apollo Todo GraphQL
             </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
             {
               !isAuthenticated() && (
                   <Button
