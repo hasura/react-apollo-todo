@@ -87,6 +87,16 @@ Passing variables is important. Including when cache is updated.
 
 A very common way of using refetchQueries is to import queries defined for other components to make sure that those components will be updated:
 
+withApollo HOC
+
+To update the client state after a mutation, we have three options:
+
+Refetch queries that could be affected by the mutation
+Manually update the client state based on the mutation result
+Use GraphQL subscriptions to notify us about updates
+
+Optimistic UI for smooth rendering without delay
+
 ## Public todos / Online member count
 
 # Adding Authentication

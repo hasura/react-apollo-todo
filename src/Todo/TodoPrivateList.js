@@ -7,7 +7,7 @@ import {
 
 const TodoPrivateList = ({userId, type}) => (
   <Query query={QUERY_PRIVATE_TODO} variables={ {userId: userId} }>
-    {({loading, error, data}) => {
+    {({loading, error, data, refetch}) => {
       if (loading) {
         return (
           <div>Loading. Please wait...</div>

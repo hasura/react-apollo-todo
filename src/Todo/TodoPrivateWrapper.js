@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoPrivateList from './TodoPrivateList';
+import TodoPrivateFilters from './TodoPrivateFilters';
 import TodoInput from './TodoInput';
 import '../App.css';
 
@@ -10,21 +11,7 @@ class TodoPrivateWrapper extends Component {
       <div className="todoWrapper">
         <TodoInput userId={userId} type="private" />
         <TodoPrivateList userId={userId} type="private" />
-        <div className="footerList">
-          <span> 0 items left </span>
-          <ul>
-            <li>
-              <a className="selected">All</a>
-            </li>
-            <li>
-              <a>Active</a>
-            </li>
-            <li>
-              <a>Completed</a>
-            </li>
-          </ul>
-          <button className="clearComp">Clear completed</button>
-        </div>
+        <TodoPrivateFilters userId={userId} type="private" />
       </div>
     );
   }

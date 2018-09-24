@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoPublicList from './TodoPublicList';
 import TodoInput from './TodoInput';
+import TodoPublicFilters from './TodoPublicFilters';
 import '../App.css';
 
 class TodoPublicWrapper extends Component {
@@ -10,21 +11,7 @@ class TodoPublicWrapper extends Component {
       <div className="todoWrapper">
         <TodoInput userId={userId} type="public" />
         <TodoPublicList userId={userId} type="public" />
-        <div className="footerList">
-          <span> 0 items left </span>
-          <ul>
-            <li>
-              <a className="selected">All</a>
-            </li>
-            <li>
-              <a>Active</a>
-            </li>
-            <li>
-              <a>Completed</a>
-            </li>
-          </ul>
-          <button className="clearComp">Clear completed</button>
-        </div>
+        <TodoPublicFilters />
       </div>
     );
   }
