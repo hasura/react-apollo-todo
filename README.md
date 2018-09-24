@@ -36,7 +36,7 @@ Auth0 Authentication
 `$ npm install graphqurl --save`
 
 Tooling (ESLint, PropTypes, Prettier)
-`$ npm install eslint eslint-plugin-react --save-dev`
+`$ npm install eslint eslint-plugin-react -g` // global setup
 `$ npm install --save prop-types`
 `$ npm install -save-dev --save-exact prettier eslint-plugin-prettier`
 `$ npm install lint-staged husky --save-dev`
