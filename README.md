@@ -1,45 +1,46 @@
 # Getting started
 
-This is a simple demo app demonstrating how to build a todo app with react and apollo using Hasura's GraphQL APIs. The todo app will have the following features:
+This is an in-depth tutorial demonstrating how to build a todo app with react and apollo using Hasura's GraphQL APIs. The todo app will have the following features:
 
-- Manage Private Todos
-- View / Collaborate on Public Todos
-- Display online members leveraging subscriptions
+- Manage Personal Todos
+- Collaborate on Public Todos
+- Display online members using subscriptions
+- Uses Hasura GraphQL Engine Public API
 
 ## Intro to GraphQL
 
-GraphQL is a query language.
+GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
 
 ## Installation
 
 Create React App Boilerplate
-`npx create-react-app react-apollo-todo`
+`$ npx create-react-app react-apollo-todo`
 
 Styles
-`npm install bootstrap react-bootstrap --save`
+`$ npm install bootstrap react-bootstrap --save`
 
 Routing
-`npm install react-router react-router-dom --save`
+`$ npm install react-router react-router-dom --save`
 
 Apollo Client Setup
-`npm install apollo-client apollo-link-http apollo-link-context apollo-cache-inmemory react-apollo graphql-tag graphql --save`
+`$ npm install apollo-client apollo-link-http apollo-link-context apollo-cache-inmemory react-apollo graphql-tag graphql --save`
+
+Note: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults, such as InMemoryCache and HttpLink. But it doesn't support subscriptions and hence we install all Apollo dependencies directly.
 
 Subscriptions Setup
-`npm install --save apollo-link-ws subscriptions-transport-ws`
-`npm install moment --save` // for date/time manipulation
+`$ npm install --save apollo-link-ws subscriptions-transport-ws`
+`$ npm install moment --save` // for date/time manipulation
 
-Note: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults, such as InMemoryCache and HttpLink. But it doesn't support subscriptions.
+Auth0 Authentication
+`$ npm install auth0-js --save`
+`$ npm install graphqurl --save`
 
-Auth0
-`npm install auth0-js --save`
-`npm install graphqurl --save`
-
-Tooling
-`npm install eslint eslint-plugin-react --save-dev`
-`npm install --save prop-types`
-`npm install -save-dev --save-exact prettier eslint-plugin-prettier`
-`npm install lint-staged husky --save-dev`
-`prettier --single-quote --trailing-comma es5 --write "{src,__{tests,mocks}__}/**/*.js"`
+Tooling (ESLint, PropTypes, Prettier)
+`$ npm install eslint eslint-plugin-react --save-dev`
+`$ npm install --save prop-types`
+`$ npm install -save-dev --save-exact prettier eslint-plugin-prettier`
+`$ npm install lint-staged husky --save-dev`
+`$ prettier --single-quote --trailing-comma es5 --write "{src,__{tests,mocks}__}/**/*.js"`
 
   <insert-gif>
 
@@ -55,6 +56,7 @@ Tooling
 #### Backend
 
     - Hasura GraphQL Engine
+    - Auth0
 
 ## Why GraphQL Client?
 
@@ -64,6 +66,10 @@ Tooling
 
 Two popular GraphQL clients - Apollo Client and Relay.
 
+Why Apollo Client?
+
+<Comparison>
+
 For simple use-cases, you can use `graphqurl` as a replacement to `fetch` library.
 
 # Queries
@@ -72,29 +78,25 @@ For simple use-cases, you can use `graphqurl` as a replacement to `fetch` librar
 
 ## Making your first query - react-apollo query component. A simple fetch_todo query
 
+Making use of GraphiQL
+
+Public Todos
+
 ## Query using filters / operators - fetch_todo_by_user / fetch_completed_todos
+
+Personal Todos by userId
 
 ## Sort todos by time.
 
 ## Pagination - limit & offset (limit the no of todos per page)
 
+Todo
+
 ## Relationships - fetch user info for a todo / fetch all todos by a user (object / array)
 
-## Summary - final queries for different components.
+Todo
 
-# Mutation
-
-## Making your first mutation - setup input box. react-apollo mutation component
-
-## Mutation using variables.
-
-Passing variables is important. Including when cache is updated.
-
-## Update / Delete todos
-
-# Subscriptions
-
-## How does subscriptions work? websocket / apollo-subscriptions-transport-ws
+## Patterns
 
 A very common way of using refetchQueries is to import queries defined for other components to make sure that those components will be updated:
 
@@ -106,24 +108,47 @@ Refetch queries that could be affected by the mutation
 Manually update the client state based on the mutation result
 Use GraphQL subscriptions to notify us about updates
 
-Optimistic UI for smooth rendering without delay
+## Summary - final queries for different components.
 
-Subscriptions will only listen for new changes
+React code snippet
+
+# Mutation
+
+Optimistic UI for smooth rendering without delay (todo)
+
+## Making your first mutation - setup input box. react-apollo mutation component
+
+## Mutation using variables.
+
+Passing variables is important. Wherever cache is updated, variables need to be passed there as well.
+
+## Update / Delete todos
+
+Update is_completed for todo using mutation.
+
+Delete todo on X click.
+
+# Subscriptions
+
+## How does subscriptions work? websocket / apollo-subscriptions-transport-ws
+
+Note: Subscriptions will only listen for new changes
 
 ## Public todos / Online member count
+
+Subscription to `online_users` and get the name.
 
 # Adding Authentication
 
 ## Integrate with Auth0 API
 
-npm install --save graphqurl
+`$ npm install --save graphqurl`
 
 Make a mutation query to store user's auth0 id into db
 Initiate auth0 client with scope : openid profile (to get user's metadata)
 
 ## Login redirect logic and apply filters
 
-After login, update last_seen for online users
-Setup a subscription to update last_seen in the background
+After login, start polling update on `last_seen` column for online users
 
 # Summary
