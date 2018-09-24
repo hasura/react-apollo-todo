@@ -1,52 +1,26 @@
 import React, { Component } from "react";
 import { Subscription } from "react-apollo";
-import moment from "moment";
 import { SUBSCRIPTION_ONLINE_USERS } from "./TodoQueries";
 
 class OnlineUsers extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: moment()
-        .subtract(0.5, "seconds")
-        .format()
-    };
-  }
-  componentDidMount() {
-    setInterval(
-      () =>
-        this.setState({
-          time: moment()
-            .subtract(2, "seconds")
-            .format()
-        }),
-      5000
-    );
-  }
   render() {
-    const timestamp = moment()
-      .subtract(30, "seconds")
-      .format();
     return (
-      <Subscription
-        subscription={SUBSCRIPTION_ONLINE_USERS}
-        variables={{ timestamp: timestamp }}
-      >
+      <Subscription subscription={SUBSCRIPTION_ONLINE_USERS}>
         {({ loading, error, data }) => {
           if (loading) {
             return <div>Loading. Please wait...</div>;
           }
           if (error) {
-            return <div>{""}</div>;
+            return <div>Error loading users</div>;
           }
           return (
             <div className="sliderMenu grayBgColor">
               <div className="sliderHeader">
-                Online users - {data.users.length}
+                Online users - {data.online_users.length}
               </div>
-              {data.users.map(user => {
+              {data.online_users.map(user => {
                 return (
-                  <div key={user.id} className="userInfo">
+                  <div key={user.name} className="userInfo">
                     <div className="userImg">
                       <i className="far fa-user" />
                     </div>

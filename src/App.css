@@ -187,6 +187,9 @@ body {
   right: 15px;
   padding: 0;
 }
+.clearComp:focus {
+  outline: none;
+}
 .todoMainWrapper {
   height: calc(100vh - 50px);
   overflow-y: auto;

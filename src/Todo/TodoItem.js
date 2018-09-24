@@ -11,7 +11,6 @@ import {
 } from "./TodoQueries";
 
 const handleTodoToggle = (toggleTodo, todo, type, userId) => {
-  console.log(toggleTodo);
   toggleTodo({
     variables: {
       todoId: todo.id,

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Query } from "react-apollo";
+import { query } from "graphqurl";
+import { GRAPHQL_URL } from "../constants";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
 import { QUERY_PRIVATE_TODO } from "./TodoQueries";
@@ -8,22 +10,59 @@ import { QUERY_PRIVATE_TODO } from "./TodoQueries";
 class TodoPrivateList extends Component {
   constructor() {
     super();
-    this.state = { filter: "all" };
+    this.state = { filter: "all", clearInProgress: false };
   }
   filterResults(type) {
     this.setState({ filter: type });
+  }
+  clearCompleted(type) {
+    // mutation to delete all is_completed with is_public clause
+    const isOk = window.confirm("Are you sure?");
+    if (isOk) {
+      this.setState({ clearInProgress: true });
+      const isPublic = type === "public" ? true : false;
+      query({
+        query: `
+            mutation ($isPublic: Boolean!) {
+              delete_todos (
+                where: { is_completed: {_eq: true}, is_public: {_eq: $isPublic}}
+              ) {
+                affected_rows
+              }
+            }
+          `,
+        endpoint: GRAPHQL_URL,
+        /*
+          headers: {
+            'x-access-key': 'mysecretxxx',
+          },
+          */
+        variables: {
+          isPublic: isPublic
+        }
+      })
+        .then(() => {
+          // handle response
+          this.setState({ clearInProgress: false });
+        })
+        .catch(error => {
+          this.setState({ clearInProgress: false });
+          console.error(error);
+        });
+    }
   }
   render() {
     const { userId, type } = this.props;
     return (
       <Query query={QUERY_PRIVATE_TODO} variables={{ userId: userId }}>
-        {({ loading, error, data }) => {
+        {({ loading, error, data, refetch }) => {
           if (loading) {
             return <div>Loading. Please wait...</div>;
           }
           if (error) {
             return <div>{""}</div>;
           }
+          refetch();
           // apply filters for displaying todos
           let finalData = data.todos;
           if (this.state.filter === "active") {
@@ -53,6 +92,8 @@ class TodoPrivateList extends Component {
                 type={type}
                 currentFilter={this.state.filter}
                 filterResults={this.filterResults.bind(this)}
+                clearCompleted={this.clearCompleted.bind(this)}
+                clearInProgress={this.state.clearInProgress}
               />
             </Fragment>
           );

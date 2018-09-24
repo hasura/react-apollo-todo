@@ -8,7 +8,7 @@ import { SUBSCRIPTION_TODO_PUBLIC_LIST } from "./TodoQueries";
 class TodoPublicList extends Component {
   constructor() {
     super();
-    this.state = { filter: "all" };
+    this.state = { filter: "all", clearInProgress: false };
   }
   filterResults(type) {
     this.setState({ filter: type });

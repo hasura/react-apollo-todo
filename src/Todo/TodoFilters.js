@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TodoFilters = ({ todos, currentFilter, filterResults }) => {
+const TodoFilters = ({
+  todos,
+  currentFilter,
+  type,
+  filterResults,
+  clearCompleted,
+  clearInProgress
+}) => {
   const activeTodos = todos.filter(todo => todo.is_completed !== true);
   return (
     <div className="footerList">
@@ -10,7 +17,7 @@ const TodoFilters = ({ todos, currentFilter, filterResults }) => {
         <li onClick={() => filterResults("all")}>
           <a className={currentFilter === "all" ? "selected" : ""}>All</a>
         </li>
-        <li onClick={e => filterResults("active")}>
+        <li onClick={() => filterResults("active")}>
           <a
             className={
               currentFilter === "active"
@@ -21,7 +28,7 @@ const TodoFilters = ({ todos, currentFilter, filterResults }) => {
             Active
           </a>
         </li>
-        <li onClick={e => filterResults("completed")}>
+        <li onClick={() => filterResults("completed")}>
           <a
             className={
               currentFilter === "completed"
@@ -33,7 +40,11 @@ const TodoFilters = ({ todos, currentFilter, filterResults }) => {
           </a>
         </li>
       </ul>
-      <button className="clearComp">Clear completed</button>
+      {type === "private" ? (
+        <button onClick={() => clearCompleted(type)} className="clearComp">
+          {clearInProgress ? "Clearing" : "Clear completed"}
+        </button>
+      ) : null}
     </div>
   );
 };
