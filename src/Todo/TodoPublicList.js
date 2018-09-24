@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import { Subscription } from "react-apollo";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
@@ -60,5 +61,10 @@ class TodoPublicList extends Component {
     );
   }
 }
+
+TodoPublicList.propTypes = {
+  userId: PropTypes.string,
+  type: PropTypes.string
+};
 
 export default TodoPublicList;

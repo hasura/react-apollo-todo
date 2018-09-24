@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import { Query } from "react-apollo";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
@@ -16,7 +17,7 @@ class TodoPrivateList extends Component {
     const { userId, type } = this.props;
     return (
       <Query query={QUERY_PRIVATE_TODO} variables={{ userId: userId }}>
-        {({ loading, error, data, refetch }) => {
+        {({ loading, error, data }) => {
           if (loading) {
             return <div>Loading. Please wait...</div>;
           }
@@ -60,5 +61,10 @@ class TodoPrivateList extends Component {
     );
   }
 }
+
+TodoPrivateList.propTypes = {
+  userId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired
+};
 
 export default TodoPrivateList;

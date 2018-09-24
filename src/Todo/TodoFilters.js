@@ -1,12 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const TodoFilters = ({ todos, userId, type, currentFilter, filterResults }) => {
+const TodoFilters = ({ todos, currentFilter, filterResults }) => {
   const activeTodos = todos.filter(todo => todo.is_completed !== true);
   return (
     <div className="footerList">
       <span> {activeTodos.length} items left </span>
       <ul>
-        <li onClick={e => filterResults("all")}>
+        <li onClick={() => filterResults("all")}>
           <a className={currentFilter === "all" ? "selected" : ""}>All</a>
         </li>
         <li onClick={e => filterResults("active")}>
@@ -35,6 +36,14 @@ const TodoFilters = ({ todos, userId, type, currentFilter, filterResults }) => {
       <button className="clearComp">Clear completed</button>
     </div>
   );
+};
+
+TodoFilters.propTypes = {
+  todos: PropTypes.array.isRequired,
+  userId: PropTypes.string,
+  type: PropTypes.string,
+  currentFilter: PropTypes.string,
+  filterResults: PropTypes.func
 };
 
 export default TodoFilters;

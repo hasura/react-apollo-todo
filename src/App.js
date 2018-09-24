@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Navbar, Button } from "react-bootstrap";
 import "./App.css";
 
@@ -57,5 +58,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.object,
+  auth: PropTypes.object
+};
 
 export default App;
