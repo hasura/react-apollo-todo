@@ -35,7 +35,8 @@ Auth0
 `npm install graphqurl --save`
 
 Tooling
-`npm install --save-dev --save-exact prettier`
+`npm install eslint eslint-plugin-react --save-dev`
+`npm install -save-dev --save-exact prettier`
 `npm install lint-staged husky --save-dev`
 `prettier --single-quote --trailing-comma es5 --write "{src,__{tests,mocks}__}/**/*.js"`
 
