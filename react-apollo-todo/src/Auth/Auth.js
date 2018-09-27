@@ -3,6 +3,7 @@ import auth0 from "auth0-js";
 import { AUTH_CONFIG } from "./auth0-variables";
 import { query } from "graphqurl";
 import { GRAPHQL_URL } from "../constants";
+import { client } from "../routes";
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -31,6 +32,7 @@ export default class Auth {
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
+          console.log(client);
           query({
             query: `
                 mutation ($userId: String!, $nickname: String) {

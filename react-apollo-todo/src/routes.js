@@ -91,3 +91,5 @@ export const makeMainRoutes = () => {
     </Router>
   );
 };
+
+export { client };
