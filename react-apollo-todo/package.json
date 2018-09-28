@@ -1,6 +1,9 @@
 {
   "name": "react-apollo-todo",
   "version": "0.1.0",
+  "engines": {
+    "node": "8.9.1"
+  },
   "private": true,
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.10",
