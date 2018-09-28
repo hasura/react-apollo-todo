@@ -13,9 +13,20 @@ import { WebSocketLink } from "apollo-link-ws";
 import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
 import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { setContext } from 'apollo-link-context'
 
 import { getHeaders } from "./utils";
 import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("auth0:id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  }
+});
 
 const token = localStorage.getItem("auth0:id_token");
 // Create an http link:
@@ -49,7 +60,7 @@ const link = split(
 );
 
 const client = new ApolloClient({
-  link: link,
+  link: authLink.concat(link),
   cache: new InMemoryCache({
     addTypename: false
   })
