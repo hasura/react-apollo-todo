@@ -66,7 +66,7 @@ class App extends Component {
           <div className="col-md-6 col-sm-12">
             <div className="wd95 addPaddTopBottom">
               <div className="sectionHeader">Personal todos</div>
-              <TodoPrivateWrapper />
+              <TodoPrivateWrapper client={this.props.client} />
             </div>
           </div>
           <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">

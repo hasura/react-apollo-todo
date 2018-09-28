@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Query } from "react-apollo";
-import { query } from "graphqurl";
 import { GRAPHQL_URL } from "../constants";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
@@ -21,7 +20,7 @@ class TodoPrivateList extends Component {
     if (isOk) {
       this.setState({ clearInProgress: true });
       const isPublic = type === "public" ? true : false;
-      query({
+      this.props.client.query({
         query: `
             mutation ($isPublic: Boolean!) {
               delete_todos (
