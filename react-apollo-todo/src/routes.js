@@ -42,11 +42,14 @@ const wsLink = new WebSocketLink(new SubscriptionClient(
   REALTIME_GRAPHQL_URL,
   {
     reconnect: true,
+    timeout: 30000,
     connectionParams: {
       headers: getHeaders(token)
     }
   },
 ));
+
+// wsLink.subscriptionClient.maxConnectTimeGenerator.duration = () => wsLink.subscriptionClient.maxConnectTimeGenerator.max
 
 // chose the link to use based on operation
 const link = split(

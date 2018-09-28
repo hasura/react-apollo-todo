@@ -25,13 +25,8 @@ export default class Auth {
 
   handleAuthentication = (client) => {
     this.auth0.parseHash((err, authResult) => {
-      console.log('outside handle');
-      console.log(authResult);
-      console.log(client);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        console.log('inside handle');
-        console.log(authResult);
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
@@ -52,8 +47,8 @@ export default class Auth {
             }
           })
             .then(() => {
-              history.replace("/home");
-              // window.location.href="/home";
+              // history.replace("/home");
+              window.location.href="/home";
             })
             .catch(error => {
               console.error(error);
@@ -65,8 +60,6 @@ export default class Auth {
         // window.location.href="/home";
         console.error(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
-      } else {
-        console.log(authResult);
       }
     });
   }
