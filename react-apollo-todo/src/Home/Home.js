@@ -7,10 +7,6 @@ import TodoPublicWrapper from "../Todo/TodoPublicWrapper";
 import TodoPrivateWrapper from "../Todo/TodoPrivateWrapper";
 import OnlineUsers from "../Todo/OnlineUsers";
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {client: null};
-  }
   login() {
     this.props.auth.login();
   }
