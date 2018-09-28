@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { query } from "graphqurl";
 import moment from "moment";
+import gql from 'graphql-tag';
 import "../App.css";
 import TodoPublicWrapper from "../Todo/TodoPublicWrapper";
 import TodoPrivateWrapper from "../Todo/TodoPrivateWrapper";
 import OnlineUsers from "../Todo/OnlineUsers";
-import { GRAPHQL_URL } from "../constants";
+import { client } from "../routes";
 class App extends Component {
   login() {
     this.props.auth.login();
@@ -14,8 +14,8 @@ class App extends Component {
   updateLastSeen() {
     const userId = localStorage.getItem("auth0:id_token:sub");
     const timestamp = moment().format();
-    query({
-      query: `
+    client.mutate({
+      mutation: gql`
           mutation ($userId: String!, $timestamp: timestamptz!) {
             update_users (
               where:{auth0_id: {_eq: $userId}}, _set: {auth0_id: $userId, last_seen: $timestamp},
@@ -24,12 +24,6 @@ class App extends Component {
             }
           }
         `,
-      endpoint: GRAPHQL_URL,
-      /*
-        headers: {
-          'x-access-key': 'mysecretxxx',
-        },
-        */
       variables: {
         userId: userId,
         timestamp: timestamp

@@ -1,3 +1,5 @@
+# React Apollo GraphQL Todo App
+
 * STEP 1: Set auth0 domain
 
   Set your auth0 domain in `auth-webhook/.env`.
@@ -5,13 +7,15 @@
 
 * STEP 2: Deploy the auth Webhook (using ngrok, glitch, heroku etc)
 
-  [![glitch-deploy-button](https://raw.githubusercontent.com/hasura/sample-auth-webhook/master/assets/deploy-glitch.png)](https://glitch.com/edit/#!/thundering-brick)
+  [![glitch-deploy-button](https://raw.githubusercontent.com/hasura/sample-auth-webhook/master/assets/deploy-glitch.png)](https://glitch.com/edit/#!/small-bottle)
 
 * STEP 3: Start GraphQL engine with the the auth-hook as the webhook URL and access key of your choice
 
   Deploy GraphQL engine to Heroku if you haven't already.
 
   [![Deploy to heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hasura/graphql-engine-heroku)
+
+  Note: If you used the above Deploy to Glitch button, use the webhook URL as `https://small-bottle.glitch.me/auth0/webhook`
 
 * STEP 4: Apply the migrations
 

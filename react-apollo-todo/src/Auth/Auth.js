@@ -1,8 +1,7 @@
 import history from "../history";
 import auth0 from "auth0-js";
+import gql from 'graphql-tag';
 import { AUTH_CONFIG } from "./auth0-variables";
-import { query } from "graphqurl";
-import { GRAPHQL_URL } from "../constants";
 import { client } from "../routes";
 
 export default class Auth {
@@ -32,9 +31,8 @@ export default class Auth {
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
-          console.log(client);
-          query({
-            query: `
+          client.mutate({
+            mutation: gql`
                 mutation ($userId: String!, $nickname: String) {
                   insert_users (
                     objects: [{auth0_id: $userId, name: $nickname}],
@@ -44,12 +42,6 @@ export default class Auth {
                   }
                 }
               `,
-            endpoint: GRAPHQL_URL,
-            /*
-              headers: {
-                'x-access-key': 'mysecretxxx',
-              },
-              */
             variables: {
               userId: user.sub,
               nickname: user.nickname
