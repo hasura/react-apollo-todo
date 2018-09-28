@@ -43,7 +43,7 @@ const wsLink = new WebSocketLink(new SubscriptionClient(
   {
     reconnect: true,
     connectionParams: {
-      headers: getHeaders(token)
+      authLink
     }
   },
 ));
@@ -65,6 +65,14 @@ const client = new ApolloClient({
     addTypename: false
   })
 });
+
+client.restartWebsocketConnection = () => {
+  if (wsLink) {
+    const token = localStorage.getItem("auth0:id_token");
+    wsLink.subscriptionClient.connectionParams = { Authorization: `Bearer ${token}` };
+    wsLink.subscriptionClient.tryReconnect();
+  }
+};
 
 const provideClient = component => {
   return <ApolloProvider client={client}>{component}</ApolloProvider>;

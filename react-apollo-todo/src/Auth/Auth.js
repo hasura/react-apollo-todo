@@ -29,7 +29,8 @@ export default class Auth {
       console.log(authResult);
       console.log(client);
       if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
+        client.restartWebsocketConnection();
+        this.setSession(authResult, client);
         console.log('inside handle');
         console.log(authResult);
         // store in db
@@ -71,8 +72,9 @@ export default class Auth {
     });
   }
 
-  setSession(authResult) {
+  setSession(authResult, client) {
     // Set the time that the access token will expire at
+    client.restartWebsocketConnection();
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
