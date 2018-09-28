@@ -1,8 +1,7 @@
-import history from "../history";
+// import history from "../history";
 import auth0 from "auth0-js";
 import gql from 'graphql-tag';
 import { AUTH_CONFIG } from "./auth0-variables";
-import { client } from "../routes";
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -24,9 +23,10 @@ export default class Auth {
     this.auth0.authorize();
   }
 
-  handleAuthentication() {
+  handleAuthentication = (client) => {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log(authResult);
         this.setSession(authResult);
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
@@ -48,15 +48,17 @@ export default class Auth {
             }
           })
             .then(() => {
-              history.replace("/home");
+              // history.replace("/home");
+              window.location.href="/home";
             })
             .catch(error => {
               console.error(error);
-              alert(JSON.stringify(error));
+              // alert(JSON.stringify(error));
             });
         });
       } else if (err) {
-        history.replace("/home");
+        // history.replace("/home");
+        window.location.href="/home";
         console.error(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -68,12 +70,14 @@ export default class Auth {
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
+    console.log(authResult);
     localStorage.setItem("auth0:access_token", authResult.accessToken);
     localStorage.setItem("auth0:id_token", authResult.idToken);
     localStorage.setItem("auth0:expires_at", expiresAt);
     localStorage.setItem("auth0:id_token:sub", authResult.idTokenPayload.sub);
     // navigate to the home route
-    history.replace("/home");
+    // history.replace("/home");
+    window.location.href="/home";
   }
 
   logout() {
@@ -83,7 +87,8 @@ export default class Auth {
     localStorage.removeItem("auth0:expires_at");
     localStorage.removeItem("auth0:id_token:sub");
     // navigate to the home route
-    history.replace("/home");
+    // history.replace("/home");
+    window.location.href="/home";
   }
 
   isAuthenticated() {

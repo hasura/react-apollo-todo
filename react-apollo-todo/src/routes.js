@@ -7,7 +7,6 @@ import Auth from "./Auth/Auth";
 import history from "./history";
 import ApolloClient from "apollo-client";
 import { HttpLink } from "apollo-link-http";
-// import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { WebSocketLink } from "apollo-link-ws";
@@ -15,50 +14,39 @@ import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
+import { getHeaders } from "./utils";
 import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
 
-const makeHttpAndWsLink = (uri, headers) => {
-
-  // Create an http link:
-  const httpLink = new HttpLink({
-    uri: GRAPHQL_URL,
-    fetch,
-    headers
-  });
-
-
-  // Create a WebSocket link:
-  const wsLink = new WebSocketLink(new SubscriptionClient(
-    uri,
-    {
-      reconnect: true,
-      connectionParams: {
-        headers
-      }
-    },
-  ));
-
-  // chose the link to use based on operation
-  const link = split(
-    // split based on operation type
-    ({ query }) => {
-      const { kind, operation } = getMainDefinition(query);
-      return kind === 'OperationDefinition' && operation === 'subscription';
-    },
-    wsLink,
-    httpLink,
-  );
+const token = localStorage.getItem("auth0:id_token");
+// Create an http link:
+const httpLink = new HttpLink({
+  uri: GRAPHQL_URL,
+  fetch,
+  headers: getHeaders(token)
+});
 
 
-  return link;
-};
-const token = localStorage.getItem("auth0:access_token");
-// return the headers to the context so httpLink can read them
-const finalHeaders = {
-  authorization: token ? `Bearer ${token}` : ""
-};
+// Create a WebSocket link:
+const wsLink = new WebSocketLink(new SubscriptionClient(
+  REALTIME_GRAPHQL_URL,
+  {
+    reconnect: true,
+    connectionParams: {
+      headers: getHeaders(token)
+    }
+  },
+));
 
-const link = makeHttpAndWsLink(REALTIME_GRAPHQL_URL, finalHeaders);
+// chose the link to use based on operation
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  httpLink,
+);
 
 const client = new ApolloClient({
   link: link,
@@ -75,7 +63,7 @@ const auth = new Auth();
 
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
-    auth.handleAuthentication();
+    auth.handleAuthentication(client);
   }
 };
 
@@ -85,11 +73,11 @@ export const makeMainRoutes = () => {
       <div>
         <Route
           path="/"
-          render={props => provideClient(<App auth={auth} {...props} />)}
+          render={props => provideClient(<App auth={auth} client={client} {...props} />)}
         />
         <Route
           path="/home"
-          render={props => provideClient(<Home auth={auth} {...props} />)}
+          render={props => provideClient(<Home auth={auth} client={client} {...props} />)}
         />
         <Route
           path="/callback"
@@ -102,5 +90,3 @@ export const makeMainRoutes = () => {
     </Router>
   );
 };
-
-export { client };
