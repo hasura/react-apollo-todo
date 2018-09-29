@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Query } from "react-apollo";
-import { GRAPHQL_URL } from "../constants";
+import gql from "graphql-tag";
 import TodoItem from "./TodoItem";
 
 class TodoPrivateList extends Component {
@@ -23,17 +23,45 @@ class TodoPrivateList extends Component {
       }
     ];
     return (
-      <Fragment>
-        <div className="todoListwrapper">
-          <ul>
-            {sampleTodos.map((todo, index) => {
-              return (
-                <TodoItem key={index} todo={todo} type={type} userId={userId} />
-              );
-            })}
-          </ul>
-        </div>
-      </Fragment>
+      <Query
+        query={gql`
+          query fetch_todos {
+            todos(order_by: created_at_desc) {
+              id
+              text
+              is_completed
+            }
+          }
+        `}
+        pollInterval={100}
+      >
+        {({ loading, error, data }) => {
+          if (loading) {
+            return <span>Loading...</span>;
+          }
+          if (error) {
+            return <span>Error!</span>;
+          }
+          return (
+            <Fragment>
+              <div className="todoListwrapper">
+                <ul>
+                  {data.todos.map((todo, index) => {
+                    return (
+                      <TodoItem
+                        key={index}
+                        todo={todo}
+                        type={type}
+                        userId={userId}
+                      />
+                    );
+                  })}
+                </ul>
+              </div>
+            </Fragment>
+          );
+        }}
+      </Query>
     );
   }
 }

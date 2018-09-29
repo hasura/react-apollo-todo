@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
 import "../App.css";
 
 class TodoInput extends React.Component {
@@ -18,28 +19,52 @@ class TodoInput extends React.Component {
     });
   }
 
-  handleTextboxKeyPress(e, addTodo) {
+  handleTextboxKeyPress(e, insertTodo) {
     // Insert on enter
     if (e.key === "Enter") {
       const newTodo = this.state.textboxValue;
       const userId = this.props.userId;
+      insertTodo({
+        variables: {
+          todo: {
+            user_id: userId,
+            text: newTodo
+          }
+        }
+      });
+      this.setState({
+        ...this.state,
+        textboxValue: ""
+      });
     }
   }
 
   render() {
     return (
-      <div className="formInput">
-        <input
-          className="input"
-          placeholder="What needs to be done?"
-          value={this.state.textboxValue}
-          onChange={this.handleTextboxValueChange.bind(this)}
-          onKeyPress={e => {
-            // this.handleTextboxKeyPress(e, addTodo);
-          }}
-        />
-        <i className="downArrow fa fa-angle-down" />
-      </div>
+      <Mutation
+        mutation={gql`
+          mutation insert($todo: todos_insert_input!) {
+            insert_todos(objects: [$todo]) {
+              affected_rows
+            }
+          }
+        `}
+      >
+        {insertTodo => (
+          <div className="formInput">
+            <input
+              className="input"
+              placeholder="What needs to be done?"
+              value={this.state.textboxValue}
+              onChange={this.handleTextboxValueChange.bind(this)}
+              onKeyPress={e => {
+                this.handleTextboxKeyPress(e, insertTodo);
+              }}
+            />
+            <i className="downArrow fa fa-angle-down" />
+          </div>
+        )}
+      </Mutation>
     );
   }
 }
