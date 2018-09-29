@@ -1,37 +1,23 @@
 import React, { Component } from "react";
 import { Subscription } from "react-apollo";
-import { SUBSCRIPTION_ONLINE_USERS } from "./TodoQueries";
 
 class OnlineUsers extends Component {
   render() {
+    const online_users = [{ name: "someUser1" }, { name: "someUser2" }];
     return (
-      <Subscription subscription={SUBSCRIPTION_ONLINE_USERS}>
-        {({ loading, error, data }) => {
-          if (loading) {
-            return <div>Loading. Please wait...</div>;
-          }
-          if (error) {
-            return <div>Error loading users</div>;
-          }
+      <div className="sliderMenu grayBgColor">
+        <div className="sliderHeader">Online users - {online_users.length}</div>
+        {online_users.map(user => {
           return (
-            <div className="sliderMenu grayBgColor">
-              <div className="sliderHeader">
-                Online users - {data.online_users.length}
+            <div key={user.name} className="userInfo">
+              <div className="userImg">
+                <i className="far fa-user" />
               </div>
-              {data.online_users.map(user => {
-                return (
-                  <div key={user.name} className="userInfo">
-                    <div className="userImg">
-                      <i className="far fa-user" />
-                    </div>
-                    <div className="userName">{user.name}</div>
-                  </div>
-                );
-              })}
+              <div className="userName">{user.name}</div>
             </div>
           );
-        }}
-      </Subscription>
+        })}
+      </div>
     );
   }
 }
