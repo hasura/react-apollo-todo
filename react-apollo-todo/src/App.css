@@ -18,7 +18,7 @@ body {
 }
 .logoutBtn {
   margin-top: 12px;
-  float: right;
+  /* float: right; */
 }
 .header {
   background-color: #4f5050;

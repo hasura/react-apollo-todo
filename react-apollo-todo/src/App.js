@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Button } from "react-bootstrap";
 import "./App.css";
@@ -43,14 +43,18 @@ class App extends Component {
               </Button>
             )}
             {isAuthenticated() && (
-              <Button
-                id="qsLogoutBtn"
-                bsStyle="primary"
-                className="btn-margin logoutBtn"
-                onClick={this.logout.bind(this)}
-              >
-                Log Out
-              </Button>
+              <Fragment>
+                <span>{localStorage.getItem("auth0:id_token")}</span>
+                <br />
+                <Button
+                  id="qsLogoutBtn"
+                  bsStyle="primary"
+                  className="btn-margin logoutBtn"
+                  onClick={this.logout.bind(this)}
+                >
+                  Log Out
+                </Button>
+              </Fragment>
             )}
           </Navbar.Header>
         </Navbar>
