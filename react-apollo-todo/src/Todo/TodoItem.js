@@ -21,7 +21,7 @@ const handleTodoToggle = (toggleTodo, todo, type, userId) => {
     update: (cache, { data: { update_todo } }) => {
       // eslint-disable-line
       const query = type === "private" ? QUERY_PRIVATE_TODO : QUERY_PUBLIC_TODO;
-      if (type === "private") {
+      if (type === "private" || type === "public") {
         const data = cache.readQuery({
           query: query,
           variables: { userId: userId }

@@ -59,8 +59,11 @@ const MUTATION_TODO_DELETE = gql`
 `;
 
 const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
-  subscription {
-    todos(where: { is_public: { _eq: true } }, order_by: created_at_desc) {
+  subscription($todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _eq: $todoId } }
+      order_by: created_at_desc
+    ) {
       id
       text
       is_completed
@@ -72,7 +75,7 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
 
 const SUBSCRIPTION_ONLINE_USERS = gql`
   subscription {
-    online_users(order_by: name_asc) {
+    online_users(order_by: name_asc, limit: 1) {
       name
     }
   }
