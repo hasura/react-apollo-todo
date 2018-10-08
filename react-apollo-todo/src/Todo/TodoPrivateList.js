@@ -20,8 +20,9 @@ class TodoPrivateList extends Component {
     if (isOk) {
       this.setState({ clearInProgress: true });
       const isPublic = type === "public" ? true : false;
-      this.props.client.query({
-        query: `
+      this.props.client
+        .query({
+          query: `
             mutation ($isPublic: Boolean!) {
               delete_todos (
                 where: { is_completed: {_eq: true}, is_public: {_eq: $isPublic}}
@@ -30,16 +31,16 @@ class TodoPrivateList extends Component {
               }
             }
           `,
-        endpoint: GRAPHQL_URL,
-        /*
+          endpoint: GRAPHQL_URL,
+          /*
           headers: {
             'x-access-key': 'mysecretxxx',
           },
           */
-        variables: {
-          isPublic: isPublic
-        }
-      })
+          variables: {
+            isPublic: isPublic
+          }
+        })
         .then(() => {
           // handle response
           this.setState({ clearInProgress: false });
@@ -77,6 +78,7 @@ class TodoPrivateList extends Component {
                     return (
                       <TodoItem
                         key={index}
+                        index={index}
                         todo={todo}
                         type={type}
                         userId={userId}
