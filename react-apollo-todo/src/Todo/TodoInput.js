@@ -84,6 +84,11 @@ class TodoInput extends React.Component {
             <div className="formInput">
               <input
                 className="input"
+                data-test={
+                  this.props.type === "private"
+                    ? "input-private"
+                    : "input-public"
+                }
                 placeholder="What needs to be done?"
                 value={this.state.textboxValue}
                 onChange={this.handleTextboxValueChange.bind(this)}
