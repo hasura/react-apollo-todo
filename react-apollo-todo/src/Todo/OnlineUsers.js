@@ -18,13 +18,18 @@ class OnlineUsers extends Component {
               <div className="sliderHeader">
                 Online users - {data.online_users.length}
               </div>
-              {data.online_users.map(user => {
+              {data.online_users.map((user, index) => {
                 return (
                   <div key={user.name} className="userInfo">
                     <div className="userImg">
                       <i className="far fa-user" />
                     </div>
-                    <div className="userName">{user.name}</div>
+                    <div
+                      data-test={index + "_" + user.name}
+                      className="userName"
+                    >
+                      {user.name}
+                    </div>
                   </div>
                 );
               })}

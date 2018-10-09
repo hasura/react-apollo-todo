@@ -68,7 +68,7 @@ const handleTodoDelete = (deleteTodo, todo, type, userId) => {
   });
 };
 
-const TodoItem = ({ todo, type, userId }) => (
+const TodoItem = ({ index, todo, type, userId }) => (
   <Mutation mutation={MUTATION_TODO_UPDATE}>
     {updateTodo => {
       return (
@@ -109,13 +109,20 @@ const TodoItem = ({ todo, type, userId }) => (
                 </div>
                 <div className="labelContent">
                   {todo.is_completed ? (
-                    <strike className="todoLabel">{todo.text}</strike>
+                    <strike className="todoLabel">
+                      <div data-test={type + "_" + index + "_" + todo.text}>
+                        {todo.text}
+                      </div>
+                    </strike>
                   ) : (
-                    <div>{todo.text}</div>
+                    <div data-test={type + "_" + index + "_" + todo.text}>
+                      {todo.text}
+                    </div>
                   )}
                 </div>
                 <button
                   className="closeBtn"
+                  data-test={"remove_" + type + "_" + index + "_" + todo.text}
                   onClick={e => {
                     e.preventDefault();
                     e.stopPropagation();

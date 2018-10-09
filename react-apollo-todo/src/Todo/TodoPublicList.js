@@ -76,6 +76,7 @@ class TodoPublicList extends Component {
                           return (
                             <TodoItem
                               key={index}
+                              index={index}
                               todo={todo}
                               type={type}
                               userId={userId}
