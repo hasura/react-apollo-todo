@@ -279,6 +279,20 @@ body {
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
+.loadMoreSection {
+  list-style-type: none;
+  height: 30px;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  background-color: #e6ecf0;
+  position: relative;
+  justify-content: center;
+  cursor: pointer;
+}
 @media (max-width: 991px) {
   .sliderMenu {
     height: auto;

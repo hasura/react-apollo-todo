@@ -16,8 +16,42 @@ const QUERY_PRIVATE_TODO = gql`
 `;
 
 const QUERY_PUBLIC_TODO = gql`
-  query fetch_todos {
-    todos(where: { is_public: { _eq: true } }, order_by: created_at_desc) {
+  query fetch_todos($todoLimit: Int, $todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _gt: $todoId } }
+      order_by: created_at_desc
+      limit: $todoLimit
+    ) {
+      id
+      text
+      is_completed
+      created_at
+      is_public
+    }
+  }
+`;
+
+const QUERY_FEED_PUBLIC_TODO = gql`
+  query fetch_todos($todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _gt: $todoId } }
+      order_by: created_at_desc
+    ) {
+      id
+      text
+      is_completed
+      created_at
+      is_public
+    }
+  }
+`;
+
+const QUERY_FEED_PUBLIC_OLD_TODO = gql`
+  query fetch_todos($todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _lt: $todoId } }
+      order_by: created_at_desc
+    ) {
       id
       text
       is_completed
@@ -61,7 +95,7 @@ const MUTATION_TODO_DELETE = gql`
 const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
   subscription($todoId: Int) {
     todos(
-      where: { is_public: { _eq: true }, id: { _eq: $todoId } }
+      where: { is_public: { _eq: true }, id: { _gt: $todoId } }
       order_by: created_at_desc
     ) {
       id
@@ -84,6 +118,8 @@ const SUBSCRIPTION_ONLINE_USERS = gql`
 export {
   QUERY_PRIVATE_TODO,
   QUERY_PUBLIC_TODO,
+  QUERY_FEED_PUBLIC_TODO,
+  QUERY_FEED_PUBLIC_OLD_TODO,
   MUTATION_TODO_ADD,
   MUTATION_TODO_UPDATE,
   MUTATION_TODO_DELETE,
