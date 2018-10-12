@@ -97,6 +97,7 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
       order_by: created_at_desc
+      limit: 1
     ) {
       id
       text

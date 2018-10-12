@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-// import { Query, Subscription } from "react-apollo";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
 import {
@@ -22,11 +21,15 @@ class TodoPublicList extends Component {
       limit: 5,
       todos: []
     };
+    this.deletePublicTodoClicked = this.deletePublicTodoClicked.bind(this);
+    this.completePublicTodoClicked = this.completePublicTodoClicked.bind(this);
+    this.loadMoreClicked = this.loadMoreClicked.bind(this);
+    this.loadOlderClicked = this.loadOlderClicked.bind(this);
+    this.filterResults = this.filterResults.bind(this);
   }
   componentDidMount() {
     const { client } = this.props;
     const _this = this;
-    console.log(client);
     // query for public todos
     client
       .query({
@@ -46,12 +49,12 @@ class TodoPublicList extends Component {
           })
           .subscribe({
             next(data) {
-              console.log(data);
               if (data.data.todos.length) {
                 _this.setState({
                   ...this.state,
                   showNew: true,
-                  newTodosLength: data.data.todos.length
+                  newTodosLength:
+                    _this.state.newTodosLength + data.data.todos.length
                 });
               }
             },
@@ -103,6 +106,22 @@ class TodoPublicList extends Component {
         }
       });
   }
+  deletePublicTodoClicked(deletedTodo) {
+    const finalTodos = this.state.todos.filter(t => {
+      return t.id !== deletedTodo.id;
+    });
+    this.setState({ ...this.state, todos: finalTodos });
+  }
+  completePublicTodoClicked(completedTodo) {
+    const finalTodos = this.state.todos.filter(t => {
+      if (t.id === completedTodo.id) {
+        t.is_completed = !t.is_completed;
+        return t;
+      }
+      return t;
+    });
+    this.setState({ ...this.state, todos: finalTodos });
+  }
   render() {
     const { userId, type } = this.props;
 
@@ -118,10 +137,7 @@ class TodoPublicList extends Component {
     let showNewTodos = null;
     if (this.state.showNew && this.state.newTodosLength) {
       showNewTodos = (
-        <div
-          className={"loadMoreSection"}
-          onClick={this.loadMoreClicked.bind(this)}
-        >
+        <div className={"loadMoreSection"} onClick={this.loadMoreClicked}>
           You have {this.state.newTodosLength} new{" "}
           {this.state.newTodosLength > 1 ? "todos" : "todo"}
         </div>
@@ -130,19 +146,13 @@ class TodoPublicList extends Component {
 
     // show old todo history logic
     let showOlderTodos = (
-      <div
-        className={"loadMoreSection"}
-        onClick={this.loadOlderClicked.bind(this)}
-      >
+      <div className={"loadMoreSection"} onClick={this.loadOlderClicked}>
         Load Older Todos
       </div>
     );
-    if (!this.state.showOlder) {
+    if (!this.state.showOlder && this.state.todos.length) {
       showOlderTodos = (
-        <div
-          className={"loadMoreSection"}
-          onClick={this.loadOlderClicked.bind(this)}
-        >
+        <div className={"loadMoreSection"} onClick={this.loadOlderClicked}>
           No more todos available
         </div>
       );
@@ -162,6 +172,8 @@ class TodoPublicList extends Component {
                   type={type}
                   userId={userId}
                   client={this.props.client}
+                  deletePublicTodoClicked={this.deletePublicTodoClicked}
+                  completePublicTodoClicked={this.completePublicTodoClicked}
                 />
               );
             })}
@@ -173,7 +185,7 @@ class TodoPublicList extends Component {
           userId={userId}
           type={type}
           currentFilter={this.state.filter}
-          filterResults={this.filterResults.bind(this)}
+          filterResults={this.filterResults}
         />
       </Fragment>
     );

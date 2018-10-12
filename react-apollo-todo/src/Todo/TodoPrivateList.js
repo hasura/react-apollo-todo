@@ -32,11 +32,6 @@ class TodoPrivateList extends Component {
             }
           `,
           endpoint: GRAPHQL_URL,
-          /*
-          headers: {
-            'x-access-key': 'mysecretxxx',
-          },
-          */
           variables: {
             isPublic: isPublic
           }
