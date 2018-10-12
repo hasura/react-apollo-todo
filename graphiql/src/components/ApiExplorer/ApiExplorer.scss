@@ -302,10 +302,15 @@
         color: #f24444;
       }
     }
+    .changeEndpoint {
+      padding: 10px 10px !important;
+      margin-left: 10px;
+    }
     .apiRequestContent
     {
       font-size: 14px;
       float: left;
+      font-weight: bold;
       a
       {
         color: #FEC53D;
