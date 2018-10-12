@@ -2,11 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProgressBar from 'react-progress-bar-plus';
-import Modal from 'react-bootstrap/lib/Modal';
 import './progress-bar.scss';
 import { NOTIF_EXPANDED } from './Actions';
-import AceEditor from 'react-ace';
-import 'brace/mode/json';
 import ErrorBoundary from './ErrorBoundary';
 
 class App extends Component {
@@ -23,14 +20,11 @@ class App extends Component {
   };
 
   render() {
-    const styles = require('./progress-bar.scss');
     const {
       ongoingRequest,
       percent,
       intervalTime,
       children,
-      isNotifExpanded,
-      notifMsg,
     } = this.props;
 
     return (
@@ -45,33 +39,6 @@ class App extends Component {
             />
           )}
           <div>{children}</div>
-          <Modal
-            show={isNotifExpanded}
-            onHide={this.onModalClose}
-            dialogClassName={styles.notifModalDialog}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Error</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div className="content-fluid">
-                <div className="row">
-                  <div className="col-md-12">
-                    <AceEditor
-                      mode="json"
-                      theme="github"
-                      name="notif_error"
-                      value={notifMsg}
-                      minLines={8}
-                      maxLines={100}
-                      width="100%"
-                      showPrintMargin={false}
-                    />
-                  </div>
-                </div>
-              </div>
-            </Modal.Body>
-          </Modal>
         </div>
       </ErrorBoundary>
     );

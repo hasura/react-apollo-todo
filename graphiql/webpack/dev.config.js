@@ -10,8 +10,6 @@ const host = appconfig.hmrHost;
 const port = appconfig.hmrPort;
 
 const autoprefixer = require('autoprefixer');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
 
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(
@@ -176,7 +174,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       postcss: [autoprefixer],
     }),
-    // new BundleAnalyzerPlugin(),
     new webpack.IgnorePlugin(/webpack-stats\.json$/),
     new webpack.DefinePlugin({
       __CLIENT__: true,
