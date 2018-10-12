@@ -218,7 +218,6 @@ const apiExplorerReducer = (state = defaultState, action) => {
         headerFocus: true,
       };
     case GRAPHQL_ENDPOINT_CHANGED:
-      console.log('graphql');
       return {
         ...state,
         graphqlEndpoint: action.data,

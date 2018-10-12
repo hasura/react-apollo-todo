@@ -7,6 +7,9 @@ class ApiRequestDetails extends Component {
     return (
       <div className={styles.apiRequestWrapper + ' ' + styles.apiContentPadd}>
         <div className={styles.apiRequestContent}>{this.props.description}</div>
+        <div className={styles.apiHasura}>
+          Built with <i className="fa fa-heart" /> by <a href={'http://hasura.io/'} target={'_blank'}>Hasura</a>
+        </div>
       </div>
     );
   }

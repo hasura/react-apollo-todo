@@ -13,7 +13,6 @@ class LoginComponent extends React.Component {
   }
   render() {
     const { dispatch } = this.props;
-    console.log(this.props);
     return (
       <div className="loginWrapper">
         <h2 className="loginHeading"> Online GraphiQL </h2>
@@ -25,7 +24,6 @@ class LoginComponent extends React.Component {
                 id="username"
                 className="loginTextbox"
                 placeholder="Enter GraphQL Endpoint"
-                autoFocus
                 onChange={this.setGraphQLEndpoint.bind(this)}
               />
               <button
@@ -33,11 +31,15 @@ class LoginComponent extends React.Component {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();
-                  console.log('inside');
-                  dispatch(updateGraphQLEndpoint(this.state.graphqlEndpoint));
+                  const emailRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+                  if (!emailRegex.test(this.state.graphqlEndpoint)) {
+                    alert('Please enter a valid URL');
+                  } else {
+                    dispatch(updateGraphQLEndpoint(this.state.graphqlEndpoint));
+                  }
                 }}
               >
-                Enter
+                <i className={'fa fa-sign-in'} />
               </button>
             </form>
           </div>

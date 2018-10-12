@@ -24,7 +24,7 @@ body
 }
 .loginButton {
   height: 45px;
-  width: 21%;
+  width: 10%;
   display: inline-block;
   border-radius: 5px;
   background-color: 'green' !important;
@@ -44,7 +44,7 @@ body
 }
 .loginWrapper
 {
-  width: 450px;
+  width: 600px;
   padding: 30px;
   margin: 0 auto;
   position: fixed;
