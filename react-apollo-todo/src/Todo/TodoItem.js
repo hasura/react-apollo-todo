@@ -10,7 +10,13 @@ import {
   MUTATION_TODO_DELETE
 } from "./TodoQueries";
 
-const handleTodoToggle = (toggleTodo, todo, type, userId) => {
+const handleTodoToggle = (
+  toggleTodo,
+  todo,
+  type,
+  userId,
+  completePublicTodoClicked
+) => {
   toggleTodo({
     variables: {
       todoId: todo.id,
@@ -35,12 +41,20 @@ const handleTodoToggle = (toggleTodo, todo, type, userId) => {
           },
           data
         });
+      } else if (type === "public") {
+        completePublicTodoClicked(todo);
       }
     }
   });
 };
 
-const handleTodoDelete = (deleteTodo, todo, type, userId) => {
+const handleTodoDelete = (
+  deleteTodo,
+  todo,
+  type,
+  userId,
+  deletePublicTodoClicked
+) => {
   deleteTodo({
     variables: {
       todoId: todo.id
@@ -63,12 +77,21 @@ const handleTodoDelete = (deleteTodo, todo, type, userId) => {
           },
           data
         });
+      } else if (type === "public") {
+        deletePublicTodoClicked(todo);
       }
     }
   });
 };
 
-const TodoItem = ({ index, todo, type, userId }) => (
+const TodoItem = ({
+  index,
+  todo,
+  type,
+  userId,
+  completePublicTodoClicked,
+  deletePublicTodoClicked
+}) => (
   <Mutation mutation={MUTATION_TODO_UPDATE}>
     {updateTodo => {
       return (
@@ -77,7 +100,13 @@ const TodoItem = ({ index, todo, type, userId }) => (
             return (
               <li
                 onClick={() => {
-                  handleTodoToggle(updateTodo, todo, type, userId);
+                  handleTodoToggle(
+                    updateTodo,
+                    todo,
+                    type,
+                    userId,
+                    completePublicTodoClicked
+                  );
                 }}
               >
                 <div className="view">
@@ -88,7 +117,13 @@ const TodoItem = ({ index, todo, type, userId }) => (
                         type="checkbox"
                         id={todo.id}
                         onChange={() => {
-                          handleTodoToggle(updateTodo, todo, type, userId);
+                          handleTodoToggle(
+                            updateTodo,
+                            todo,
+                            type,
+                            userId,
+                            completePublicTodoClicked
+                          );
                         }}
                       />
                       <label htmlFor={todo.id} />
@@ -100,7 +135,13 @@ const TodoItem = ({ index, todo, type, userId }) => (
                         checked={false}
                         id={todo.id}
                         onChange={() => {
-                          handleTodoToggle(updateTodo, todo, type, userId);
+                          handleTodoToggle(
+                            updateTodo,
+                            todo,
+                            type,
+                            userId,
+                            completePublicTodoClicked
+                          );
                         }}
                       />
                       <label htmlFor={todo.id} />)
@@ -126,7 +167,13 @@ const TodoItem = ({ index, todo, type, userId }) => (
                   onClick={e => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleTodoDelete(deleteTodo, todo, type, userId);
+                    handleTodoDelete(
+                      deleteTodo,
+                      todo,
+                      type,
+                      userId,
+                      deletePublicTodoClicked
+                    );
                   }}
                 >
                   x

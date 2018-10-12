@@ -15,6 +15,7 @@ class TodoInput extends React.Component {
     this.state = {
       textboxValue: ""
     };
+    this.handleTextboxKeyPress = this.handleTextboxKeyPress.bind(this);
   }
 
   handleTextboxValueChange(e) {

@@ -1,6 +1,6 @@
 import history from "../history";
 import auth0 from "auth0-js";
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 import { AUTH_CONFIG } from "./auth0-variables";
 
 export default class Auth {
@@ -23,32 +23,36 @@ export default class Auth {
     this.auth0.authorize();
   }
 
-  handleAuthentication = (client) => {
+  handleAuthentication = client => {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
-          client.mutate({
-            mutation: gql`
-                mutation ($userId: String!, $nickname: String) {
-                  insert_users (
-                    objects: [{auth0_id: $userId, name: $nickname}],
-                    on_conflict: {constraint: users_pkey, update_columns: [last_seen, name]}
+          client
+            .mutate({
+              mutation: gql`
+                mutation($userId: String!, $nickname: String) {
+                  insert_users(
+                    objects: [{ auth0_id: $userId, name: $nickname }]
+                    on_conflict: {
+                      constraint: users_pkey
+                      update_columns: [last_seen, name]
+                    }
                   ) {
                     affected_rows
                   }
                 }
               `,
-            variables: {
-              userId: user.sub,
-              nickname: user.nickname
-            }
-          })
+              variables: {
+                userId: user.sub,
+                nickname: user.nickname
+              }
+            })
             .then(() => {
               // history.replace("/home");
-              window.location.href="/home";
+              window.location.href = "/home";
             })
             .catch(error => {
               console.error(error);
@@ -62,14 +66,13 @@ export default class Auth {
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });
-  }
+  };
 
   setSession(authResult) {
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
-    console.log(authResult);
     localStorage.setItem("auth0:access_token", authResult.accessToken);
     localStorage.setItem("auth0:id_token", authResult.idToken);
     localStorage.setItem("auth0:expires_at", expiresAt);
