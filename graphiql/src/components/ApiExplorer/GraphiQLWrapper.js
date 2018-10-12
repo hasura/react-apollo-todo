@@ -24,6 +24,7 @@ class GraphiQLWrapper extends Component {
     const styles = require('../Common/Common.scss');
     const { variables, query } = window.__env;
     const graphQLFetcher = graphQLParams => {
+      console.log(graphQLParams);
       return graphQLFetcherFinal(
         graphQLParams,
         this.props.data.url,
@@ -33,15 +34,14 @@ class GraphiQLWrapper extends Component {
     const graphiqlProps = {
       fetcher: graphQLFetcher,
     };
+    console.log(graphiqlProps);
     if (query || Object.keys(variables).length !== 0) {
       graphiqlProps.query = query;
+      console.log(variables);
       if (variables !== 'undefined') {
-        console.log(variables);
-        console.log('Inside variables');
         graphiqlProps.variables = JSON.stringify(variables, null, 2);
       }
     }
-    console.log(graphiqlProps);
     return (
       <ErrorBoundary>
         <div

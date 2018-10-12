@@ -6,7 +6,6 @@ class ApiRequestDetails extends Component {
     const styles = require('./ApiExplorer.scss');
     return (
       <div className={styles.apiRequestWrapper + ' ' + styles.apiContentPadd}>
-        <div className={styles.apiRequestheader}>{this.props.title}</div>
         <div className={styles.apiRequestContent}>{this.props.description}</div>
       </div>
     );

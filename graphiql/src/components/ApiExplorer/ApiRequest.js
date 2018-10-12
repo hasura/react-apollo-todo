@@ -74,17 +74,13 @@ class ApiRequest extends Component {
           <div
             className={
               'input-group ' +
-              styles.inputGroupWrapper +
-              ' ' +
-              styles.cursorNotAllowed
+              styles.inputGroupWrapper
             }
           >
             <div
               className={
                 'input-group-btn ' +
-                styles.inputGroupBtn +
-                ' ' +
-                styles.cursorNotAllowed
+                styles.inputGroupBtn
               }
             >
               <button type="button" className={'btn btn-default'}>
@@ -92,12 +88,12 @@ class ApiRequest extends Component {
               </button>
             </div>
             <input
-              value={this.props.url}
+              defaultValue={this.props.url}
+              readOnly
               type="text"
               className={
                 styles.inputGroupInput +
-                ' form-control ' +
-                styles.cursorNotAllowed
+                ' form-control '
               }
             />
           </div>
