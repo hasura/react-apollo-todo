@@ -279,6 +279,33 @@ body {
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
+.loadMoreSection {
+  list-style-type: none;
+  height: 30px;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  background-color: #e6ecf0;
+  position: relative;
+  justify-content: center;
+  cursor: pointer;
+}
+.userInfoPublic {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #dfe3e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
 @media (max-width: 991px) {
   .sliderMenu {
     height: auto;

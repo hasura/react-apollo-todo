@@ -1,30 +1,80 @@
 import gql from "graphql-tag";
 
+const TODO_FRAGMENT = gql`
+  fragment TodoFragment on todos {
+    id
+    text
+    is_completed
+    created_at
+    is_public
+  }
+`;
+
+const USER_FRAGMENT = gql`
+  fragment UserFragment on users {
+    name
+  }
+`;
+
 const QUERY_PRIVATE_TODO = gql`
   query fetch_todos($userId: String!) {
     todos(
       where: { is_public: { _eq: false }, user_id: { _eq: $userId } }
       order_by: created_at_desc
     ) {
-      id
-      text
-      is_completed
-      created_at
-      is_public
+      ...TodoFragment
     }
   }
+  ${TODO_FRAGMENT}
 `;
 
 const QUERY_PUBLIC_TODO = gql`
-  query fetch_todos {
-    todos(where: { is_public: { _eq: true } }, order_by: created_at_desc) {
-      id
-      text
-      is_completed
-      created_at
-      is_public
+  query fetch_todos($todoLimit: Int, $todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _gt: $todoId } }
+      order_by: created_at_desc
+      limit: $todoLimit
+    ) {
+      ...TodoFragment
+      user {
+        ...UserFragment
+      }
     }
   }
+  ${TODO_FRAGMENT}
+  ${USER_FRAGMENT}
+`;
+
+const QUERY_FEED_PUBLIC_TODO = gql`
+  query fetch_todos($todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _gt: $todoId } }
+      order_by: created_at_desc
+    ) {
+      ...TodoFragment
+      user {
+        ...UserFragment
+      }
+    }
+  }
+  ${TODO_FRAGMENT}
+  ${USER_FRAGMENT}
+`;
+
+const QUERY_FEED_PUBLIC_OLD_TODO = gql`
+  query fetch_todos($todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _lt: $todoId } }
+      order_by: created_at_desc
+    ) {
+      ...TodoFragment
+      user {
+        ...UserFragment
+      }
+    }
+  }
+  ${TODO_FRAGMENT}
+  ${USER_FRAGMENT}
 `;
 
 const MUTATION_TODO_ADD = gql`
@@ -59,8 +109,12 @@ const MUTATION_TODO_DELETE = gql`
 `;
 
 const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
-  subscription {
-    todos(where: { is_public: { _eq: true } }, order_by: created_at_desc) {
+  subscription($todoId: Int) {
+    todos(
+      where: { is_public: { _eq: true }, id: { _gt: $todoId } }
+      order_by: created_at_desc
+      limit: 1
+    ) {
       id
       text
       is_completed
@@ -81,6 +135,8 @@ const SUBSCRIPTION_ONLINE_USERS = gql`
 export {
   QUERY_PRIVATE_TODO,
   QUERY_PUBLIC_TODO,
+  QUERY_FEED_PUBLIC_TODO,
+  QUERY_FEED_PUBLIC_OLD_TODO,
   MUTATION_TODO_ADD,
   MUTATION_TODO_UPDATE,
   MUTATION_TODO_DELETE,

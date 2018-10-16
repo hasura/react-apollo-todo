@@ -27,6 +27,7 @@
     "subscriptions-transport-ws": "^0.9.15"
   },
   "devDependencies": {
+    "cypress": "^3.1.0",
     "dotenv": "^6.0.0",
     "husky": "^1.0.0-rc.15",
     "lint-staged": "^7.3.0",
@@ -36,7 +37,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "cypress run --spec 'cypress/integration/**/**/test.js'",
+    "cypress": "cypress open",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix"

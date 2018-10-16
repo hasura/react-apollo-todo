@@ -1,26 +1,23 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ApiRequestWrapper from './ApiRequestWrapper';
 import Helmet from 'react-helmet';
-
-import {
-  changeTabSelection,
-  changeApiSelection,
-  expandAuthApi,
-  clearHistory,
-  changeRequestParams,
-} from './Actions';
+import { push } from 'react-router-redux';
 
 class ApiExplorer extends Component {
-
+  componentWillMount() {
+    const localStorageUrl = window.localStorage.getItem('ONLINE_GRAPHIQL_ENDPOINT');
+    if (!this.props.graphqlEndpoint && localStorageUrl === null) {
+      this.props.dispatch(push('/'));
+    }
+  }
   render() {
+    const localStorageUrl = window.localStorage.getItem('ONLINE_GRAPHIQL_ENDPOINT');
     const styles = require('./ApiExplorer.scss');
-    let wrapperClass = styles.apiExplorerWrapper;
-    let panelStyles = '';
-    let requestStyles = '';
-    let wdClass = '';
-    let requestWrapper = (
+    const wrapperClass = styles.apiExplorerWrapper;
+    const requestStyles = '';
+    const wdClass = '';
+    const requestWrapper = (
       <ApiRequestWrapper
         credentials={this.props.credentials}
         explorerData={this.props.explorerData}
@@ -32,6 +29,7 @@ class ApiExplorer extends Component {
         route={this.props.route}
         dataHeaders={this.props.dataHeaders}
         headerFocus={this.props.headerFocus}
+        graphqlEndpoint={localStorageUrl}
       />
     );
 

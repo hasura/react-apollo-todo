@@ -31,7 +31,7 @@ class ApiRequestWrapper extends Component {
           }
           credentials={this.props.credentials}
           method={this.props.request.method}
-          url={`${window.__env.graphqlEndpoint}`}
+          url={this.props.graphqlEndpoint}
           headers={this.props.request.headers}
           params={this.props.request.params}
           explorerData={this.props.explorerData}
@@ -57,6 +57,7 @@ ApiRequestWrapper.propTypes = {
   dispatch: PropTypes.func,
   numberOfTables: PropTypes.number,
   headerFocus: PropTypes.bool.isRequired,
+  graphqlEndpoint: PropTypes.string,
 };
 
 export default ApiRequestWrapper;

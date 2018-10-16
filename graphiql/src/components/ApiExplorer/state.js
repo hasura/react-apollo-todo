@@ -36,7 +36,7 @@ const dataApisContent = [];
 dataApisContent.push({
   id: 'DataApi-3',
   details: {
-    title: 'GraphQurl',
+    title: '',
     description:
       'Explore GraphQL APIs with headers',
     category: 'data',
@@ -74,6 +74,7 @@ const defaultState = {
   explorerData,
   authApiExpanded: 'Username-password Login',
   headerFocus: false,
+  graphqlEndpoint: ''
 };
 
 export default defaultState;

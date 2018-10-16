@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 import "../App.css";
 import TodoPublicWrapper from "../Todo/TodoPublicWrapper";
 import TodoPrivateWrapper from "../Todo/TodoPrivateWrapper";
@@ -14,29 +14,31 @@ class App extends Component {
     const userId = localStorage.getItem("auth0:id_token:sub");
     const timestamp = moment().format();
     if (this.props.client) {
-      this.props.client.mutate({
-        mutation: gql`
-            mutation ($userId: String!, $timestamp: timestamptz!) {
-              update_users (
-                where:{auth0_id: {_eq: $userId}}, _set: {auth0_id: $userId, last_seen: $timestamp},
+      this.props.client
+        .mutate({
+          mutation: gql`
+            mutation($userId: String!, $timestamp: timestamptz!) {
+              update_users(
+                where: { auth0_id: { _eq: $userId } }
+                _set: { auth0_id: $userId, last_seen: $timestamp }
               ) {
                 affected_rows
               }
             }
           `,
-        variables: {
-          userId: userId,
-          timestamp: timestamp
-        }
-      })
+          variables: {
+            userId: userId,
+            timestamp: timestamp
+          }
+        })
         .then(() => {
           // handle response if required
         })
         .catch(error => {
           console.error(error);
         });
-      }
     }
+  };
   componentDidMount() {
     // eslint-disable-next-line
     const lastSeenMutation = setInterval(this.updateLastSeen.bind(this), 5000);
@@ -68,7 +70,7 @@ class App extends Component {
           <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">
             <div className="wd95 addPaddTopBottom">
               <div className="sectionHeader">Public todos</div>
-              <TodoPublicWrapper />
+              <TodoPublicWrapper client={this.props.client} />
             </div>
           </div>
         </div>

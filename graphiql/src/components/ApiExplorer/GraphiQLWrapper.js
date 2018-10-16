@@ -36,12 +36,9 @@ class GraphiQLWrapper extends Component {
     if (query || Object.keys(variables).length !== 0) {
       graphiqlProps.query = query;
       if (variables !== 'undefined') {
-        console.log(variables);
-        console.log('Inside variables');
         graphiqlProps.variables = JSON.stringify(variables, null, 2);
       }
     }
-    console.log(graphiqlProps);
     return (
       <ErrorBoundary>
         <div

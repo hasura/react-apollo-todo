@@ -2,12 +2,12 @@
   <head>
     <link rel="icon" type="image/png" href="./favicon.png" />
     <script>
-     window.__env = {
-       graphqlEndpoint: {{.graphqlEndpoint}},
-       headers: {{.headers}},
-       variables: {{.variables}},
-       query: {{.query}}
-     };
+      window.__env = {
+        graphqlEndpoint: '',
+        headers: '',
+        variables: '',
+        query: ''
+      };
     </script>
   </head>
   <body>
@@ -45,19 +45,9 @@
     <div id="content" class="mainContent"></div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-    {{ if .cliStaticDir }}
-
-    <link rel="stylesheet" href="/static/main.css" charset="UTF-8"/>
-    <script src="/static/vendor.js" charset="UTF-8"></script>
-    <script src="/static/main.js" charset="UTF-8"></script>
-
-    {{ else }}
-
-    <link rel="stylesheet" href="./dist/main.css" charset="UTF-8"/>
-    <script src="./dist/vendor.js" charset="UTF-8"></script>
-    <script src="./dist/main.js" charset="UTF-8"></script>
-
-   {{ end }}
+    <link rel="stylesheet" href="/dist/main.css" charset="UTF-8"/>
+    <script src="/dist/vendor.js" charset="UTF-8"></script>
+    <script src="/dist/main.js" charset="UTF-8"></script>
 
   </body>
 </html>

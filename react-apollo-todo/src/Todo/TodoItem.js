@@ -10,7 +10,13 @@ import {
   MUTATION_TODO_DELETE
 } from "./TodoQueries";
 
-const handleTodoToggle = (toggleTodo, todo, type, userId) => {
+const handleTodoToggle = (
+  toggleTodo,
+  todo,
+  type,
+  userId,
+  completePublicTodoClicked
+) => {
   toggleTodo({
     variables: {
       todoId: todo.id,
@@ -35,12 +41,20 @@ const handleTodoToggle = (toggleTodo, todo, type, userId) => {
           },
           data
         });
+      } else if (type === "public") {
+        completePublicTodoClicked(todo);
       }
     }
   });
 };
 
-const handleTodoDelete = (deleteTodo, todo, type, userId) => {
+const handleTodoDelete = (
+  deleteTodo,
+  todo,
+  type,
+  userId,
+  deletePublicTodoClicked
+) => {
   deleteTodo({
     variables: {
       todoId: todo.id
@@ -63,12 +77,21 @@ const handleTodoDelete = (deleteTodo, todo, type, userId) => {
           },
           data
         });
+      } else if (type === "public") {
+        deletePublicTodoClicked(todo);
       }
     }
   });
 };
 
-const TodoItem = ({ todo, type, userId }) => (
+const TodoItem = ({
+  index,
+  todo,
+  type,
+  userId,
+  completePublicTodoClicked,
+  deletePublicTodoClicked
+}) => (
   <Mutation mutation={MUTATION_TODO_UPDATE}>
     {updateTodo => {
       return (
@@ -77,9 +100,20 @@ const TodoItem = ({ todo, type, userId }) => (
             return (
               <li
                 onClick={() => {
-                  handleTodoToggle(updateTodo, todo, type, userId);
+                  handleTodoToggle(
+                    updateTodo,
+                    todo,
+                    type,
+                    userId,
+                    completePublicTodoClicked
+                  );
                 }}
               >
+                {todo.is_public ? (
+                  <div className="userInfoPublic" title={todo.user.name}>
+                    {todo.user.name.charAt(0).toUpperCase()}
+                  </div>
+                ) : null}
                 <div className="view">
                   {todo.is_completed ? (
                     <div className="round">
@@ -88,7 +122,13 @@ const TodoItem = ({ todo, type, userId }) => (
                         type="checkbox"
                         id={todo.id}
                         onChange={() => {
-                          handleTodoToggle(updateTodo, todo, type, userId);
+                          handleTodoToggle(
+                            updateTodo,
+                            todo,
+                            type,
+                            userId,
+                            completePublicTodoClicked
+                          );
                         }}
                       />
                       <label htmlFor={todo.id} />
@@ -100,7 +140,13 @@ const TodoItem = ({ todo, type, userId }) => (
                         checked={false}
                         id={todo.id}
                         onChange={() => {
-                          handleTodoToggle(updateTodo, todo, type, userId);
+                          handleTodoToggle(
+                            updateTodo,
+                            todo,
+                            type,
+                            userId,
+                            completePublicTodoClicked
+                          );
                         }}
                       />
                       <label htmlFor={todo.id} />)
@@ -109,17 +155,30 @@ const TodoItem = ({ todo, type, userId }) => (
                 </div>
                 <div className="labelContent">
                   {todo.is_completed ? (
-                    <strike className="todoLabel">{todo.text}</strike>
+                    <strike className="todoLabel">
+                      <div data-test={type + "_" + index + "_" + todo.text}>
+                        {todo.text}
+                      </div>
+                    </strike>
                   ) : (
-                    <div>{todo.text}</div>
+                    <div data-test={type + "_" + index + "_" + todo.text}>
+                      {todo.text}
+                    </div>
                   )}
                 </div>
                 <button
                   className="closeBtn"
+                  data-test={"remove_" + type + "_" + index + "_" + todo.text}
                   onClick={e => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleTodoDelete(deleteTodo, todo, type, userId);
+                    handleTodoDelete(
+                      deleteTodo,
+                      todo,
+                      type,
+                      userId,
+                      deletePublicTodoClicked
+                    );
                   }}
                 >
                   x

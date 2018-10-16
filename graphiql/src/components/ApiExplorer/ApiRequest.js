@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { push } from 'react-router-redux';
 
 import {
   changeRequestParams,
@@ -57,7 +58,6 @@ class ApiRequest extends Component {
       );
     }
   }
-
   getUrlBar() {
     return (
       <div
@@ -70,21 +70,17 @@ class ApiRequest extends Component {
           styles.stickyHeader
         }
       >
-        <div className={'col-xs-12 ' + styles.padd_remove}>
+        <div className={'col-xs-11 ' + styles.padd_remove}>
           <div
             className={
               'input-group ' +
-              styles.inputGroupWrapper +
-              ' ' +
-              styles.cursorNotAllowed
+              styles.inputGroupWrapper
             }
           >
             <div
               className={
                 'input-group-btn ' +
-                styles.inputGroupBtn +
-                ' ' +
-                styles.cursorNotAllowed
+                styles.inputGroupBtn
               }
             >
               <button type="button" className={'btn btn-default'}>
@@ -92,15 +88,20 @@ class ApiRequest extends Component {
               </button>
             </div>
             <input
-              value={this.props.url}
+              defaultValue={this.props.url}
+              readOnly
               type="text"
               className={
                 styles.inputGroupInput +
-                ' form-control ' +
-                styles.cursorNotAllowed
+                ' form-control '
               }
             />
           </div>
+        </div>
+        <div className={'col-xs-1 ' + styles.padd_remove}>
+          <button onClick={this.changeEndpoint.bind(this)} className={styles.changeEndpoint + ' btn btn-sm btn-small btn-info'}>
+            Change Endpoint
+          </button>
         </div>
         <div className={styles.stickySeparator} />
       </div>
@@ -274,6 +275,10 @@ class ApiRequest extends Component {
       default:
         return '';
     }
+  }
+
+  changeEndpoint() {
+    this.props.dispatch(push('/'));
   }
 
   handleFocus = () => {

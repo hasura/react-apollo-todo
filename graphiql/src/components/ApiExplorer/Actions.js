@@ -5,23 +5,32 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { WebSocketLink } from 'apollo-link-ws';
 import { parse } from 'graphql';
 import { execute } from 'apollo-link';
+import { push } from 'react-router-redux';
 
-const REQUEST_PARAMS_CHANGED = 'ApiExplorer/REQUEST_PARAMS_CHANGED';
 const REQUEST_HEADER_CHANGED = 'ApiExplorer/REQUEST_HEADER_CHANGED';
 const REQUEST_HEADER_ADDED = 'ApiExplorer/REQUEST_HEADER_ADDED';
 const REQUEST_HEADER_REMOVED = 'ApiExplorer/REQUEST_HEADER_REMOVED';
 
 const FOCUS_ROLE_HEADER = 'ApiExplorer/FOCUS_ROLE_HEADER';
 const UNFOCUS_ROLE_HEADER = 'ApiExplorer/UNFOCUS_ROLE_HEADER';
+const GRAPHQL_ENDPOINT_CHANGED = 'ApiExplorer/GRAPHQL_ENDPOINT_CHANGED';
 
 import { getHeadersAsJSON } from './utils';
 
 const focusHeaderTextbox = () => ({ type: FOCUS_ROLE_HEADER });
 const unfocusTypingHeader = () => ({ type: UNFOCUS_ROLE_HEADER });
 
+const updateGraphQLEndpoint = (endpoint) => {
+  return (dispatch) => {
+    dispatch({ type: GRAPHQL_ENDPOINT_CHANGED, data: endpoint });
+    // set local storage
+    window.localStorage.setItem('ONLINE_GRAPHIQL_ENDPOINT', endpoint);
+    dispatch(push('/graphiql'));
+  };
+};
+
 const createWsClient = (url, headers) => {
   const gqlUrl = new URL(url);
-  const windowUrl = new URL(window.location);
   let websocketProtocol = 'ws';
   if (gqlUrl.protocol === 'https:') {
     websocketProtocol = 'wss';
@@ -208,6 +217,11 @@ const apiExplorerReducer = (state = defaultState, action) => {
         ...state,
         headerFocus: true,
       };
+    case GRAPHQL_ENDPOINT_CHANGED:
+      return {
+        ...state,
+        graphqlEndpoint: action.data,
+      };
     default:
       return state;
   }
@@ -222,4 +236,5 @@ export {
   graphQLFetcherFinal,
   focusHeaderTextbox,
   unfocusTypingHeader,
+  updateGraphQLEndpoint,
 };
