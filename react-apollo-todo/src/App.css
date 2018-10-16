@@ -293,6 +293,19 @@ body {
   justify-content: center;
   cursor: pointer;
 }
+.userInfoPublic {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #dfe3e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
 @media (max-width: 991px) {
   .sliderMenu {
     height: auto;

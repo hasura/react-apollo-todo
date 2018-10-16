@@ -109,6 +109,11 @@ const TodoItem = ({
                   );
                 }}
               >
+                {todo.is_public ? (
+                  <div className="userInfoPublic" title={todo.user.name}>
+                    {todo.user.name.charAt(0).toUpperCase()}
+                  </div>
+                ) : null}
                 <div className="view">
                   {todo.is_completed ? (
                     <div className="round">

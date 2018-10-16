@@ -12,8 +12,8 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { WebSocketLink } from "apollo-link-ws";
 import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
-import { SubscriptionClient } from 'subscriptions-transport-ws';
-import { setContext } from 'apollo-link-context'
+import { SubscriptionClient } from "subscriptions-transport-ws";
+import { setContext } from "apollo-link-context";
 
 import { getHeaders } from "./utils";
 import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
@@ -23,9 +23,9 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : ''
+      authorization: token ? `Bearer ${token}` : ""
     }
-  }
+  };
 });
 
 const token = localStorage.getItem("auth0:id_token");
@@ -36,18 +36,16 @@ const httpLink = new HttpLink({
   headers: getHeaders(token)
 });
 
-
 // Create a WebSocket link:
-const wsLink = new WebSocketLink(new SubscriptionClient(
-  REALTIME_GRAPHQL_URL,
-  {
+const wsLink = new WebSocketLink(
+  new SubscriptionClient(REALTIME_GRAPHQL_URL, {
     reconnect: true,
     timeout: 30000,
     connectionParams: {
       headers: getHeaders(token)
     }
-  },
-));
+  })
+);
 
 // wsLink.subscriptionClient.maxConnectTimeGenerator.duration = () => wsLink.subscriptionClient.maxConnectTimeGenerator.max
 
@@ -56,16 +54,16 @@ const link = split(
   // split based on operation type
   ({ query }) => {
     const { kind, operation } = getMainDefinition(query);
-    return kind === 'OperationDefinition' && operation === 'subscription';
+    return kind === "OperationDefinition" && operation === "subscription";
   },
   wsLink,
-  httpLink,
+  httpLink
 );
 
 const client = new ApolloClient({
   link: authLink.concat(link),
   cache: new InMemoryCache({
-    addTypename: false
+    addTypename: true
   })
 });
 
@@ -87,11 +85,15 @@ export const makeMainRoutes = () => {
       <div>
         <Route
           path="/"
-          render={props => provideClient(<App auth={auth} client={client} {...props} />)}
+          render={props =>
+            provideClient(<App auth={auth} client={client} {...props} />)
+          }
         />
         <Route
           path="/home"
-          render={props => provideClient(<Home auth={auth} client={client} {...props} />)}
+          render={props =>
+            provideClient(<Home auth={auth} client={client} {...props} />)
+          }
         />
         <Route
           path="/callback"
