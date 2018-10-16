@@ -52,9 +52,13 @@ const QUERY_FEED_PUBLIC_TODO = gql`
       order_by: created_at_desc
     ) {
       ...TodoFragment
+      user {
+        ...UserFragment
+      }
     }
   }
   ${TODO_FRAGMENT}
+  ${USER_FRAGMENT}
 `;
 
 const QUERY_FEED_PUBLIC_OLD_TODO = gql`
@@ -64,9 +68,13 @@ const QUERY_FEED_PUBLIC_OLD_TODO = gql`
       order_by: created_at_desc
     ) {
       ...TodoFragment
+      user {
+        ...UserFragment
+      }
     }
   }
   ${TODO_FRAGMENT}
+  ${USER_FRAGMENT}
 `;
 
 const MUTATION_TODO_ADD = gql`
