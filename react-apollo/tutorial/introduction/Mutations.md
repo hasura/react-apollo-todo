@@ -1,4 +1,4 @@
-# GraphQL mutations
+# GraphQL mutations (writing data)
 
 Like a GraphQL query, there are GraphQL mutations, they help you create/update/delete or generally cause some kind of modification of data in your backend.
 

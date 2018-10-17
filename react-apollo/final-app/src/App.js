@@ -30,7 +30,7 @@ class App extends Component {
         <Navbar fluid className="removeMarBottom">
           <Navbar.Header className="navheader">
             <Navbar.Brand className="navBrand">
-              React Apollo Todo GraphQL
+              GraphQL Tutorial App
             </Navbar.Brand>
             {!isAuthenticated() && (
               <Button
