@@ -26,12 +26,20 @@ class TodoPublicList extends Component {
         {
           id: "1",
           text: "This is public todo 1",
-          is_completed: true
+          is_completed: true,
+          is_public: true,
+          user: {
+            name: "someUser1"
+          }
         },
         {
           id: "2",
           text: "This is public todo 2",
-          is_completed: false
+          is_completed: false,
+          is_public: true,
+          user: {
+            name: "someUser2"
+          }
         }
       ]
     };

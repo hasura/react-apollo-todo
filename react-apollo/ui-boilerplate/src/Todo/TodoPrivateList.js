@@ -57,12 +57,14 @@ class TodoPrivateList extends Component {
       {
         id: "1",
         text: "This is private todo 1",
-        is_completed: true
+        is_completed: true,
+        is_public: false
       },
       {
         id: "2",
         text: "This is private todo 2",
-        is_completed: false
+        is_completed: false,
+        is_public: false
       }
     ];
     /*
