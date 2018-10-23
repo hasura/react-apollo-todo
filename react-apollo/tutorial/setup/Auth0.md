@@ -16,7 +16,7 @@ function (user, context, callback) {
     { 
       'x-hasura-default-role': 'user',
       // do some custom logic to decide allowed roles
-      'x-hasura-allowed-roles': ['user', 'admin'],
+      'x-hasura-allowed-roles': ['user'],
       'x-hasura-user-id': user.user_id
     };
   callback(null, user, context);
@@ -55,4 +55,4 @@ Save changes.
 
 ## Set React app variables
 
-  Set `auth0 domain`, `auth0 client ID` and the `GraphQL Engine URL` in `react-apollo-todo/src/constants.js`
+  Set `auth0 domain`, `auth0 client ID` and the `GraphQL Engine URL` in `react-apollo/ui-boilerplate/src/constants.js`

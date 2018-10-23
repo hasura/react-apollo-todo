@@ -8,13 +8,8 @@ class TodoPublicWrapper extends Component {
     const userId = localStorage.getItem("auth0:id_token:sub");
     return (
       <div className="todoWrapper">
-        {/* <TodoInput userId={userId} type="public" client={this.props.client} /> */}
         <TodoInput userId={userId} type="public" />
-        <TodoPublicList
-          userId={userId}
-          type="public"
-          // client={this.props.client}
-        />
+        <TodoPublicList userId={userId} type="public" />
       </div>
     );
   }

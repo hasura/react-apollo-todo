@@ -1,4 +1,4 @@
-Run the app to see if everything works as expected.
+Now that you have cloned the app, run the app to see if everything works as expected.
 
 To get started, you will need to load the private todo data from the database. You will now define a graphql query to fetch the same.
 

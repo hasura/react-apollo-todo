@@ -3,15 +3,6 @@ import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
 
-/*
-import {
-  SUBSCRIPTION_TODO_PUBLIC_LIST,
-  QUERY_PUBLIC_TODO,
-  QUERY_FEED_PUBLIC_TODO,
-  QUERY_FEED_PUBLIC_OLD_TODO
-} from "./TodoQueries";
-*/
-
 class TodoPublicList extends Component {
   constructor() {
     super();
@@ -44,107 +35,7 @@ class TodoPublicList extends Component {
       ]
     };
     this.filterResults = this.filterResults.bind(this);
-    /*
-    this.deletePublicTodoClicked = this.deletePublicTodoClicked.bind(this);
-    this.completePublicTodoClicked = this.completePublicTodoClicked.bind(this);
-    this.loadMoreClicked = this.loadMoreClicked.bind(this);
-    this.loadOlderClicked = this.loadOlderClicked.bind(this);
-    */
   }
-  /*
-  componentDidMount() {
-    const { client } = this.props;
-    const _this = this;
-    // query for public todos
-    client
-      .query({
-        query: QUERY_PUBLIC_TODO,
-        variables: { todoLimit: this.state.limit }
-      })
-      .then(data => {
-        this.setState({ todos: data.data.todos });
-        const latestTodoId = data.data.todos.length
-          ? data.data.todos[0].id
-          : null;
-        // start a subscription
-        client
-          .subscribe({
-            query: SUBSCRIPTION_TODO_PUBLIC_LIST,
-            variables: { todoId: latestTodoId } // update subscription when todoId changes
-          })
-          .subscribe({
-            next(data) {
-              if (data.data.todos.length) {
-                _this.setState({
-                  ...this.state,
-                  showNew: true,
-                  newTodosLength:
-                    _this.state.newTodosLength + data.data.todos.length
-                });
-              }
-            },
-            error(err) {
-              console.error("err", err);
-            }
-          });
-      });
-  }
-  loadMoreClicked() {
-    const { client } = this.props;
-    this.setState({ ...this.state, showNew: false, newTodosLength: 0 });
-    client
-      .query({
-        query: QUERY_FEED_PUBLIC_TODO,
-        variables: {
-          todoId: this.state.todos.length ? this.state.todos[0].id : null
-        }
-      })
-      .then(data => {
-        if (data.data.todos.length) {
-          const mergedTodos = data.data.todos.concat(this.state.todos);
-          // update state with new todos
-          this.setState({ ...this.state, todos: mergedTodos });
-        }
-      });
-  }
-  loadOlderClicked() {
-    const { client } = this.props;
-    client
-      .query({
-        query: QUERY_FEED_PUBLIC_OLD_TODO,
-        variables: {
-          todoId: this.state.todos.length
-            ? this.state.todos[this.state.todos.length - 1].id
-            : null
-        }
-      })
-      .then(data => {
-        if (data.data.todos.length) {
-          const mergedTodos = this.state.todos.concat(data.data.todos);
-          // update state with new todos
-          this.setState({ ...this.state, todos: mergedTodos });
-        } else {
-          this.setState({ ...this.state, showOlder: false });
-        }
-      });
-  }
-  deletePublicTodoClicked(deletedTodo) {
-    const finalTodos = this.state.todos.filter(t => {
-      return t.id !== deletedTodo.id;
-    });
-    this.setState({ ...this.state, todos: finalTodos });
-  }
-  completePublicTodoClicked(completedTodo) {
-    const finalTodos = this.state.todos.filter(t => {
-      if (t.id === completedTodo.id) {
-        t.is_completed = !t.is_completed;
-        return t;
-      }
-      return t;
-    });
-    this.setState({ ...this.state, todos: finalTodos });
-  }
-  */
   filterResults(type) {
     this.setState({ ...this.state, filter: type });
   }

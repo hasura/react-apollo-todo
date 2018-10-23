@@ -2,8 +2,6 @@ import history from "../history";
 import auth0 from "auth0-js";
 import { AUTH_CONFIG } from "./auth0-variables";
 
-// import gql from "graphql-tag";
-
 export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
@@ -31,41 +29,10 @@ export default class Auth {
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
-          /*
-          client
-            .mutate({
-              mutation: gql`
-                mutation($userId: String!, $nickname: String) {
-                  insert_users(
-                    objects: [{ auth0_id: $userId, name: $nickname }]
-                    on_conflict: {
-                      constraint: users_pkey
-                      update_columns: [last_seen, name]
-                    }
-                  ) {
-                    affected_rows
-                  }
-                }
-              `,
-              variables: {
-                userId: user.sub,
-                nickname: user.nickname
-              }
-            })
-            .then(() => {
-              // history.replace("/home");
-              window.location.href = "/home";
-            })
-            .catch(error => {
-              console.error(error);
-              // alert(JSON.stringify(error));
-            });
-          */
           window.location.href = "/home";
         });
       } else if (err) {
         history.replace("/home");
-        // window.location.href="/home";
         console.error(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -83,7 +50,6 @@ export default class Auth {
     localStorage.setItem("auth0:id_token:sub", authResult.idTokenPayload.sub);
     // navigate to the home route
     history.replace("/home");
-    // window.location.href="/home";
   }
 
   logout() {
@@ -94,7 +60,6 @@ export default class Auth {
     localStorage.removeItem("auth0:id_token:sub");
     // navigate to the home route
     history.replace("/home");
-    // window.location.href="/home";
   }
 
   isAuthenticated() {

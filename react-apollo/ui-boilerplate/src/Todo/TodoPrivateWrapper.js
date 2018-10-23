@@ -9,7 +9,6 @@ class TodoPrivateWrapper extends Component {
     return (
       <div className="todoWrapper">
         <TodoInput userId={userId} type="private" />
-        {/* <TodoPrivateList userId={userId} client={this.props.client} type="private" /> */}
         <TodoPrivateList userId={userId} type="private" />
       </div>
     );
