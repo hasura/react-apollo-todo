@@ -15,6 +15,7 @@ class TodoInput extends React.Component {
     this.state = {
       textboxValue: ""
     };
+    this.handleTextboxValueChange = this.handleTextboxValueChange.bind(this);
     this.handleTextboxKeyPress = this.handleTextboxKeyPress.bind(this);
   }
 
@@ -92,7 +93,7 @@ class TodoInput extends React.Component {
                 }
                 placeholder="What needs to be done?"
                 value={this.state.textboxValue}
-                onChange={this.handleTextboxValueChange.bind(this)}
+                onChange={this.handleTextboxValueChange}
                 onKeyPress={e => {
                   this.handleTextboxKeyPress(e, addTodo);
                 }}

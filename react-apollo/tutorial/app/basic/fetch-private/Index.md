@@ -1,9 +1,6 @@
-Now that you have cloned the app, run the app to see if everything works as expected.
+The first piece of code you will write will be to fetch personal todos. You will need to load the todo data from the database which belongs to the logged in user. Let's define a graphql query to fetch the required data.
 
-To get started, you will need to load the private todo data from the database. You will now define a graphql query to fetch the same.
-
-```
-
+```graphql
 query fetch_todos {
     todos(
       where: { is_public: { _eq: false } }
@@ -14,11 +11,14 @@ query fetch_todos {
       is_completed
       created_at
       is_public
-     }
-  }
-
+    }
+}
 ```
 
 [Try]() this query in GraphiQL against the application database to see what the response looks like. 
 
-Note that, you need to pass the `Authorization: Bearer <token>` header before querying to get the results.
+**Note** You need to pass the `Authorization: Bearer <token>` header before querying to get the results. The token can be obtained from the UI;
+
+Don't be surprised to see results being empty. You haven't added a todo yet! This query is just to ensure if everything works as expected.
+
+Let's now integrate this graphql query into our react app.
