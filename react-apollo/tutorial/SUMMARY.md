@@ -21,7 +21,7 @@
     - [Query variables](app/basic/create-todo/QueryVariables.md)
     - [Run mutation, update result set](app/basic/create-todo/CreateMutation.md)
     - [Handle loading/error](app/basic/create-todo/HandleError.md)
-- [Online Users, Typing Indicator](app/online-users/Index.md)
+- [Online Users](app/online-users/Index.md)
   - [Subscription](app/online-users/Subscription.md)
   - [Apollo Subscription component](app/online-users/ApolloSubscription.md)
   - [Create subscription and render result](app/online-users/CreateSubscription.md)

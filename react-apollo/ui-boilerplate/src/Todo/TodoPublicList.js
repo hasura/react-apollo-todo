@@ -2,12 +2,15 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
+
+/*
 import {
   SUBSCRIPTION_TODO_PUBLIC_LIST,
   QUERY_PUBLIC_TODO,
   QUERY_FEED_PUBLIC_TODO,
   QUERY_FEED_PUBLIC_OLD_TODO
 } from "./TodoQueries";
+*/
 
 class TodoPublicList extends Component {
   constructor() {
@@ -19,14 +22,28 @@ class TodoPublicList extends Component {
       showOlder: true,
       newTodosLength: 0,
       limit: 5,
-      todos: []
+      todos: [
+        {
+          id: "1",
+          text: "This is public todo 1",
+          is_completed: true
+        },
+        {
+          id: "2",
+          text: "This is public todo 2",
+          is_completed: false
+        }
+      ]
     };
+    this.filterResults = this.filterResults.bind(this);
+    /*
     this.deletePublicTodoClicked = this.deletePublicTodoClicked.bind(this);
     this.completePublicTodoClicked = this.completePublicTodoClicked.bind(this);
     this.loadMoreClicked = this.loadMoreClicked.bind(this);
     this.loadOlderClicked = this.loadOlderClicked.bind(this);
-    this.filterResults = this.filterResults.bind(this);
+    */
   }
+  /*
   componentDidMount() {
     const { client } = this.props;
     const _this = this;
@@ -63,9 +80,6 @@ class TodoPublicList extends Component {
             }
           });
       });
-  }
-  filterResults(type) {
-    this.setState({ filter: type });
   }
   loadMoreClicked() {
     const { client } = this.props;
@@ -121,6 +135,10 @@ class TodoPublicList extends Component {
       return t;
     });
     this.setState({ ...this.state, todos: finalTodos });
+  }
+  */
+  filterResults(type) {
+    this.setState({ ...this.state, filter: type });
   }
   render() {
     const { userId, type } = this.props;
@@ -194,7 +212,6 @@ class TodoPublicList extends Component {
 
 TodoPublicList.propTypes = {
   userId: PropTypes.string,
-  client: PropTypes.object,
   type: PropTypes.string
 };
 
