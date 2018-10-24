@@ -11,30 +11,9 @@ Once you have cloned the boilerplate, create a `.env` file in the root directory
 ```
 REACT_APP_GRAPHQL_URL=https://hasura-todo-test.herokuapp.com/v1alpha1/graphql
 REACT_APP_REALTIME_GRAPHQL_URL=wss://hasura-todo-test.herokuapp.com/v1alpha1/graphql
-REACT_APP_CALLBACK_URL=http://localhost:3000/callback
-REACT_APP_AUTH0_DOMAIN=todo-hasura-test.auth0.com
-REACT_APP_AUTH0_CLIENT_ID=lgKxyHzCDUWCALdAOkjg3QI2D6eglGes
 ```
 
-Here we are setting up environment variables to be used inside our todo app. Since we have our backend ready (powered by Hasura), we will use the graphql endpoint and the realtime websocket endpoint. Similarly we set Auth0 configuration such as domain, client id and callback url.
-
-Run the react app by executing:
-
-```
-$ npm start
-```
-
-The boilerplate UI should look something like this:
-
-<insert image>
-
-After logging in, it should look like this:
-
-<insert image>
-
-Still facing issues? Click here to debug common issues.
-
-<insert-gif-setup>
+Here we are setting up environment variables to be used inside our todo app. Since we have our backend ready (powered by Hasura), we will use the graphql endpoint and the realtime websocket endpoint.
 
 #### Directory Structure
 

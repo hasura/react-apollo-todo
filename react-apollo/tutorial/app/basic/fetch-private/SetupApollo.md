@@ -25,7 +25,8 @@ Here they are:
 > 
 > `graphql-tag`: Utitily for parsing GraphQL queries. 
 > 
-> Note: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults.
+
+**Note**: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults.
 
 Apart from `apollo-boost`, you also need to install `react-apollo` and `graphql` packages.
 
@@ -124,8 +125,7 @@ Open `src/Home/Home.js` and in your `return`, pass client to `<TodoPrivateWrappe
 <TodoPublicWrapper client={this.props.client} />
 ```
 
-
-
+Now, both the react components have access to the client prop.
 
 
 
