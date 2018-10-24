@@ -1,12 +1,8 @@
 import React from 'react';
 import {
-  ActivityIndicator,
   AsyncStorage,
-  StatusBar,
-  StyleSheet,
   View,
 } from 'react-native';
-import jwtDecoder from 'jwt-decode';
 import CenterSpinner from './components/CenterSpinner';
 
 console.disableYellowBox = true;

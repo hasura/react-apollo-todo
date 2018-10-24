@@ -1,11 +1,8 @@
 import React from 'react';
 import {
-  Platform,
-  Text,
-  View,
   AsyncStorage
 } from 'react-native';
-import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import OnlineUsers from '../screens/UsersScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 import TodosTabs from './MainTabNavigator';
@@ -100,20 +97,23 @@ export default class App extends React.Component {
       }
     });
     // set loading to false
-    this.setState({
-      client,
-      loading: false
-    })
+    if (resp.data) {
+      this.setState({
+        client,
+        loading: false
+      })
+    }
+    
     // start emitting events saying that the useri s online
-    // setInterval(
-    //   () => client.mutate({
-    //     mutation: emitOnlineEvent,
-    //     variables: {
-    //       userId: id
-    //     }
-    //   }),
-    //   5000
-    // );
+    setInterval(
+      () => client.mutate({
+        mutation: emitOnlineEvent,
+        variables: {
+          userId: id
+        }
+      }),
+      5000
+    );
   }
 
   render() {

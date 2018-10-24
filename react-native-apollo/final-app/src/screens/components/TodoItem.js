@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Spinner,
   Text,
   View,
   StyleSheet,
@@ -67,7 +66,7 @@ export default class TodoItem extends React.Component {
           }}
         >
           {
-            (updateTodo, { data, loading, error}) => {
+            (updateTodo, {loading, error}) => {
               if (error) {
                 return (<Text> Error </Text>);
               }
@@ -97,7 +96,7 @@ export default class TodoItem extends React.Component {
           variables={{
             id: item.id,
           }}
-          update={(cache, {data: {delete_todos}}) => {
+          update={(cache) => {
             const data = cache.readQuery({
               query: fetchTodos,
               variables: {
@@ -121,7 +120,10 @@ export default class TodoItem extends React.Component {
           }}
         >
           {
-            (deleteTodo, {data, loading, error}) => {
+            (deleteTodo, { loading, error }) => {
+              if (error) {
+                return <Text> Error </Text>;
+              }
               const remove = () => {
                 if (loading) { return; }
                 deleteTodo();

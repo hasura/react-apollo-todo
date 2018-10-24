@@ -1,15 +1,11 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   FlatList,
-  Alert
 } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -199,7 +195,7 @@ export default class Todos extends React.Component {
         variables={{isPublic: this.props.isPublic}}
       >
         {
-          ({data, error, loading, fetchMore}) => {
+          ({data, error, loading }) => {
             if (error) {
               handleError(error, this.props.navigate);
               return <Text>Error</Text>;

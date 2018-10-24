@@ -1,14 +1,10 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Button
 } from 'react-native';
 import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
@@ -80,8 +76,11 @@ export default class Textbox extends React.Component {
         }}
       >
         {
-          (insertTodo, { data, loading, error}) => {
+          (insertTodo, { loading, error}) => {
             const submit = () => {
+              if (error) {
+                return <Text> Error </Text>;
+              }
               if (loading || text === '') {
                 return;
               }

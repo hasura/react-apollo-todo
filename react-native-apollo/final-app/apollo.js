@@ -4,7 +4,6 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
-import { AsyncStorage } from 'react-native';
 
 const GRAPHQL_ENGINE_ENDPOINT = 'hasura-todo-test.herokuapp.com/v1alpha1/graphql'
 

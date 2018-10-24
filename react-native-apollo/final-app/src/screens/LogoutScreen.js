@@ -34,5 +34,5 @@ export default class LogoutScreen extends React.Component {
       </View>
     );
   }
-};
+}
 

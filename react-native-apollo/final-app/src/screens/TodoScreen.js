@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   AsyncStorage,
-  Spinner,
   ActivityIndicator
 } from 'react-native';
 import Textbox from './components/Textbox';
@@ -18,7 +17,7 @@ export default class TodoScreen extends React.Component {
     name: null
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const session = await AsyncStorage.getItem('@todo-graphql:auth0');
     const {id, name, token} = JSON.parse(session);
     // set session details in state

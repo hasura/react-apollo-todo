@@ -48,7 +48,7 @@ export default class OnlineUsers extends React.Component {
       </View>
     );
   }
-};
+}
 
 const UserItem = ({item}) => (
   <View style={styles.userContainer}>

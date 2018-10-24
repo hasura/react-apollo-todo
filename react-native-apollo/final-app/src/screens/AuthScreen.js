@@ -2,7 +2,6 @@ import { AuthSession } from 'expo';
 import React from 'react';
 import {
   Alert,
-  Button,
   StyleSheet,
   Text,
   View,
@@ -27,10 +26,6 @@ export default class App extends React.Component {
 
   state = { 
     isLoggedIn: false 
-  }
-
-  async componentWillMount() {
-    // await this.loginWithAuth0();
   }
 
   loginWithAuth0 = async () => {
