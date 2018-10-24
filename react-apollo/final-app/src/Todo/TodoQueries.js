@@ -65,6 +65,7 @@ const QUERY_FEED_PUBLIC_OLD_TODO = gql`
   query fetch_todos($todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _lt: $todoId } }
+      limit: 5
       order_by: created_at_desc
     ) {
       ...TodoFragment

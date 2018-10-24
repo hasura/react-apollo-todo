@@ -30,7 +30,6 @@
   - [Fetch public todos](app/public-todos/fetch-public/Index.md)
     - [Fragment](app/public-todos/fetch-public/Fragment.md)
   - [Mutation to create todo](app/public-todos/create-todo/Index.md)
-    - [Reusing react component](app/public-todos/create-todo/ReuseComponent.md)
   - [Sync new todos](app/public-todos/sync-todo/Index.md)
     - [Notification component](app/public-todos/sync-todo/Notification.md)
     - [Click to refetch todos](app/public-todos/sync-todo/ClickRefetch.md)
