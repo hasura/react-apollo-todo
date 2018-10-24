@@ -1,4 +1,5 @@
 Set up Apollo Client
+--------------------
 
 Apollo gives a neat abstraction layer and an interface to your GraphQL server. You don't need to worry about constructing your queries with request body, headers and options. You can directly write queries and mutations in GraphQL and send them using an ApolloClient instance.
 

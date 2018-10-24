@@ -1,5 +1,1 @@
-apollo-boost doesn't support subscriptions and hence we install a few more dependencies directly.
-
-Subscriptions Setup
-`$ npm install --save apollo-link-ws subscriptions-transport-ws`
-`$ npm install moment --save` // for date/time manipulation
+The easiest way to bring live data to your UI is using the Subscription component from React Apollo. This lets you render the stream of data from your service directly within your render function of your component! One thing to note, subscriptions are just listeners, they don’t request any data when first connected, but only open up a connection to get new data. 
