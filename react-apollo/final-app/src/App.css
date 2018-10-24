@@ -96,7 +96,9 @@ body {
 }
 .todoListwrapper ul li {
   list-style-type: none;
-  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  /* overflow: auto; */
   display: flex;
   font-size: 14px;
   align-items: center;
@@ -123,8 +125,13 @@ body {
   outline: none;
 }
 .labelContent {
-  /* padding-left: 15px; */
+  padding-left: 1px;
   color: #777;
+  width: calc(100% - 128px);
+  max-height: 60px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
 }
 .view {
   width: 28px;
@@ -295,7 +302,9 @@ body {
 }
 .userInfoPublic {
   width: 28px;
+  min-width: 28px;
   height: 28px;
+  min-height:  28px;
   border-radius: 50%;
   background-color: #dfe3e6;
   display: flex;
@@ -309,5 +318,16 @@ body {
 @media (max-width: 991px) {
   .sliderMenu {
     height: auto;
+  }
+  .labelContent 
+  {
+    display: block;
+  }
+  .addPaddTopBottom {
+    padding: 0px 0;
+  }
+  .sliderHeader, .userInfo {
+    width: 95%;
+    margin: 0 auto;
   }
 }

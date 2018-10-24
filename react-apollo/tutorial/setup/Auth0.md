@@ -1,6 +1,7 @@
 You will be making use of Auth0 for authentication in your react app.
 
-## Set Environment variables
+Set Environment variables
+-------------------------
 
 Open `.env` file that we created in the last step and add the following:
 
