@@ -18,7 +18,7 @@
   - [Update and Delete Todos](Basic-App/Basic-App-Update-Delete-Mutation.md)
 - [Basic Pagination (Load more todos) using Apollo Cache](Apollo-concepts/Index.md)
   - [Apollo custom queries](Apollo-concepts/Apollo-custom-queries.md)
-  - [Apollo cache] (Apollo-concepts/Apollo-cache.md)
+  - [Apollo cache](Apollo-concepts/Apollo-cache.md)
   - [Using Apollo cache like Redux](Apollo-cache-custom.md)
 - [Online users list](Realtime-Online-Users-List/Index.md)
   - [Apollo Subscription Components](Realtime-Online-Users-List/Online-Users-Subscription-Component-Working.md)
