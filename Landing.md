@@ -21,3 +21,15 @@ Topics covered:
 
 About:
 This resource is maintained by Hasura 
+
+
+## FAQ:
+
+- I don't want to use DigitalOcean. I want to deploy on <>
+Yes! You can deploy wherever you like as long as you can run a docker container!
+To deploy Hasura head to these docs:
+
+- I don't want to use Auth0. My auth system is <>
+PassportJS, Auth0, Firebase-auth, MyOwnAuth
+
+-
