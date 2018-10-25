@@ -36,11 +36,11 @@ const LoadMoreButton = () => (
     onPress={() => {
       console.log('Pressed');
     }}
-  > 
+  >
     {
       <Text style={styles.buttonText}> Load more todos </Text>
     }
-  </TouchableOpacity> 
+  </TouchableOpacity>
 );
 
 
@@ -94,7 +94,7 @@ const dummyData = {
     {
       id: 1,
       text: "sample todo",
-      is_completed: true,
+      is_completed: false,
       is_public: true,
       user: {
         name: "user 1"
@@ -103,7 +103,7 @@ const dummyData = {
     {
       id: 2,
       text: "sample todo",
-      is_completed: true,
+      is_completed: false,
       is_public: true,
       user: {
         name: "user 1"
@@ -121,7 +121,7 @@ const dummyData = {
     {
       id: 4,
       text: "sample todo",
-      is_completed: true,
+      is_completed: false,
       is_public: true,
       user: {
         name: "user 4"
@@ -130,7 +130,7 @@ const dummyData = {
     {
       id: 5,
       text: "sample todo",
-      is_completed: true,
+      is_completed: false,
       is_public: true,
       user: {
         name: "user 3"
@@ -148,7 +148,7 @@ const dummyData = {
     {
       id: 7,
       text: "sample todo",
-      is_completed: true,
+      is_completed: false,
       is_public: false,
       user: {
         name: "user 2"
@@ -164,4 +164,4 @@ const dummyData = {
       }
     },
   ]
-} 
+}

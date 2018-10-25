@@ -14,7 +14,7 @@ export default class TodoItem extends React.Component {
     const { item, isPublic } = this.props;
     return (
       <View style={styles.todoContainer}>
-        { !isPublic && <UserItem username={item.user.name}/>}
+        { isPublic && <UserItem username={item.user.name}/>}
         <TouchableOpacity
           style={item.is_completed ? styles.completedCheckBox : styles.checkBox}
           onPress={() => Alert.alert('Pressed')}
