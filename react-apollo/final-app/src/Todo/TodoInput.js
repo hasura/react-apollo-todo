@@ -5,7 +5,6 @@ import "../App.css";
 
 import {
   QUERY_PRIVATE_TODO,
-  QUERY_PUBLIC_TODO,
   MUTATION_TODO_ADD
 } from "./TodoQueries";
 
@@ -15,6 +14,7 @@ class TodoInput extends React.Component {
     this.state = {
       textboxValue: ""
     };
+    this.handleTextboxValueChange = this.handleTextboxValueChange.bind(this);
     this.handleTextboxKeyPress = this.handleTextboxKeyPress.bind(this);
   }
 
@@ -42,10 +42,7 @@ class TodoInput extends React.Component {
           ]
         },
         update: (store, { data: { insert_todos } }) => {
-          const query =
-            this.props.type === "private"
-              ? QUERY_PRIVATE_TODO
-              : QUERY_PUBLIC_TODO;
+          const query = QUERY_PRIVATE_TODO;
           try {
             if (this.props.type === "private") {
               const data = store.readQuery({
@@ -92,7 +89,7 @@ class TodoInput extends React.Component {
                 }
                 placeholder="What needs to be done?"
                 value={this.state.textboxValue}
-                onChange={this.handleTextboxValueChange.bind(this)}
+                onChange={this.handleTextboxValueChange}
                 onKeyPress={e => {
                   this.handleTextboxKeyPress(e, addTodo);
                 }}
