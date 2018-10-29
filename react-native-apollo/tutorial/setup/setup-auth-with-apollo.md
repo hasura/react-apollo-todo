@@ -98,8 +98,6 @@ import gql from 'graphql-tag';
 Then append the following to `componentDidMount`:
 
 ```js
-import client from 'graphql-tag';
-
 await client.mutate({
   mutation: gql`
     mutation ($auth0_id: String!, $name: String!) {
