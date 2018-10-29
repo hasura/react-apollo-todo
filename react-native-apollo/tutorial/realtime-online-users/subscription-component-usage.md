@@ -2,7 +2,7 @@
 
 The Apollo `<Subscription>` components take `subscription` and `variables` as props and provide a render prop function that is executed and rendered everytime a subscription event happens.
 
-```
+```js
 const ReactComponent = () => (
   <Subscription
     subscription={onlineUsers}
@@ -22,7 +22,7 @@ In the above component, the Subscription component
 
 1. Sets `loading=true` and makes the GraphQL query. Till it gets the response, it calls the render prop function with the following payload
 
-    ```
+    ```js
     {
       data: null,
       loading: true,
@@ -34,7 +34,7 @@ In the above component, the Subscription component
 
 2. If the query proceeds successfully, it sets `loading=false` and renders the output of the render prop function when called with
 
-    ```
+    ```js
     {
       data: { todos: [ ... ] }
       loading: false,
@@ -46,7 +46,7 @@ In the above component, the Subscription component
 
 3. If there is an error while making the query, it sets `loading=false` and renders the output of the render prop function when called with
 
-    ```
+    ```js
     {
       data: null,
       loading: false,

@@ -55,7 +55,7 @@ class Comp extends React.Component {
 
 ### With Apollo
 
-```
+```js
 const query = `query { rootField { field1 field2 }}`
 
 const Comp = () => (
@@ -94,7 +94,7 @@ const data = client.readQuery({
 
 We can also modify the Apollo cache as per our needs. For instance, after inserting a todo, we would like to update the cache to update the UI instantly. There is a `client.writeQuery` function for this purpose:
 
-```
+```js
 client.writeQuery({
   query: fetchTodos,
   variables: {

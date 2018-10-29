@@ -8,7 +8,7 @@ In the React Native app, the todos are rendered by the `Todos` component in `src
   
     > `gql` is a function from the `graphql-tag` library that converts a GraphQL query string into a standard GraphQL AST.
 
-    ```
+    ```js
     import gql from 'graphql-tag'; 
 
     export const fetchTodos = gql`
@@ -40,20 +40,20 @@ In the React Native app, the todos are rendered by the `Todos` component in `src
 
 2. Import `Query` component from `react-apollo`:
 
-    ```
+    ```js
     import { Query } from 'react-apollo';
     ```
 
 3. In this app we are showing a spinner when the query is `loading` and we show an error text when the component is in `error`. You can have custom components to handle both these states. Import the `CenterSpinner` component to wrap it up.
 
-```
+```js
 import CenterSpinner from './CenterSpinner'
 ```
 
 4. Render the todos using a `<Query>` component. You can do that by modifying the render method to use the data from the `Query` component.
 
 
-    ```
+    ```js
     render() {
       const { isPublic } = this.props;
       return (

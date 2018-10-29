@@ -47,7 +47,7 @@ import CenterSpinner from './CenterSpinner'; // for handling loading state
 
 In this component, we can wrap the todo text in a `<Mutation>` component and perform the update mutation whenever the text is pressed. Wrap the `<TouchableOpacity>` button in the `TodoItem` as follows:
 
-```jsx
+```js
 <Mutation
   mutation={updateTodo}
   variables={{
@@ -90,7 +90,7 @@ To delete the todos, we simply have to use a delete mutation and update the cach
 
 The delete mutation is (`deleteTodo`):
 
-```
+```js
 mutation ($id: Int) {
   delete_todos (
     where: {
@@ -106,7 +106,7 @@ mutation ($id: Int) {
 
 To functionalize the delete icon, wrap the delete icon in a `<Mutation>` component similar to how we did with insert and update. However, in this case the `update` prop removes the element from cache.
 
-```
+```js
 <Mutation
   mutation={deleteTodo}
   variables={{
@@ -160,7 +160,7 @@ To functionalize the delete icon, wrap the delete icon in a `<Mutation>` compone
 
 In case of public todos, each todo has a user button that shows the first letter of the name of the todo maker. Add the following just above the update mutation component.
 
-```
+```js
 { isPublic && <UserItem username={item.user.name}/>}
 ```
 

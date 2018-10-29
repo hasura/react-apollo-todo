@@ -2,7 +2,7 @@
 
 Sometimes the Apollo Queries and Mutation components might not be sufficient for your uses case and you might want to manually fire queries. You can do that using the client that you can access using `ApolloConsumer` from `react-apollo`.
 
-```
+```js
 const Comp = () => (
   <ApolloConsumer>
     {
@@ -58,7 +58,7 @@ Now our `Todos` component has the `client` prop and we can make queries, mutatio
 
 ## Queries
 
-```
+```js
 const { data } = await client.query({
   query: gql`query ($var: Int) { queryField (var: $var) { field1 field2 }}
   variables: { var: 25}
@@ -67,7 +67,7 @@ const { data } = await client.query({
 
 ## Mutation
 
-```
+```js
 const { data } = await client.mutate({
   mutation: gql`mutation ($var: Int) { mutationField (var: $var) { field1 field2 }}
   variables: { var: 25}
@@ -76,7 +76,7 @@ const { data } = await client.mutate({
 
 ## Subscription
 
-```
+```js
 client.subscribe({
   query: gql`query ($var: Int) { queryField (var: $var) { field1 field2 }}
   variables: { var: 25} 

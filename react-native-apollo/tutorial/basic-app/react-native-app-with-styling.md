@@ -18,7 +18,7 @@ We have used a `react-navigation` for navigating between screens. The code struc
 
   The `App.js` present at the root level of the app renders this navigator.
 
-- **Drawer Navigator**: [TODOImage] It is drawer used to switch between the screens of the app (todos, online users, logout).
+- **Drawer Navigator**: It is drawer used to switch between the screens of the app (todos, online users, logout).
 
-- **Tab Navigator**: [TODOImage] This renders a tab for private todos and a tab for public todos.
+- **Tab Navigator**: This renders a tab for private todos and a tab for public todos.
 

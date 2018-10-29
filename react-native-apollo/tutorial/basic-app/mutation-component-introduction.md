@@ -4,7 +4,7 @@ The Apollo `<Mutation>` components take `mutation` and `variables` as props and 
 
 It also takes a prop called `update` where we can manipulate the cache based on the results of the mutation in order to see instant UI updates.
 
-```
+```js
 const ReactComponent = () => (
   <Mutation
     mutation={insertTodos}

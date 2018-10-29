@@ -17,7 +17,7 @@ For this feature, we will store the following fields in the Apollo cache:
 
 Let us first write a utility function called `updateCache` function that updates a particular field in the cache. If you are thinking in redux, this function is similar to the reducer action that updates the state. It reads the current state and updates the state with new key.
 
-```
+```js
 updateCache = (key, value) => {
   const { client } = this.props;
   const resp = client.query({query: gql`{
@@ -41,7 +41,7 @@ updateCache = (key, value) => {
 
 Let us set the initial value of `loadMoreTextPrivate` and `loadMoreTextPublic` to 'Load more todos' and `loadMoreButtonEnabledPrivate` and `loadMoreButtonEnabledPublic` to true. Since this is a synchronous action, we can set these initial values in the constructor.
 
-```
+```js
 this.props.client.writeData({
   data: {
     newTodosExist: false,
@@ -57,7 +57,7 @@ this.props.client.writeData({
 
 The query to load more todos looks like (`fetchOldTodos`):
 
-```
+```js
 const fetchOldTodos = gql`
   query ($lastId: Int, $isPublic: Boolean){
     todos (
@@ -100,7 +100,7 @@ In the sections below, `loadMoreButtonEnabled` refers to `loadMoreButtonEnabledP
 
 Let us write a function `fetchOldTodos` that does the two above steps.
 
-```
+```js
 fetchOldTodos = async () => {
   const { client, isPublic } = this.props;
   const data = client.readQuery({
@@ -155,7 +155,7 @@ The interesting part is that we can use the same `<Query>` components while maki
 
 The query would be:
 
-```
+```js
 query {
   loadMoreButtonEnabledPrivate @client
   loadMoreButtonEnabledPublic @client
@@ -168,7 +168,7 @@ Let us make the `LoadMoreButton` and pass the `fetchOlderTodos` function, `updat
 
 
 **LoadMoreButton**
-```
+```js
 const LoadMoreButton = ({updateCache, fetchOlderTodos, todoType}) => (
   <Query
     query={gql`{
@@ -203,7 +203,7 @@ const LoadMoreButton = ({updateCache, fetchOlderTodos, todoType}) => (
 ```
 
 **Todos**
-```
+```js
 render () {
   return (
     ...

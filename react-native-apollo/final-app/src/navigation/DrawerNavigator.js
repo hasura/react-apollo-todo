@@ -7,7 +7,7 @@ import OnlineUsers from '../screens/UsersScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 import TodosTabs from './MainTabNavigator';
 import { ApolloProvider} from 'react-apollo';
-import makeApolloClient from '../../apollo';
+import makeApolloClient from '../apollo';
 import gql from 'graphql-tag';
 import CenterSpinner from '../screens/components/CenterSpinner';
 
@@ -87,7 +87,7 @@ export default class App extends React.Component {
     const sessionObj = JSON.parse(session);
     const { token, id, name } = sessionObj;
     // make apollo client with this session token
-    const client = await makeApolloClient(token);
+    const client = makeApolloClient(token);
     // insert the user into user table
     const resp = await client.mutate({
       mutation: insertUser,
@@ -103,7 +103,7 @@ export default class App extends React.Component {
         loading: false
       })
     }
-    
+
     // start emitting events saying that the useri s online
     setInterval(
       () => client.mutate({

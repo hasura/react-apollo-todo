@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View,
   AsyncStorage,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import Textbox from './components/Textbox';
 import Todos from './components/Todos';
@@ -47,7 +47,7 @@ export default class TodoScreen extends React.Component {
             client => (
               <View
                 style={styles.todoListContainer}
-              > 
+              >
                 <Todos
                   isPublic={this.props.isPublic}
                   navigate={this.props.navigate}
@@ -59,7 +59,7 @@ export default class TodoScreen extends React.Component {
               </View>
             )
           }
-          
+
         </ApolloConsumer>
       </View>
     );

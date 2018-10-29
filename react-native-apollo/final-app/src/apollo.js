@@ -7,7 +7,7 @@ import { getMainDefinition } from "apollo-utilities";
 
 const GRAPHQL_ENGINE_ENDPOINT = 'hasura-todo-test.herokuapp.com/v1alpha1/graphql'
 
-const makeApolloClient = async (token) => { 
+const makeApolloClient = (token) => {
   const httpLink = new HttpLink({
     uri: `https://${GRAPHQL_ENGINE_ENDPOINT}`,
     headers: {

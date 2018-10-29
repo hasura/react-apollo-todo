@@ -5,7 +5,6 @@ As of now, we are loading all the public todos at once when the component loads.
 We will use the following query:
 
 ```gql
-const fetchNewTodos = gql`
   query ($lastId: Int){
     todos (
       order_by: id_desc,
@@ -25,7 +24,6 @@ const fetchNewTodos = gql`
       created_at
     }
   }
-`;
 ```
 
 As you see, this query fetches all the public todos that have `id` greater than the `lastId` which is taken as a query variable. Since the `id` in the `todo` table is set to auto-increment, this query makes sure that it fetches only the todos newer than the ones we have in the cache.
@@ -34,7 +32,7 @@ To implement this refetch button, we will need to do the following:
 
 1. Read the cache to see the current todos and find the `id` of the latest todo.
 
-    ```
+    ```js
     const data = client.readQuery({
       query: fetchTodos,
       variables: {
@@ -46,7 +44,7 @@ To implement this refetch button, we will need to do the following:
 
 2. Manually fire a query using the `client.query` function to fetch the new todos.
 
-    ```
+    ```js
     const resp = await client.query({
       query: fetchNewTodos,
       variables: { lastId }
@@ -55,7 +53,7 @@ To implement this refetch button, we will need to do the following:
 
 3. Append these new todos to the older todos and write it to the cache so that the UI updates. 
 
-    ```
+    ```js
     if (resp.data) {
       const newData = {
         todos: [ ...resp.data.todos, ...data.todos]
@@ -77,7 +75,7 @@ To implement this refetch button, we will need to do the following:
 
 4. Let us include the above logic in a new function. Create a `fetchNewTodos` function inside our `Todos` component (`src/screens/components/Todos.js`). The function looks like this:
 
-    ```
+    ```js
     fetchNewTodos = async () => {
       const { client, isPublic } = this.props;
       const data = client.readQuery({
@@ -108,7 +106,7 @@ To implement this refetch button, we will need to do the following:
 
 4. Finally add a button that calls the above function `onPress`. Add it just next above the `ScrollView` in our `Todos` component.
 
-    ```
+    ```js
     <TouchableOpacity
       onPress={this.fetchNewTodos}
       style={styles.banner}
