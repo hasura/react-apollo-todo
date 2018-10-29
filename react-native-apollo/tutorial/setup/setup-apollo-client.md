@@ -34,7 +34,7 @@ This todo app will be a realtime application. We will be using GraphQL subscript
 
 #### Authentication
 
-This app uses JWT based authentication. We have discussed about that in detail in  the [next](TODO) section. For now, it is enough to understand that JWT is a token that we need to send with every request and the server authenticates the requests using this JWT.
+This app uses JWT based authentication. We have discussed about that in detail in  the next section. For now, it is enough to understand that JWT is a token that we need to send with every request and the server authenticates the requests using this JWT.
 
 Since this token must be sent with all requests, it is best to set this token in the Apollo link itself. 
 

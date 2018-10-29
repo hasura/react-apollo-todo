@@ -20,5 +20,5 @@ Install the Expo app from Playstore/AppStore and
 - For Android, scan the QR code from the Expo app to open the project
 - For iOS, send an email to expo link and open it in Expo app.
 
-Once the app is up and running, lets go ahead and add GraphQL to it.
+Once the app is up and running, let us go ahead and add GraphQL to it.
 

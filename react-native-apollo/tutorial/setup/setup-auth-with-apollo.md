@@ -85,7 +85,7 @@ into the `users` table where `$name` and `$auth0_id` come from the query variabl
 
 > We have also used the `on_conflict` clause because the user might already be signed up
 
-Apollo client has a public function called `mutate` that you can use for directly firing mutations. (More about this [here](TODO))
+Apollo client has a public function called `mutate` that you can use for directly firing mutations. (More about this [here](../apollo-concepts/apollo-manually-making-queries.md))
 
 Let us do this as well in the `componentDidMount` of `DrawerNavigator` and then set the `loading` state to `false` so that the children components are rendered.
 
