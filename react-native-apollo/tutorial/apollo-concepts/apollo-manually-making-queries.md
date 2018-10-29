@@ -96,6 +96,6 @@ We will use `client.query` in the Todos component for fetching newer and older t
 
 ## Wrapping up
 
-Finally your `TodoScreen.js` should look something like [this](TODO).
+Now you have learned how to manually fire queries, mutations and subscriptions using Apollo Client. 
 
 In the next section, we will see how to manipulate the Apollo cache for updating the UI.

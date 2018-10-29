@@ -137,8 +137,9 @@ In this React Native app, the todos are entered by the `Textbox` component in `s
       data: newData
     });
     ```
+
 ## Wrapping up
 
-If done correctly, your `Textbox.js` should render a textbox that is able to insert data into the `todos` table.
+If done correctly, your `Textbox.js` should render a textbox and a button that is able to insert data into the `todos` table using `insert_todos` mutation and update the UI when the mutation is complete.
 
 In the next section, we will enable the functionality of deleting and updating todos.

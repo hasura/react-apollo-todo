@@ -57,7 +57,7 @@ const httpLink = new HttpLink({
 
 Creating a websocket link is as simple as given below. Please note that we need to set headers in the `connectionParams > headers` field.
 
-```
+```js
 import { WebSocketLink } from 'apollo-link-ws';
 
 const wsLink = new WebSocketLink({
@@ -77,7 +77,7 @@ const wsLink = new WebSocketLink({
 
 Now that we have both WS and HTTP links, we need to create a new instance of Apollo Link that uses `wsLink` for subscriptions and `httpLink` otherwise. To do that, we can use the `split` function from the `apollo-link` library.
 
-```
+```js
 import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
 

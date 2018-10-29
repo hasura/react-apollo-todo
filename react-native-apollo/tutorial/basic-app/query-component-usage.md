@@ -35,7 +35,7 @@ In the React Native app, the todos are rendered by the `Todos` component in `src
     ```
 
 
-    In this query, we are fetching the todos with variable `lastId` so that we do not fetch all the data at once. We are also taking `isPublic` from variables so that we can reuse the same query for both public and private todos.
+   In this query, we are fetching the todos with variable `lastId` so that we do not fetch all the data at once. We are also taking `isPublic` from variables so that we can reuse the same query for both public and private todos.
 
 
 2. Import `Query` component from `react-apollo`:
@@ -46,9 +46,9 @@ In the React Native app, the todos are rendered by the `Todos` component in `src
 
 3. In this app we are showing a spinner when the query is `loading` and we show an error text when the component is in `error`. You can have custom components to handle both these states. Import the `CenterSpinner` component to wrap it up.
 
-```js
-import CenterSpinner from './CenterSpinner'
-```
+    ```js
+    import CenterSpinner from './CenterSpinner'
+    ```
 
 4. Render the todos using a `<Query>` component. You can do that by modifying the render method to use the data from the `Query` component.
 

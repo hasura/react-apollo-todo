@@ -106,6 +106,8 @@ Let us implement it.
           } 
         });
       }
+      ...
+      ...
     }
 
     ```
@@ -143,7 +145,7 @@ Let us implement it.
 
    Now, use this `NewTodosBanner` in the render of `Todos` component and pass the `fetchNewTodos` function as a prop.
 
-   ```
+   ```js
    render() {
       return (
         ...

@@ -71,7 +71,7 @@ const Comp = () => (
 );
 ```
 
-The above two examples make the difference is clear.
+The above two examples make the difference absolutely clear.
 
 ## Manipulating the cache
 

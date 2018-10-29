@@ -4,7 +4,7 @@ As of now, we are loading all the public todos at once when the component loads.
 
 We will use the following query:
 
-```gql
+```graphql
   query ($lastId: Int){
     todos (
       order_by: id_desc,
@@ -65,11 +65,6 @@ To implement this refetch button, we will need to do the following:
         },
         data: newData
       });
-      client.writeData({
-        data: {
-          newTodosExist: false
-        }
-      })
     }
     ```
 

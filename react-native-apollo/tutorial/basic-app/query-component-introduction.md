@@ -33,7 +33,7 @@ In the above component, the `<Query>` component follows this flow:
     }
     ```
 
-   ... gets `<Loading />` in return and therefore renders `<Loading />`
+   and gets `<Loading />` in return and therefore renders `<Loading />`
 
 2. If the query proceeds successfully, it sets `loading=false` and renders the output of the render prop function when called with
 

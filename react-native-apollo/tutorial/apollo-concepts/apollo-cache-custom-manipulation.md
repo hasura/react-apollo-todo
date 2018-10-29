@@ -21,7 +21,6 @@ Let us first write a utility function called `updateCache` function that updates
 updateCache = (key, value) => {
   const { client } = this.props;
   const resp = client.query({query: gql`{
-    newTodosExist @client
     loadMoreButtonEnabledPrivate @client
     loadMoreButtonEnabledPublic @client
     loadMoreTextPrivate @client
@@ -44,7 +43,6 @@ Let us set the initial value of `loadMoreTextPrivate` and `loadMoreTextPublic` t
 ```js
 this.props.client.writeData({
   data: {
-    newTodosExist: false,
     loadMoreButtonEnabledPrivate: true,
     loadMoreButtonEnabledPublic: true,  
     loadMoreTextPrivate: 'Load more todos',
@@ -103,6 +101,7 @@ Let us write a function `fetchOldTodos` that does the two above steps.
 ```js
 fetchOldTodos = async () => {
   const { client, isPublic } = this.props;
+  const todoType = isPublic ? 'Public' : 'Private';
   const data = client.readQuery({
     query: fetchTodos,
     variables: {
@@ -128,19 +127,19 @@ fetchOldTodos = async () => {
       data: { todos: [ ...data.todos, ...response.data.todos]}
     });
     if (response.data.todos < 10) {
-      this.updateCache('paginationText', 'No more todos');  
+      this.updateCache(`loadMoreText${todoType}`, 'No more todos');  
     } else {
-      this.updateCache('paginateButtonEnabled', true);
+      this.updateCache(`loadMoreButtonEnabled${todoType}`, true);
     }
   } else {
-    this.updateCache('paginationText', 'No more todos');  
+    this.updateCache(`loadMoreText${todoType}`, 'No more todos');  
   }
 }
 ```
 
 ### UI elements
 
-We will a new component.
+We will write a new component.
 
 - LoadMoreButton: A button that subscribes to the following fields:
   - `loadMoreButtonEnabledPrivate`
@@ -155,7 +154,7 @@ The interesting part is that we can use the same `<Query>` components while maki
 
 The query would be:
 
-```js
+```gql
 query {
   loadMoreButtonEnabledPrivate @client
   loadMoreButtonEnabledPublic @client
