@@ -52,12 +52,11 @@ export default class Textbox extends React.Component {
           isPublic
         }}
         update={(cache, {data: {insert_todos}}) => {
+          if (isPublic) { return; }
           const data = cache.readQuery({
             query: fetchTodos,
             variables: {
               isPublic,
-              offset: 0,
-              limit: 10
             }
           });
           const newTodo = insert_todos.returning[0];
@@ -68,8 +67,6 @@ export default class Textbox extends React.Component {
             query: fetchTodos,
             variables: {
               isPublic,
-              offset: 0,
-              limit: 10
             },
             data: newData
           });

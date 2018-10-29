@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     flexDirection: 'column',
-    backgroundColor: 'gray',
+    backgroundColor: '#66BDE7',
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
   },
   pagination: {
     flexDirection: 'column',
-    backgroundColor: 'gray',
+    backgroundColor: '#66BDE7',
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -351,7 +351,4 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingVertical: 5,
   },
-  buttonText: {
-    color: 'white'
-  }
 });

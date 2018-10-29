@@ -13,6 +13,7 @@ export default class Todos extends React.Component {
 
   render() {
     const { isPublic } = this.props;
+    const todoType = isPublic ? 'Public' : 'Private';
     const data = { ...dummyData};
     return (
       <View style={styles.container}>
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     flexDirection: 'column',
-    backgroundColor: 'gray',
+    backgroundColor: '#66BDE7',
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   },
   pagination: {
     flexDirection: 'column',
-    backgroundColor: 'gray',
+    backgroundColor: '#66BDE7',
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   buttonText: {
-    color: 'white'
+    color: 'black'
   }
 });
 

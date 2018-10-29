@@ -101,8 +101,6 @@ export default class TodoItem extends React.Component {
               query: fetchTodos,
               variables: {
                 isPublic,
-                offset: 0,
-                limit: 10
               }
             });
             const newData = {
@@ -112,8 +110,6 @@ export default class TodoItem extends React.Component {
               query: fetchTodos,
               variables: {
                 isPublic,
-                offset: 0,
-                limit: 10
               },
               data: newData
             });
