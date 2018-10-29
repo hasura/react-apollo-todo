@@ -161,8 +161,14 @@ Let us implement it.
    this.updateCache('newTodosExist', false)
    ```
 
-   ## Wrapping up
+4. In the `Textbox` component (`src/screens/components/Textbox.js`), in the `update` prop of the `<Mutation>` component, add the following line at the top of the function. We do this so that the todo creations captured by subscriptions are consistent.
 
-   If you have done everything correctly, you must have a fully functional todo app ready.
+   ```js
+   if (isPublic) { return ; }
+   ```
 
-   Check out other tutorials [here](TODO).
+## Wrapping up
+
+If you have done everything correctly, you must have a fully functional todo app ready.
+
+Check out other tutorials [here](TODO).

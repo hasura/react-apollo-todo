@@ -20,9 +20,5 @@ Install the Expo app from Playstore/AppStore and
 - For Android, scan the QR code from the Expo app to open the project
 - For iOS, send an email to expo link and open it in Expo app.
 
-The UI of the main screens looks like this:
-
-![ui-boilerplate](../images/ui-boilerplate.jpeg)
-
 Once the app is up and running, let us go ahead and add GraphQL to it.
 
