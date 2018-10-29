@@ -22,3 +22,9 @@ You should know the basics of how to build a React Native app.
 - GraphQL mutations & variables
 - GraphQL subscriptions
 - Making direct GraphQL API calls without Apollo's higher-order-components
+
+## Final app
+
+This is the final app that you will build:
+
+[complete-app-gif](./images/complete-app.gif)

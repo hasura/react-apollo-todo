@@ -104,7 +104,7 @@ client.writeQuery({
 })
 ```
 
-You must have noticed that we used these functions to update the UI while making [insert](TODO) and [delete](TODO) mutations.
+You must have noticed that we used these functions to update the UI while making [insert](../basic-app/mutation-component-usage-insert.md) and [delete](../basic-app/mutation-component-usage-update-delete) mutations.
 
 ## Wrapping up
 

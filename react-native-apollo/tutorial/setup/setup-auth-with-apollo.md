@@ -155,6 +155,6 @@ render() {
 
 ## Wrapping up
 
-Finally, your `src/navigation/DrawerNavigator` should look something like [this](TODO)
+Finally, your `src/navigation/DrawerNavigator` should provide the apollo client created with the token.
 
 In the next section, we will integrate the current UI with the backend.
