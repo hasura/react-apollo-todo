@@ -41,7 +41,7 @@ In this React Native app, the todos are entered by the `Textbox` component in `s
     import { Mutation } from 'react-apollo';
     ```
 
-2. Render the textbox using a `Mutation` component. You can do that by modifying the render method to use the mutation from the `Mutation` component.
+3. Render the textbox using a `Mutation` component. You can do that by modifying the render method to use the mutation from the `Mutation` component. Call the `insert_todo` mutation function when the button is pressed.
 
 
     ```js
@@ -106,9 +106,7 @@ In this React Native app, the todos are entered by the `Textbox` component in `s
     }
     ```
 
-   In this component, we are running an `insert_todos` mutation on button press.
-
-3. We are also updating the Apollo Cache so that the UI updates instantly. In the update prop:
+4. We are also updating the Apollo Cache so that the UI updates instantly. In the update prop:
 
   - We read the existing data:
     

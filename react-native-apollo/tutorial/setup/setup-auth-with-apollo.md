@@ -53,7 +53,7 @@ export class DrawerNav extends React.Component {
 
 Next, we have to insert the user information in the `users` table so that rest of the data can be related to the user. Inserting to the `users` table is done in the form of a GraphQL mutation called `insert_users`. The mutation is:
 
-```gql
+```graphql
 mutation ($auth0_id: String!, $name: String!) {
   insert_users (
     objects: [

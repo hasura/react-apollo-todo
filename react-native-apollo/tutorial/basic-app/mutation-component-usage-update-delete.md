@@ -6,7 +6,7 @@ Any todo app needs to have the functionality of marking the task as complete. In
 
 The mutation is (`updateTodo`):
 
-```gql
+```graphql
 mutation ($id: Int, $isCompleted: Boolean) {
   update_todos (
     _set: {

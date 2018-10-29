@@ -154,7 +154,7 @@ The interesting part is that we can use the same `<Query>` components while maki
 
 The query would be:
 
-```gql
+```graphql
 query {
   loadMoreButtonEnabledPrivate @client
   loadMoreButtonEnabledPublic @client

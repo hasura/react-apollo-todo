@@ -102,8 +102,10 @@ export default class Todos extends React.Component {
     this.props.client.writeData({
       data: {
         newTodosExist: false,
-        loadMoreButtonEnabled: true, 
-        loadMoreText: 'Load more todos'
+        loadMoreButtonEnabledPublic: true, 
+        loadMoreTextPublic: 'Load more todos',
+        loadMoreButtonEnabledPrivate: true, 
+        loadMoreTextPrivate: 'Load more todos'
       }
     });
   }
@@ -112,8 +114,10 @@ export default class Todos extends React.Component {
     const { client } = this.props;
     const resp = client.query({query: gql`{
       newTodosExist @client
-      loadMoreText @client
-      loadMoreButtonEnabled @client
+      loadMoreButtonEnabledPublic @client
+      loadMoreTextPublic @client
+      loadMoreButtonEnabledPrivate @client
+      loadMoreTextPrivate @client
     }`});
     const newData = {
       ...resp.data
@@ -189,6 +193,7 @@ export default class Todos extends React.Component {
 
   render() {
     const { isPublic } = this.props;
+    const todoType = isPublic ? 'Public' : 'Private';
     return (
       <Query
         query={fetchTodos}
@@ -212,7 +217,7 @@ export default class Todos extends React.Component {
                     renderItem={({item}) => <TodoItem item={item} isPublic={this.props.isPublic}/>}
                     keyExtractor={(item) => item.id.toString()}
                   />
-                  <LoadMoreButton updateCache={this.updateCache} fetchOlderTodos={this.fetchOlderTodos} />
+                  <LoadMoreButton updateCache={this.updateCache} fetchOlderTodos={this.fetchOlderTodos} todoType={todoType}/>
                 </ScrollView>
               </View>
             );
@@ -224,6 +229,7 @@ export default class Todos extends React.Component {
 
   fetchOlderTodos = async () => {
     const { client, isPublic } = this.props;
+    const todoType = isPublic ? 'Public' : 'Private';
     const data = client.readQuery({
       query: fetchTodos,
       variables: {
@@ -248,26 +254,25 @@ export default class Todos extends React.Component {
         },
         data: { todos: [ ...data.todos, ...response.data.todos]}
       });
-      try {
-        if (response.data.todos < 10) {
-          this.updateCache('loadMoreText', 'No more todos');  
-        } else {
-          this.updateCache('loadMoreButtonEnabled', true);
-        }
-      } catch (e) {
-        console.log('try catch')
-        console.log(JSON.stringify(e, null, 2));
+      if (response.data.todos < 10) {
+        this.updateCache(`loadMoreText${todoType}`, 'No more todos');  
+      } else {
+        this.updateCache(`loadMoreButtonEnabled${todoType}`, true);
       }
-      
     } else {
-      this.updateCache('loadMoreText', 'No more todos');  
+      this.updateCache(`loadMoreText${todoType}`, 'No more todos');  
     }
   }
 }
 
-const LoadMoreButton = ({updateCache, fetchOlderTodos}) => (
+const LoadMoreButton = ({updateCache, fetchOlderTodos, todoType}) => (
   <Query
-    query={gql`{loadMoreButtonEnabled @client loadMoreText @client}`}
+    query={gql`{
+      loadMoreButtonEnabledPublic @client
+      loadMoreTextPublic @client
+      loadMoreButtonEnabledPrivate @client
+      loadMoreTextPrivate @client
+    }`}
   >
     {
       ({data}) => {
@@ -275,15 +280,15 @@ const LoadMoreButton = ({updateCache, fetchOlderTodos}) => (
           <TouchableOpacity
             style={styles.pagination}
             onPress={() => {
-              updateCache('loadMoreButtonEnabled', false);
+              updateCache(`loadMoreButtonEnabled${todoType}`, false);
               fetchOlderTodos();
             }}
-            disabled={!data.loadMoreButtonEnabled}
+            disabled={!data[`loadMoreButtonEnabled${todoType}`]}
           > 
             {
-              !data.loadMoreButtonEnabled && data.loadMoreText !== 'No more todos' ?
+              !data[`loadMoreButtonEnabled${todoType}`] && data[`loadMoreText${todoType}`] !== 'No more todos' ?
               <CenterSpinner /> :
-              <Text style={styles.buttonText}> {data.loadMoreText} </Text>
+              <Text style={styles.buttonText}> {data[`loadMoreText${todoType}`]} </Text>
             }
           </TouchableOpacity> 
         )

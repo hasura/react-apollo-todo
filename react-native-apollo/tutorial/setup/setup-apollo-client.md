@@ -8,12 +8,12 @@ npm install apollo-boost react-apollo graphql apollo-link-ws apollo-utilities su
 
 The above command will install the following:
 
-- `[apollo-boost](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-boost)`: Package containing basic Apollo client libraries
-- `[react-apollo](https://github.com/apollographql/react-apollo)`: View layer integration for React
-- `[graphql](https://github.com/graphql/graphql-js)`: Standard GraphQL library for Javascript
-- `[apollo-link-ws](https://github.com/apollographql/apollo-link/tree/master/packages/apollo-link-ws)`: WebSocket network layer from Apollo client for realtime support
-- `[subscriptions-transport-ws](https://github.com/apollographql/apollo-link/tree/master/packages/apollo-link-ws)`: A WebSocket client for GraphQL subscriptions for realtime support
-- `[apollo-utilities](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-utilities)`: Utility library for parsing GraphQL queries
+- [`apollo-boost`](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-boost): Package containing basic Apollo client libraries
+- [`react-apollo`](https://github.com/apollographql/react-apollo): View layer integration for React
+- [`graphql`](https://github.com/graphql/graphql-js): Standard GraphQL library for Javascript
+- [`apollo-link-ws`](https://github.com/apollographql/apollo-link/tree/master/packages/apollo-link-ws): WebSocket network layer from Apollo client for realtime support
+- [`subscriptions-transport-ws`](https://github.com/apollographql/apollo-link/tree/master/packages/apollo-link-ws): A WebSocket client for GraphQL subscriptions for realtime support
+- [`apollo-utilities`](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-utilities): Utility library for parsing GraphQL queries
 
 
 ## Instantiating Apollo Client

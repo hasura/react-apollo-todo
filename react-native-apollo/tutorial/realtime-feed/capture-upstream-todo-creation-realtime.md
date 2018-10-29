@@ -13,7 +13,7 @@ Let us implement it.
 
 1. The subscription that we will use is (`subscribeToNewTodos`) :
 
-    ```gql
+    ```graphql
     subscription {
       todos (
         order_by: id_desc
