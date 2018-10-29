@@ -194,6 +194,7 @@ class TodoPublicList extends Component {
 
 TodoPublicList.propTypes = {
   userId: PropTypes.string,
+  client: PropTypes.object,
   type: PropTypes.string
 };
 
