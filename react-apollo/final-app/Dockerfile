@@ -12,6 +12,7 @@ RUN npm install
 
 # Bundle app source
 COPY src /app
+COPY public /app
 #Build react/vue/angular bundle static files
 RUN npm run build
 
