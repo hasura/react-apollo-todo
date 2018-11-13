@@ -4,7 +4,7 @@ const QUERY_PRIVATE_TODO = gql`
   query fetch_todos($userId: String!) {
     todos(
       where: { is_public: { _eq: false }, user_id: { _eq: $userId } }
-      order_by: created_at_desc
+      order_by: {created_at: desc}
     ) {
       id
       text
@@ -17,7 +17,7 @@ const QUERY_PRIVATE_TODO = gql`
 
 const QUERY_PUBLIC_TODO = gql`
   query fetch_todos {
-    todos(where: { is_public: { _eq: true } }, order_by: created_at_desc) {
+    todos(where: { is_public: { _eq: true } }, order_by: {created_at: desc}) {
       id
       text
       is_completed
@@ -60,7 +60,7 @@ const MUTATION_TODO_DELETE = gql`
 
 const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
   subscription {
-    todos(where: { is_public: { _eq: true } }, order_by: created_at_desc) {
+    todos(where: { is_public: { _eq: true } }, order_by: {created_at: desc}) {
       id
       text
       is_completed
@@ -72,7 +72,7 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
 
 const SUBSCRIPTION_ONLINE_USERS = gql`
   subscription {
-    online_users(order_by: name_asc) {
+    online_users(order_by: {name: asc}) {
       name
     }
   }
