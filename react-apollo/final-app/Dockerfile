@@ -19,4 +19,4 @@ RUN npm run build
 
 EXPOSE 8080
 # serve dist folder on port 8080
-CMD ["serve", "-s", "dist", "-p", "8080"]
+CMD ["serve", "-s", "build", "-p", "8080"]
