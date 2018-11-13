@@ -1,0 +1,44 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres:10.5
+    restart: always
+    volumes:
+    - db_data:/var/lib/postgresql/data
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0-alpha28
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      # database url to connect
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
+      # enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set "false" to disable console
+      HASURA_GRAPHQL_ACCESS_KEY: mysecretaccesskey
+      HASURA_GRAPHQL_JWT_SECRET: "<jwt-token>"
+  ui:
+    image: react-ui
+    environment:
+      REACT_APP_GRAPHQL_URL: http://159.65.178.130/v1alpha1/graphql
+      REACT_APP_REALTIME_GRAPHQL_URL: ws://159.65.178.130/v1alpha1/graphql
+      REACT_APP_CALLBACK_URL: http://localhost:3000/callback
+      REACT_APP_AUTH0_DOMAIN: todo-hasura-test.auth0.com
+      REACT_APP_AUTH0_CLIENT_ID: lgKxyHzCDUWCALdAOkjg3QI2D6eglGes
+    build:
+      context: ./react-apollo/final-app
+      dockerfile: Dockerfile
+  caddy:
+    image: abiosoft/caddy:0.11.0
+    depends_on:
+    - "graphql-engine"
+    restart: always
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./Caddyfile:/etc/Caddyfile
+    - caddy_certs:/root/.caddy
+volumes:
+  db_data:
+  caddy_certs:

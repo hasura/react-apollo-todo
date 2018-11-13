@@ -1,0 +1,7 @@
+# replace :80 with your domain name to get automatic https via LetsEncrypt
+:80 {
+    proxy /v1alpha1/graphql graphql-engine:8080 { websocket }
+    proxy /v1 graphql-engine:8080
+    proxy /console graphql-engine:8080
+    proxy / ui:8080
+}
