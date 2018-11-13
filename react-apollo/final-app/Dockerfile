@@ -1,6 +1,11 @@
 FROM node:carbon
 
 ENV NODE_ENV=PRODUCTION
+ENV REACT_APP_GRAPHQL_URL=https://react-apollo-todo-demo.hasura.app/v1alpha1/graphql 
+ENV REACT_APP_REALTIME_GRAPHQL_URL=wss://react-apollo-todo-demo.hasura.app/v1alpha1/graphql
+ENV REACT_APP_CALLBACK_URL=https://react-apollo-todo-demo.hasura.app/callback 
+ENV REACT_APP_AUTH0_DOMAIN=hasura-react-apollo-todo.auth0.com 
+ENV REACT_APP_AUTH0_CLIENT_ID=Fl-hdc6xdYIkok9ynbcL6zoUZPAIdOZN
 # Create app directory
 WORKDIR /app
 
