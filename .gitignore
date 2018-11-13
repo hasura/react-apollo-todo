@@ -25,3 +25,5 @@
 *cypress.env.json*
 *.env
 *cypress/screenshots
+
+docker-compose.yaml
