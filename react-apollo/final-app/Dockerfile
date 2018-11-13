@@ -1,5 +1,6 @@
 FROM node:carbon
 
+ENV NODE_ENV=PRODUCTION
 # Create app directory
 WORKDIR /app
 
@@ -11,8 +12,8 @@ COPY package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY src /app
-COPY public /app
+COPY . .
+
 #Build react/vue/angular bundle static files
 RUN npm run build
 
