@@ -60,22 +60,33 @@ class App extends Component {
     }
     return (
       <div className="container-fluid noPadd">
-        <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
-          <div className="col-md-6 col-sm-12">
-            <div className="wd95 addPaddTopBottom">
-              <div className="sectionHeader">Personal todos</div>
-              <TodoPrivateWrapper client={this.props.client} />
+        <div>
+          <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
+            <div className="col-md-6 col-sm-12">
+              <div className="wd95 addPaddTopBottom">
+                <div className="sectionHeader">Personal todos</div>
+                <TodoPrivateWrapper client={this.props.client} />
+              </div>
+            </div>
+            <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">
+              <div className="wd95 addPaddTopBottom">
+                <div className="sectionHeader">Public todos</div>
+                <TodoPublicWrapper client={this.props.client} />
+              </div>
             </div>
           </div>
-          <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">
-            <div className="wd95 addPaddTopBottom">
-              <div className="sectionHeader">Public todos</div>
-              <TodoPublicWrapper client={this.props.client} />
-            </div>
+          <div className="col-xs-12 col-lg-3 col-md-12 col-sm-12 noPadd">
+            <OnlineUsers />
           </div>
         </div>
-        <div className="col-xs-12 col-lg-3 col-md-12 col-sm-12 noPadd">
-          <OnlineUsers />
+        <div className="footerWrapper">
+          <a
+            href="https://hasura-react-graphql-todo.herokuapp.com/"
+            target="_blank"
+          >
+            Console link
+            <i className="fa fa-angle-double-right" />
+          </a>
         </div>
       </div>
     );
