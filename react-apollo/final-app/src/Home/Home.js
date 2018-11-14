@@ -59,23 +59,27 @@ class App extends Component {
       );
     }
     return (
-      <div className="container-fluid noPadd">
-        <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
-          <div className="col-md-6 col-sm-12">
-            <div className="wd95 addPaddTopBottom">
-              <div className="sectionHeader">Personal todos</div>
-              <TodoPrivateWrapper client={this.props.client} />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
+            <div className="row">
+              <div className="col-md-6 col-sm-12">
+                <div className="wd95 addPaddTopBottom">
+                  <div className="sectionHeader">Personal todos</div>
+                  <TodoPrivateWrapper client={this.props.client} />
+                </div>
+              </div>
+              <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">
+                <div className="wd95 addPaddTopBottom">
+                  <div className="sectionHeader">Public todos</div>
+                  <TodoPublicWrapper client={this.props.client} />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="col-xs-12 col-md-6 col-sm-12 grayBgColor todoMainWrapper commonBorRight">
-            <div className="wd95 addPaddTopBottom">
-              <div className="sectionHeader">Public todos</div>
-              <TodoPublicWrapper client={this.props.client} />
-            </div>
+          <div className="col-xs-12 col-lg-3 col-md-12 col-sm-12 noPadd">
+            <OnlineUsers />
           </div>
-        </div>
-        <div className="col-xs-12 col-lg-3 col-md-12 col-sm-12 noPadd">
-          <OnlineUsers />
         </div>
       </div>
     );
