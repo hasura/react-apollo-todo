@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Router } from "react-router-dom";
 import App from "./App";
 import Home from "./Home/Home";
+import LandingPage from "./LandingPage/LandingPage";
 import Callback from "./Callback/Callback";
 import Auth from "./Auth/Auth";
 import history from "./history";
@@ -88,13 +89,7 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <div>
         <Route
-          path="/"
-          render={props =>
-            // provideClient(<App auth={auth} client={client} {...props} />)
-            <App auth={auth} {...props} />
-          }
-        />
-        <Route
+          exact
           path="/home"
           render={props =>
             // provideClient(<Home auth={auth} client={client} {...props} />)
@@ -102,11 +97,20 @@ export const makeMainRoutes = () => {
           }
         />
         <Route
+          exact
           path="/callback"
           render={props => {
             handleAuthentication(props);
             return <Callback {...props} />;
           }}
+        />
+        <Route
+          exact
+          path="/"
+          render={props =>
+            // provideClient(<App auth={auth} client={client} {...props} />)
+            <LandingPage auth={auth} {...props} />
+          }
         />
       </div>
     </Router>
