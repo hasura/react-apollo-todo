@@ -1,5 +1,7 @@
-export const GRAPHQL_URL = process.env.REACT_APP_GRAPHQL_URL;
-export const REALTIME_GRAPHQL_URL = process.env.REACT_APP_REALTIME_GRAPHQL_URL;
-export const authClientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-export const authDomain = process.env.REACT_APP_AUTH0_DOMAIN;
+export const GRAPHQL_URL =
+  "https://react-apollo-todo-demo.hasura.app/v1alpha1/graphql";
+export const REALTIME_GRAPHQL_URL =
+  "wss://react-apollo-todo-demo.hasura.app/v1alpha1/graphql";
+export const authClientId = "Fl-hdc6xdYIkok9ynbcL6zoUZPAIdOZN";
+export const authDomain = "hasura-react-apollo-todo.auth0.com";
 export const callbackUrl = process.env.REACT_APP_CALLBACK_URL;

@@ -27,7 +27,6 @@
     "subscriptions-transport-ws": "^0.9.15"
   },
   "devDependencies": {
-    "dotenv": "^6.0.0",
     "husky": "^1.0.0-rc.15",
     "lint-staged": "^7.3.0",
     "prettier": "1.14.3",

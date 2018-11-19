@@ -5,6 +5,8 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: sans-serif;
+  font-size: 10px;
 }
 .wd95 {
   width: 95%;
@@ -13,12 +15,27 @@ body {
 .navheader {
   width: 100%;
 }
+.navbar
+{
+  padding: 5px 10px;
+}
+.breakWord
+{
+  word-wrap: break-word;
+}
 .navBrand {
   padding-top: 14px;
+  font-size: 12.5px;
+  margin-right: 10px;
+  padding-bottom: 3.125px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .logoutBtn {
   margin-top: 12px;
   float: right;
+  font-size: 10px;
+  padding: 3.75px 7.5px;
 }
 .header {
   background-color: #4f5050;
@@ -304,7 +321,7 @@ body {
   width: 28px;
   min-width: 28px;
   height: 28px;
-  min-height:  28px;
+  min-height: 28px;
   border-radius: 50%;
   background-color: #dfe3e6;
   display: flex;
@@ -319,7 +336,7 @@ body {
   .sliderMenu {
     height: auto;
   }
-  .labelContent 
+  .labelContent
   {
     display: block;
   }

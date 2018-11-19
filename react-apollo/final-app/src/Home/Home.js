@@ -6,9 +6,13 @@ import "../App.css";
 import TodoPublicWrapper from "../Todo/TodoPublicWrapper";
 import TodoPrivateWrapper from "../Todo/TodoPrivateWrapper";
 import OnlineUsers from "../Todo/OnlineUsers";
+import { Navbar, Button } from "react-bootstrap";
 class App extends Component {
   login() {
     this.props.auth.login();
+  }
+  logout() {
+    this.props.auth.logout();
   }
   updateLastSeen = () => {
     const userId = localStorage.getItem("auth0:id_token:sub");
@@ -46,23 +50,40 @@ class App extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     if (!isAuthenticated()) {
-      return (
-        <div className="container">
-          <h4>
-            You are not logged in! Please{" "}
-            <a style={{ cursor: "pointer" }} onClick={this.login.bind(this)}>
-              Log In
-            </a>{" "}
-            to continue.
-          </h4>
-        </div>
-      );
+      window.location.href = "/";
     }
     return (
-      <div className="container-fluid">
-        <div className="row">
+      <div>
+        <Navbar fluid className="removeMarBottom">
+          <Navbar.Header className="navheader">
+            <Navbar.Brand className="navBrand">
+              GraphQL Tutorial App
+            </Navbar.Brand>
+            {!isAuthenticated() && (
+              <Button
+                id="qsLoginBtn"
+                bsStyle="primary"
+                className="btn-margin logoutBtn"
+                onClick={this.login.bind(this)}
+              >
+                Log In
+              </Button>
+            )}
+            {isAuthenticated() && (
+              <Button
+                id="qsLogoutBtn"
+                bsStyle="primary"
+                className="btn-margin logoutBtn"
+                onClick={this.logout.bind(this)}
+              >
+                Log Out
+              </Button>
+            )}
+          </Navbar.Header>
+        </Navbar>
+        <div>
           <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
-            <div className="row">
+            <div>
               <div className="col-md-6 col-sm-12">
                 <div className="wd95 addPaddTopBottom">
                   <div className="sectionHeader">Personal todos</div>
@@ -80,6 +101,28 @@ class App extends Component {
           <div className="col-xs-12 col-lg-3 col-md-12 col-sm-12 noPadd">
             <OnlineUsers />
           </div>
+        </div>
+        <div className="footerWrapper">
+          <span>
+            <a
+              href="https://react-apollo-todo-demo.hasura.app/console"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Console
+              <i className="fa fa-angle-double-right" />
+            </a>
+          </span>
+          <span className="footerLinkPadd">
+            <a
+              href="https://github.com/hasura/graphql-engine"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+              <i className="fa fa-angle-double-right" />
+            </a>
+          </span>
         </div>
       </div>
     );
