@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import dotenv from "dotenv";
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 import { makeMainRoutes } from "./routes";
 dotenv.config();
 

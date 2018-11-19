@@ -53,7 +53,7 @@ class App extends Component {
       window.location.href = "/";
     }
     return (
-      <div className="container-fluid">
+      <div>
         <Navbar fluid className="removeMarBottom">
           <Navbar.Header className="navheader">
             <Navbar.Brand className="navBrand">
@@ -81,9 +81,9 @@ class App extends Component {
             )}
           </Navbar.Header>
         </Navbar>
-        <div className="row">
+        <div>
           <div className="col-xs-12 col-md-12 col-lg-9 col-sm-12 noPadd">
-            <div className="row">
+            <div>
               <div className="col-md-6 col-sm-12">
                 <div className="wd95 addPaddTopBottom">
                   <div className="sectionHeader">Personal todos</div>
