@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
-import App from "./App";
 import Home from "./Home/Home";
 import Callback from "./Callback/Callback";
 import Auth from "./Auth/Auth";
+import LandingPage from "./LandingPage/LandingPage";
 import history from "./history";
 import ApolloClient from "apollo-client";
 import { HttpLink } from "apollo-link-http";
@@ -84,18 +84,21 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <div>
         <Route
+          exact
           path="/"
           render={props =>
-            provideClient(<App auth={auth} client={client} {...props} />)
+            provideClient(<LandingPage auth={auth} client={client} {...props} />)
           }
         />
         <Route
+          exact
           path="/home"
           render={props =>
             provideClient(<Home auth={auth} client={client} {...props} />)
           }
         />
         <Route
+          exact
           path="/callback"
           render={props => {
             handleAuthentication(props);

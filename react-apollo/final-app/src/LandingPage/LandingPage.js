@@ -17,7 +17,6 @@ class LandingPage extends Component {
     const hasuraLogo = require('../images/green-logo-white.svg');
     const apolloLogo = require('../images/apollo.png');
     const rightImg = require('../images/right-img.png');
-    const arrow = require('../images/arrow.png');
 
     return (
       <div className="container-fluid gradientBgColor minHeight">
@@ -128,7 +127,7 @@ class LandingPage extends Component {
                 </div>
               </div>
               <div className="footer">
-                Built with<i className="fas fa-heart"></i>by <a href="https://hasura.io/" target="_blank">Hasura</a>
+                Built with<i className="fas fa-heart"></i>by <a href="https://hasura.io/" target="_blank" rel="noopener noreferrer">Hasura</a>
               </div>
             </div>
             <div className="tutorialImg col-md-6 col-sm-12 col-xs-12 hidden-xs noPadd">
