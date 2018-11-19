@@ -102,6 +102,28 @@ class App extends Component {
             <OnlineUsers />
           </div>
         </div>
+        <div className="footerWrapper">
+          <span>
+            <a
+              href="https://react-apollo-todo-demo.hasura.app/console"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Console
+              <i className="fa fa-angle-double-right" />
+            </a>
+          </span>
+          <span className="footerLinkPadd">
+            <a
+              href="https://github.com/hasura/graphql-engine"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+              <i className="fa fa-angle-double-right" />
+            </a>
+          </span>
+        </div>
       </div>
     );
   }

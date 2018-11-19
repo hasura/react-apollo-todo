@@ -507,6 +507,29 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+.footerWrapper {
+  background-color: #a5b9cc;
+  padding: 10px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: bold;
+}
+.footerWrapper a {
+  color: #1d4060;
+}
+.footerWrapper a:hover {
+  color: #406282;
+}
+.footerWrapper a i {
+  margin-left: 5px;
+}
+.footerWrapper .footerLinkPadd {
+  margin-left: 20px;
+}
 @media (max-width: 991px) {
   .sliderMenu {
     height: auto;
