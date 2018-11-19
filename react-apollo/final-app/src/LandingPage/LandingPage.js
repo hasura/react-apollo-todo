@@ -54,7 +54,7 @@ class LandingPage extends Component {
             </div>
           </div>
           <div className="mainWrapper">
-            <div className="col-md-5 col-sm-12 col-xs-12 noPadd">
+            <div className="col-md-5 col-sm-6 col-xs-12 noPadd">
               <div className="appstackWrapper">
                 <div className="appStack">
                   <div className="col-md-1 col-sm-1 col-xs-2 removePaddLeft flexWidth">
@@ -130,7 +130,7 @@ class LandingPage extends Component {
                 Built with<i className="fas fa-heart"></i>by <a href="https://hasura.io/" target="_blank" rel="noopener noreferrer">Hasura</a>
               </div>
             </div>
-            <div className="tutorialImg col-md-6 col-sm-12 col-xs-12 hidden-xs noPadd">
+            <div className="tutorialImg col-md-6 col-sm-6 col-xs-12 hidden-xs noPadd">
               <img className="img-responsive" src={rightImg} alt="View" />
             </div>
           </div>
