@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoPublicList from "./TodoPublicList";
 import TodoInput from "./TodoInput";
-import "../App.css";
+import "../../styles/App.css";
 
 class TodoPublicWrapper extends Component {
   render() {

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../App.css";
+import "../../styles/App.css";
 import TodoPublicWrapper from "../Todo/TodoPublicWrapper";
 import TodoPrivateWrapper from "../Todo/TodoPrivateWrapper";
-import OnlineUsers from "../Todo/OnlineUsers";
+import OnlineUsers from "../OnlineUsers/OnlineUsers";
+
 class App extends Component {
   login() {
     this.props.auth.login();
