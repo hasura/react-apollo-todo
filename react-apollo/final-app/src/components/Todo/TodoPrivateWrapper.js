@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoPrivateList from "./TodoPrivateList";
 import TodoInput from "./TodoInput";
-import "../App.css";
+import "../../styles/App.css";
 
 class TodoPrivateWrapper extends Component {
   render() {
@@ -9,7 +9,11 @@ class TodoPrivateWrapper extends Component {
     return (
       <div className="todoWrapper">
         <TodoInput userId={userId} type="private" />
-        <TodoPrivateList userId={userId} client={this.props.client} type="private" />
+        <TodoPrivateList
+          userId={userId}
+          client={this.props.client}
+          type="private"
+        />
       </div>
     );
   }

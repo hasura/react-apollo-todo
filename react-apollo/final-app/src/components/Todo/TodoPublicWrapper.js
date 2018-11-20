@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoPublicList from "./TodoPublicList";
 import TodoInput from "./TodoInput";
-import "../App.css";
+import "../../styles/App.css";
 
 class TodoPublicWrapper extends Component {
   render() {
@@ -9,7 +9,10 @@ class TodoPublicWrapper extends Component {
     return (
       <div className="todoWrapper">
         <TodoInput userId={userId} type="public" />
-        <TodoPublicList userId={userId} type="public" client={this.props.client}
+        <TodoPublicList
+          userId={userId}
+          type="public"
+          client={this.props.client}
         />
       </div>
     );

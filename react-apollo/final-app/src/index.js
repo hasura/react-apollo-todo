@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import dotenv from "dotenv";
-import { makeMainRoutes } from "./routes";
+import { makeMainRoutes } from "./utils/routes";
 dotenv.config();
 
 const routes = makeMainRoutes();

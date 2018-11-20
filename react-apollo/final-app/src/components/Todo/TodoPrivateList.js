@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Query } from "react-apollo";
-import { GRAPHQL_URL } from "../constants";
+import { GRAPHQL_URL } from "../../utils/constants";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
 import { QUERY_PRIVATE_TODO } from "./TodoQueries";

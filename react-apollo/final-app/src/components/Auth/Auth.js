@@ -1,4 +1,4 @@
-import history from "../history";
+import history from "../../utils/history";
 import auth0 from "auth0-js";
 import gql from "graphql-tag";
 import { AUTH_CONFIG } from "./auth0-variables";

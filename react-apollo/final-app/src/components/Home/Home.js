@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import gql from "graphql-tag";
-import "../App.css";
+import "../../styles/App.css";
 import TodoPublicWrapper from "../Todo/TodoPublicWrapper";
 import TodoPrivateWrapper from "../Todo/TodoPrivateWrapper";
-import OnlineUsers from "../Todo/OnlineUsers";
+import OnlineUsers from "../OnlineUsers/OnlineUsers";
 import { Navbar, Button } from "react-bootstrap";
 class App extends Component {
   login() {

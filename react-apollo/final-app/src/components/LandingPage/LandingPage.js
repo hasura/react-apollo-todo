@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../App.css";
-import {Link} from 'react-router-dom';
+import "../../styles/App.css";
+import { Link } from "react-router-dom";
 class LandingPage extends Component {
   login() {
     this.props.auth.login();
@@ -11,12 +11,12 @@ class LandingPage extends Component {
   }
   render() {
     const { isAuthenticated } = this.props.auth;
-    const reactLogo = require('../images/React-logo.png');
-    const authLogo = require('../images/auth.png');
-    const graphql = require('../images/graphql.png');
-    const hasuraLogo = require('../images/green-logo-white.svg');
-    const apolloLogo = require('../images/apollo.png');
-    const rightImg = require('../images/right-img.png');
+    const reactLogo = require("../../images/React-logo.png");
+    const authLogo = require("../../images/auth.png");
+    const graphql = require("../../images/graphql.png");
+    const hasuraLogo = require("../../images/green-logo-white.svg");
+    const apolloLogo = require("../../images/apollo.png");
+    const rightImg = require("../../images/right-img.png");
 
     return (
       <div className="container-fluid gradientBgColor minHeight">
@@ -26,9 +26,7 @@ class LandingPage extends Component {
               {isAuthenticated() && (
                 <Link to="/home">Realtime React Todo App Demo</Link>
               )}
-              {!isAuthenticated() && (
-                <span>Realtime React Todo App Demo</span>
-              )}
+              {!isAuthenticated() && <span>Realtime React Todo App Demo</span>}
             </div>
             <div className="loginBtn">
               {!isAuthenticated() && (
@@ -58,7 +56,7 @@ class LandingPage extends Component {
               <div className="appstackWrapper">
                 <div className="appStack">
                   <div className="col-md-1 col-sm-1 col-xs-2 removePaddLeft flexWidth">
-                    <i className="em em---1"></i>
+                    <i className="em em---1" />
                   </div>
                   <div className="col-md-11 col-sm-11 col-xs-10 noPadd">
                     <div className="description">
@@ -67,17 +65,29 @@ class LandingPage extends Component {
                     <div className="appStackIconWrapper">
                       <div className="col-md-4 col-sm-4 col-xs-4 noPadd">
                         <div className="appStackIcon">
-                          <img className="img-responsive" src={reactLogo} alt="React logo"/>
+                          <img
+                            className="img-responsive"
+                            src={reactLogo}
+                            alt="React logo"
+                          />
                         </div>
                       </div>
                       <div className="col-md-4 col-sm-4 col-xs-4 noPadd">
                         <div className="appStackIcon">
-                          <img className="img-responsive" src={authLogo} alt="Auth0 logo"/>
+                          <img
+                            className="img-responsive"
+                            src={authLogo}
+                            alt="Auth0 logo"
+                          />
                         </div>
                       </div>
                       <div className="col-md-4 col-sm-4 col-xs-4 noPadd">
                         <div className="appStackIcon">
-                          <img className="img-responsive" src={graphql} alt="GraphQL logo"/>
+                          <img
+                            className="img-responsive"
+                            src={graphql}
+                            alt="GraphQL logo"
+                          />
                         </div>
                       </div>
                     </div>
@@ -85,21 +95,27 @@ class LandingPage extends Component {
                 </div>
                 <div className="appStack">
                   <div className="col-md-1 col-sm-1 col-xs-2 removePaddLeft flexWidth">
-                    <i className="em em-rocket"></i>
+                    <i className="em em-rocket" />
                   </div>
                   <div className="col-md-11 col-sm-11 col-xs-10 noPadd">
-                    <div className="description">
-                      Powered by
-                    </div>
+                    <div className="description">Powered by</div>
                     <div className="appStackIconWrapper">
                       <div className="col-md-4 col-sm-4 col-xs-4 noPadd">
                         <div className="appStackIcon">
-                          <img className="img-responsive" src={apolloLogo} alt="apollo logo"/>
+                          <img
+                            className="img-responsive"
+                            src={apolloLogo}
+                            alt="apollo logo"
+                          />
                         </div>
                       </div>
                       <div className="col-md-4 col-sm-4 col-xs-4 noPadd">
                         <div className="appStackIcon">
-                          <img className="img-responsive" src={hasuraLogo} alt="Hasura logo"/>
+                          <img
+                            className="img-responsive"
+                            src={hasuraLogo}
+                            alt="Hasura logo"
+                          />
                         </div>
                       </div>
                     </div>
@@ -107,17 +123,18 @@ class LandingPage extends Component {
                 </div>
                 <div className="appStack">
                   <div className="col-md-1 col-sm-1 col-xs-2 removePaddLeft flexWidth">
-                    <i className="em em-sunglasses"></i>
+                    <i className="em em-sunglasses" />
                   </div>
                   <div className="col-md-11 col-sm-11 col-xs-10 noPadd">
                     <div className="description removePaddBottom">
-                      Explore the Hasura console and try out some queries & mutations
+                      Explore the Hasura console and try out some queries &
+                      mutations
                     </div>
                   </div>
                 </div>
                 <div className="appStack removePaddBottom">
                   <div className="col-md-1 col-sm-1 col-xs-2 removePaddLeft flexWidth">
-                    <i className="em em-zap"></i>
+                    <i className="em em-zap" />
                   </div>
                   <div className="col-md-11 col-sm-11 col-xs-10 noPadd">
                     <div className="description removePaddBottom">
@@ -127,7 +144,16 @@ class LandingPage extends Component {
                 </div>
               </div>
               <div className="footer">
-                Built with<i className="fas fa-heart"></i>by <a href="https://hasura.io/" target="_blank" rel="noopener noreferrer">Hasura</a>
+                Built with
+                <i className="fas fa-heart" />
+                by{" "}
+                <a
+                  href="https://hasura.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Hasura
+                </a>
               </div>
             </div>
             <div className="tutorialImg col-md-6 col-sm-6 col-xs-12 hidden-xs noPadd">

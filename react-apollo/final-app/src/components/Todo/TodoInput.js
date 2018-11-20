@@ -1,12 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
-import "../App.css";
+import "../../styles/App.css";
 
-import {
-  QUERY_PRIVATE_TODO,
-  MUTATION_TODO_ADD
-} from "./TodoQueries";
+import { QUERY_PRIVATE_TODO, MUTATION_TODO_ADD } from "./TodoQueries";
 
 class TodoInput extends React.Component {
   constructor() {

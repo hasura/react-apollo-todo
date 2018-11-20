@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Button } from "react-bootstrap";
-import "./App.css";
+import "../styles/App.css";
 
 class App extends Component {
   goTo(route) {

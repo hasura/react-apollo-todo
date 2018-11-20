@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,600,700');
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,600,700");
 body {
   background-color: #f7f7f7;
   font-family: "Open Sans";
@@ -10,25 +10,27 @@ body {
   font-family: sans-serif;
 }
 /* Landing section */
-.wd10
-{
+.wd10 {
   width: 10%;
   display: inline-block;
 }
-.wd90
-{
+.wd90 {
   width: 90%;
   display: inline-block;
 }
-.removePaddBottom
-{
+.removePaddBottom {
   padding-bottom: 0 !important;
 }
-.gradientBgColor
-{
+.gradientBgColor {
   background-color: #a0b4cc;
   /* Safari 4-5, Chrome 1-9 */
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a0b4cc), to(#c2a899));
+  background: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(#a0b4cc),
+    to(#c2a899)
+  );
   /* Safari 5.1, Chrome 10+ */
   background: -webkit-linear-gradient(top, #a0b4cc, #c2a899);
   /* Firefox 3.6+ */
@@ -38,63 +40,53 @@ body {
   /* Opera 11.10+ */
   background: -o-linear-gradient(top, #a0b4cc, #c2a899);
 }
-.minHeight
-{
+.minHeight {
   width: 100%;
   height: 100vh;
 }
-.headerWrapper
-{
+.headerWrapper {
   padding: 30px 0;
   display: flex;
   align-items: center;
   height: 15vh;
   padding-left: 75px;
 }
-.headerDescription
-{
+.headerDescription {
   font-size: 20px;
   color: #fff;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-weight: 700;
   flex: 1;
 }
-.headerDescription a
-{
+.headerDescription a {
   color: #fff;
 }
-.headerDescription a:hover
-{
+.headerDescription a:hover {
   text-decoration: none;
   border-bottom: 1px solid #fff;
 }
-.loginBtn
-{
+.loginBtn {
   text-align: right;
   padding-right: 75px;
 }
-.loginBtn button
-{
+.loginBtn button {
   background-color: #8da5c1;
   border: 1px solid #fff;
   border-radius: 20px;
   padding: 4px 30px;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 16px;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
 }
-.loginBtn button:hover
-{
+.loginBtn button:hover {
   background-color: #7792b2;
 }
-.loginBtn button:focus
-{
+.loginBtn button:focus {
   outline: none;
 }
-.mainWrapper
-{
+.mainWrapper {
   padding-left: 75px;
   width: 100%;
   float: left;
@@ -102,86 +94,72 @@ body {
   display: flex;
   align-items: center;
 }
-.description
-{
+.description {
   font-size: 16px;
   padding-bottom: 10px;
 }
-.appstackWrapper
-{
+.appstackWrapper {
   background-color: #fff;
   border-radius: 5px;
   padding: 30px;
-  -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
-  -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
-  box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   width: 100%;
   float: left;
   color: #606060;
 }
-.arrow
-{
+.arrow {
   position: absolute;
   right: -100px;
   top: 10px;
   z-index: 1;
 }
-.arrow img
-{
+.arrow img {
   width: 120px;
   display: inline-block;
 }
-.appStack
-{
+.appStack {
   width: 100%;
   float: left;
   padding-bottom: 20px;
 }
-.appStack i
-{
+.appStack i {
   font-size: 16px;
 }
-.appStackIconWrapper
-{
+.appStackIconWrapper {
   width: 100%;
   float: left;
   display: flex;
   align-items: center;
 }
-.appStackIcon img
-{
+.appStackIcon img {
   width: 80%;
 }
-.footer
-{
+.footer {
   padding-top: 10px;
   text-align: center;
   clear: both;
   font-size: 14px;
   color: #3c3737;
 }
-.footer a
-{
+.footer a {
   color: #3c3737;
 }
-.footer a:hover
-{
+.footer a:hover {
   text-decoration: none;
   border-bottom: 1px solid #3c3737;
 }
-.footer i
-{
+.footer i {
   color: #b51d04;
   margin: 0 5px;
 }
-.tutorialImg
-{
+.tutorialImg {
   position: absolute;
   right: 0;
   text-align: right;
 }
-.tutorialImg img
-{
+.tutorialImg img {
   width: 95%;
   display: inline-block;
 }
@@ -193,8 +171,7 @@ body {
 .navheader {
   width: 100%;
 }
-.navbar
-{
+.navbar {
   padding: 5px 10px;
 }
 .navBrand {
@@ -545,43 +522,34 @@ body {
     width: 95%;
     margin: 0 auto;
   }
-  .headerWrapper
-  {
+  .headerWrapper {
     padding-left: 0;
     height: auto;
   }
-  .mainWrapper
-  {
+  .mainWrapper {
     min-height: 80vh;
     padding-left: 0;
   }
-  .minHeight
-  {
+  .minHeight {
     height: auto;
     min-height: 100vh;
   }
-  .loginBtn
-  {
+  .loginBtn {
     padding-right: 0;
   }
-  .appstackWrapper
-  {
+  .appstackWrapper {
     padding: 20px;
   }
-  .appStack
-  {
+  .appStack {
     display: flex;
   }
-  .flexWidth
-  {
+  .flexWidth {
     flex: 1;
   }
-  .description
-  {
+  .description {
     padding-left: 10px;
   }
-  .appStackIconWrapper
-  {
+  .appStackIconWrapper {
     padding-left: 10px;
   }
 }

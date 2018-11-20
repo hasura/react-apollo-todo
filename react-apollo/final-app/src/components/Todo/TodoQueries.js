@@ -32,7 +32,7 @@ const QUERY_PUBLIC_TODO = gql`
   query fetch_todos($todoLimit: Int, $todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: {created_at: desc}
+      order_by: { created_at: desc }
       limit: $todoLimit
     ) {
       ...TodoFragment
@@ -49,7 +49,7 @@ const QUERY_FEED_PUBLIC_TODO = gql`
   query fetch_todos($todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: {created_at: desc}
+      order_by: { created_at: desc }
     ) {
       ...TodoFragment
       user {
@@ -66,7 +66,7 @@ const QUERY_FEED_PUBLIC_OLD_TODO = gql`
     todos(
       where: { is_public: { _eq: true }, id: { _lt: $todoId } }
       limit: 5
-      order_by: {created_at: desc}
+      order_by: { created_at: desc }
     ) {
       ...TodoFragment
       user {
@@ -113,7 +113,7 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
   subscription($todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: {created_at: desc}
+      order_by: { created_at: desc }
       limit: 1
     ) {
       id
@@ -121,14 +121,6 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
       is_completed
       created_at
       is_public
-    }
-  }
-`;
-
-const SUBSCRIPTION_ONLINE_USERS = gql`
-  subscription {
-    online_users(order_by: {name:asc}) {
-      name
     }
   }
 `;
@@ -141,6 +133,5 @@ export {
   MUTATION_TODO_ADD,
   MUTATION_TODO_UPDATE,
   MUTATION_TODO_DELETE,
-  SUBSCRIPTION_TODO_PUBLIC_LIST,
-  SUBSCRIPTION_ONLINE_USERS
+  SUBSCRIPTION_TODO_PUBLIC_LIST
 };

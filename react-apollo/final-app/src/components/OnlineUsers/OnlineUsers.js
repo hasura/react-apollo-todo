@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { Subscription } from "react-apollo";
-import { SUBSCRIPTION_ONLINE_USERS } from "./TodoQueries";
+import gql from "graphql-tag";
+
+const SUBSCRIPTION_ONLINE_USERS = gql`
+  subscription {
+    online_users(order_by: { name: asc }) {
+      name
+    }
+  }
+`;
 
 class OnlineUsers extends Component {
   render() {
