@@ -57,7 +57,7 @@ class App extends Component {
         <Navbar fluid className="removeMarBottom">
           <Navbar.Header className="navheader">
             <Navbar.Brand className="navBrand">
-              GraphQL Tutorial App
+              React Apollo Todo App
             </Navbar.Brand>
             {!isAuthenticated() && (
               <Button
@@ -109,13 +109,13 @@ class App extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Console
+              Backend
               <i className="fa fa-angle-double-right" />
             </a>
           </span>
           <span className="footerLinkPadd">
             <a
-              href="https://github.com/hasura/graphql-engine"
+              href="https://github.com/hasura/graphql-engine/tree/master/community/tutorials/react-apollo-todo"
               target="_blank"
               rel="noopener noreferrer"
             >

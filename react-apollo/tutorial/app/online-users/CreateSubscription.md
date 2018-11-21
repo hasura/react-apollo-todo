@@ -1,29 +1,24 @@
 So let's define the graphql subscription to be used.
 
-Open `src/Todo/TodoQueries.js` and add the following code:
+Open `src/components/OnlineUsers/OnlineUsers.js` and add the following code, below the other imports
 
 ```
+import gql from "graphql-tag";
 
 const SUBSCRIPTION_ONLINE_USERS = gql`
   subscription {
-    online_users(order_by: name_asc) {
+    online_users(order_by: { name: asc }) {
       name
     }
   }
 `;
-
-export {
-  SUBSCRIPTION_ONLINE_USERS
-};
-
 ```
 
 
-Open `src/Todo/OnlineUsers.js` and add the following imports:
+Open `src/components/OnlineUsers/OnlineUsers.js` and add the following imports:
 
 ```
 import { Subscription } from "react-apollo";
-import { SUBSCRIPTION_ONLINE_USERS } from "./TodoQueries";
 ```
 
 We are importing the `Subscription` component from `react-apollo` and the graphql subscription query we defined above to fetch the online user data.
@@ -52,7 +47,7 @@ How does this work?
 -------------------
 We are using the `<Subscription>` component which gives render props (similar to `<Query>` and `<Mutation>` components). The `data` prop gives the result of the realtime data for the query we have made.
 
-Refresh your react app and see yourself online! There could be other users online as well.
+Refresh your react app and see yourself online! Don't be surprised; There could be other users online as well.
 
 Awesome! You have completed basic implementations of a GraphQL Query, Mutation and Subscriptions. Easy isn't it?
 

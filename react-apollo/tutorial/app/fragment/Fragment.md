@@ -2,7 +2,7 @@ GraphQL includes reusable units called fragments. Fragments let you construct se
 
 In our todo app, we made multiple queries/mutations/subscriptions. But a few of them had something in common.
 
-Open `src/Todo/TodoQueries.js` and look at the common parts of code.
+Open `src/components/Todo/TodoQueries.js` and look at the common parts of code.
 
 Most of them require the same set of fields from the todos node.
 
@@ -18,7 +18,7 @@ Most of them require the same set of fields from the todos node.
 
 The above set of fields are repeated in different queries. This looks like a lot of code repetition. Let's declare a `fragment` which can be used inside all of these queries.
 
-In `src/Todo/TodoQueries.js` file, add the following fragment code;
+In `src/components/Todo/TodoQueries.js` file, add the following fragment code at the top just below the import;
 
 ```
 const TODO_FRAGMENT = gql`
@@ -41,7 +41,7 @@ const QUERY_PRIVATE_TODO = gql`
   query fetch_todos($userId: String!) {
     todos(
       where: { is_public: { _eq: false }, user_id: { _eq: $userId } }
-      order_by: created_at_desc
+      order_by: { created_at: desc }
     ) {
       ...TodoFragment
     }
@@ -71,7 +71,7 @@ const QUERY_PUBLIC_TODO = gql`
   query fetch_todos($todoLimit: Int, $todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: created_at_desc
+      order_by: { created_at: desc }
       limit: $todoLimit
     ) {
       ...TodoFragment

@@ -1,13 +1,14 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
-import { ApolloProvider } from "react-apollo";
 
-import Home from "../components/Home/Home";
-import Callback from "../components/Callback/Callback";
-import Auth from "../components/Auth/Auth";
-import LandingPage from "../components/LandingPage/LandingPage";
-import history from "../utils/history";
-import makeApolloClient from "../apollo/apollo";
+import Home from "./components/Home/Home";
+import Callback from "./components/Callback/Callback";
+import Auth from "./components/Auth/Auth";
+import LandingPage from "./components/LandingPage/LandingPage";
+import history from "./utils/history";
+
+import { ApolloProvider } from "react-apollo";
+import makeApolloClient from "./apollo";
 
 const client = makeApolloClient();
 

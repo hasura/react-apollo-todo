@@ -6,17 +6,26 @@ This tutorial uses `create-react-app` with a few other essential modules for sty
 
 The backend is already built and available here - <link>. You will make use of this for testing and building your frontend app with graphql integration.
 
-Once you have cloned the boilerplate, create a `.env` file in the root directory and paste the following:
+Once you have cloned the boilerplate, navigate to `src/utils/constants.js` to look at the values of GraphQL Endpoint.
 
-```
-REACT_APP_GRAPHQL_URL=https://hasura-todo-test.herokuapp.com/v1alpha1/graphql
-REACT_APP_REALTIME_GRAPHQL_URL=wss://hasura-todo-test.herokuapp.com/v1alpha1/graphql
-```
-
-Here we are setting up environment variables to be used inside our todo app. Since we have our backend ready (powered by Hasura), we will use the graphql endpoint and the realtime websocket endpoint.
+Here we are setting up values to be used inside our todo app. Since we have our backend ready (powered by Hasura), we will use the graphql endpoint and the realtime websocket endpoint.
 
 #### Directory Structure
 
     This is the typical directory structure of the app.
 
-The final app is available [here](). If you are stuck anywhere in the tutorial, you can always go to the final app to see the working code snippet to debug your code.
+    src
+      - components
+      - images
+      - styles
+      - utils
+      - routes.js
+      - apollo.js
+      - index.js
+    public
+      - index.html
+    package.json
+
+#### Finished Application
+
+Though you are going to follow the tutorial and write actual code to complete the app, you can always refer the already finished app code [here](), in case you are stuck anywhere or you want to quickly refer to a code snippet.

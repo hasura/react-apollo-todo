@@ -1,22 +1,25 @@
 We cruised through our first GraphQL query and mutation. We queried for todos and added a todo.
 
-Now let's get to the exciting part. GraphQL Subscriptions.
+Now let's get to the exciting part.
 
-We have a section of UI which displays the list of online users. So far we have made queries to fetch data and display them on the UI. But online users data is dynamic. 
+GraphQL Subscriptions
+---------------------
+
+We have a section of UI which displays the list of online users. So far we have made queries to fetch data and display them on the UI. But typically online users data is dynamic. 
 
 So do we poll our server every few seconds with a graphql query to see who are online? Technically, you can do it. But it will put a huge load on the server when all of your clients are requesting it at the same time.
 
-We make use of GraphQL Subscription API to get realtime data from the graphql server to efficiently handle this.
+We can make use of GraphQL Subscription API to get realtime data from the graphql server to efficiently handle this.
 
 But but but...
 
-We need to tell the server that the user who is logged in is online. We have to poll our server to do a mutation which updates the last_seen timestamp value of the user.
+We need to tell the server that the user who is logged in is online. We have to poll our server to do a mutation which updates the `last_seen` timestamp value of the user.
 
-We have to make this change to see yourself online first. Remember that you are already logged in but not registered your data into the graphql server?
+We have to make this change to see yourself online first. Remember that you are already logged in, registered your data in the server, but not updated your `last_seen` value.?
 
 The goal is to update every few seconds from the client that you are online. Ideally you should do this after you have successfully authenticated with Auth0. So let's update some code to handle this. 
 
-Open `src/Home/Home.js` and add the following imports:
+Open `src/components/Home/Home.js` and add the following imports:
 
 ```
 import gql from "graphql-tag";
@@ -68,5 +71,5 @@ Now let's write the definition of the `updateLastSeen`.
 
 Again, we are making use of `client.mutate` to update the `users` table of the database.
 
-Great! Now the metadata about whether the user is online or not will be available in the backend. Let's now do the integration to display realtime data of online users.
+Great! Now the metadata about whether the user is online will be available in the backend. Let's now do the integration to display realtime data of online users.
 

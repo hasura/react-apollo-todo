@@ -6,7 +6,7 @@ $ npm install apollo-link-ws subscriptions-transport-ws --save
 
 Now we need to update our `ApolloClient` instance to point to the subscription server.
 
-Open `src/routes.js` and add the following imports right below the other imports:
+Open `src/apollo.js` and add the following imports right below the other imports:
 
 ```
 import { WebSocketLink } from "apollo-link-ws";
@@ -18,10 +18,10 @@ import { getMainDefinition } from "apollo-utilities";
 Update the imports from constants to also include `REALTIME_GRAPHQL_URL`.
 
 ```
-import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
+import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./utils/constants";
 ```
 
-Let's create the new WebSocket link to connect ApolloClient with our GraphQL Subscription server.
+Let's create the new WebSocket link to connect ApolloClient with our GraphQL Subscription server. Just below the `httpLink` code, place the following code snippet.
 
 ```
 

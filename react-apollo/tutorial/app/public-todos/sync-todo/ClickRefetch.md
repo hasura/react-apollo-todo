@@ -1,17 +1,17 @@
 The functionality for the notification banner is simple.
 
-Whenever i click on the banner, i need to load the new data from the server and append it to my local public todo list.
+Whenever the user clicks on the banner, we need to load the new data from the server and append it to the local public todo list.
 
 Now we need to define the query to fetch new data from the server.
 
-Open `src/Todo/TodoQueries.js` and add the following:
+Open `src/components/Todo/TodoQueries.js` and add the following:
 
 ```
 const QUERY_FEED_PUBLIC_TODO = gql`
   query fetch_todos($todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: created_at_desc
+      order_by: { created_at: desc }
     ) {
         id
         text
@@ -38,7 +38,7 @@ import {
 } from "./TodoQueries";
 ```
 
-Open `src/Todo/TodoPublicList.js` and add the following code below componentDidMount.
+Open `src/components/Todo/TodoPublicList.js` and add the following code below componentDidMount.
 
 ```
   loadMoreClicked() {
@@ -80,7 +80,7 @@ Open the UI and try out the above implementation
 
 Now we need to define the query to fetch old data from the server.
 
-Open `src/Todo/TodoQueries.js` and add the following:
+Open `src/components/Todo/TodoQueries.js` and add the following:
 
 ```
 const QUERY_FEED_PUBLIC_OLD_TODO = gql`
@@ -88,7 +88,7 @@ const QUERY_FEED_PUBLIC_OLD_TODO = gql`
     todos(
       where: { is_public: { _eq: true }, id: { _lt: $todoId } }
       limit: 5
-      order_by: created_at_desc
+      order_by: { created_at: desc }
     ) {
         id
         text
@@ -115,7 +115,7 @@ import {
 } from "./TodoQueries";
 ```
 
-Open `src/Todo/TodoPublicList.js` and add the following code below loadMoreClicked method
+Open `src/components/Todo/TodoPublicList.js` and add the following code below loadMoreClicked method
 
 ```
   loadOlderClicked() {

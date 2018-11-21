@@ -7,8 +7,15 @@ import { getMainDefinition } from "apollo-utilities";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 import { setContext } from "apollo-link-context";
 
-import { getHeaders } from "../utils/utils";
-import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "../utils/constants";
+import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./utils/constants";
+
+const getHeaders = () => {
+  const token = localStorage.getItem("auth0:id_token");
+  const headers = {
+    authorization: token ? `Bearer ${token}` : ""
+  };
+  return headers;
+};
 
 const makeApolloClient = () => {
   const authLink = setContext((_, { headers }) => {

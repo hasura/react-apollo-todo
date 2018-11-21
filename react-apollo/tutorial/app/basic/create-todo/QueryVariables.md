@@ -1,6 +1,6 @@
 So let's define the graphql mutation to be used.
 
-Open `src/Todo/TodoQueries.js` and add the following code:
+Open `src/components/Todo/TodoQueries.js` and add the following code:
 
 ```
 const MUTATION_TODO_ADD = gql`

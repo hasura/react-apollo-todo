@@ -1,4 +1,4 @@
-Open `src/Todo/TodoInput.js` and add the following code below the other imports:
+Open `src/components/Todo/TodoInput.js` and add the following code below the other imports:
 
 ```
 import { Mutation } from "react-apollo";
@@ -56,7 +56,7 @@ import {
 } from "./TodoQueries";
 ```
 
-We are adding `QUERY_PRIVATE_TODO` to use with the store API. Now add the method definition code:
+We are adding `QUERY_PRIVATE_TODO` to use with the store API. Now add the method definition code just above the `render` method.
 
 ```
   handleTextboxKeyPress(e, addTodo) {
