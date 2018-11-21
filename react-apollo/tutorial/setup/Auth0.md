@@ -1,4 +1,4 @@
-You will be making use of Auth0 for authentication in your react app.
+We will be making use of Auth0 for authentication in your react app.
 
 Auth0 Configuration
 -------------------
@@ -13,15 +13,12 @@ $ npm start
 
 The boilerplate UI should look something like this:
 
-<insert image>
+![Boilerplate UI](../assets/boilerplate-initial-ui.png)
 
 After logging in, it should look like this:
 
-<insert image>
+![Post Logging in](../assets/after-logging-in.png)
 
-Still facing issues? Click here to debug common issues.
-
-<insert-gif-setup>
 
 
 

@@ -132,7 +132,7 @@ Here we are wrapping our route with `<ApolloProvider>` passing the `client` as t
 />
 ```
 
-The only new chane is that, we are wrapping our route component with provideClient.
+The only new change is that, we are wrapping our route component with provideClient.
 
 Now, let's ensure that this client is passed on to our child components.
 

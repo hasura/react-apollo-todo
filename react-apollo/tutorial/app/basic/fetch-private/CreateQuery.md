@@ -38,7 +38,7 @@ What does this query do?
 ------------------------
 The query fetches `todos` with two conditions; `is_public` must be false and must be created by the logged in `user_id`. We sort the todos descending by its `created_at` time according to the schema. We specify which fields we need for the todos node.
 
-[Try out]() this query now!
+[Try out](https://graphiql-online.com) this query now!
 
 Great! The query is now ready, let's integrate it with our react code.
 

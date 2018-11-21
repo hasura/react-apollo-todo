@@ -10,4 +10,4 @@ The app features the following:
 
 This is how your final app will look like:
 
-<insert image>
+![Final App UI](../../assets/final-app-ui.png)

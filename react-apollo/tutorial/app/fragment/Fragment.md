@@ -1,4 +1,4 @@
-GraphQL includes reusable units called fragments. Fragments let you construct sets of fields, and then include them in queries where you need to.
+GraphQL includes reusable units called [fragments](https://graphql.org/learn/queries/#fragments). Fragments let you construct sets of fields, and then include them in queries where you need to.
 
 In our todo app, we made multiple queries/mutations/subscriptions. But a few of them had something in common.
 
