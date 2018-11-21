@@ -507,6 +507,10 @@ body {
 .footerWrapper .footerLinkPadd {
   margin-left: 20px;
 }
+.footerWrapper .accessKey button {
+  background-color: #a5b9cc;
+  border: 0;
+}
 @media (max-width: 991px) {
   .sliderMenu {
     height: auto;

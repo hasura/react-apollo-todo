@@ -6,7 +6,7 @@ Apollo gives a neat abstraction layer and an interface to your GraphQL server. Y
 Let's get started by installing apollo dependenices:
 
 ```
-$ npm install apollo-boost
+$ npm install apollo-boost --save
 ```
 
 `apollo-boost` comes bundled with several most used packages that you need to with Apollo Client. 
@@ -28,26 +28,31 @@ Here they are:
 
 **Note**: apollo-boost is a minimal config way to start using Apollo Client. It includes some sensible defaults.
 
-Apart from `apollo-boost`, you also need to install `react-apollo` and `graphql` packages.
+Apart from `apollo-boost`, you also need to install `react-apollo` , `graphql` and `apollo-link-context` packages.
 
 ```
-$ npm install react-apollo graphql
+$ npm install react-apollo graphql apollo-link-context --save
 ```
 
 `react-apollo` has the necessary bindings to use Apollo Client with React.
 
-Open `src/routes.js` and add the following imports at the top:
+Open `src/apollo.js` and add the following imports at the top:
 
 ```
 
 import ApolloClient from "apollo-client";
 import { HttpLink } from "apollo-link-http";
-import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { setContext } from "apollo-link-context";
+import { GRAPHQL_URL } from "./utils/constants";
 
-import { getHeaders } from "./utils";
-import { GRAPHQL_URL } from "./constants";
+const getHeaders = () => {
+    const token = localStorage.getItem("auth0:id_token");
+  const headers = {
+    authorization: token ? `Bearer ${token}` : ""
+  };
+  return headers;
+};
 ```
 
 These are the required apollo dependenices to get started. We are also importing graphql endpoint constant and a header utility from our boilerplate code.
@@ -55,49 +60,62 @@ These are the required apollo dependenices to get started. We are also importing
 Now, add the following code below your imports to create the necessary Apollo Links and instantiate the ApolloClient.
 
 ```
-const authLink = setContext((_, { headers }) => {
+const makeApolloClient = () => {
+  const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem("auth0:id_token");
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : ""
+      }
+    };
+  });
+
   const token = localStorage.getItem("auth0:id_token");
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : ""
-    }
-  };
-});
+  // Create an http link:
+  const httpLink = new HttpLink({
+    uri: GRAPHQL_URL,
+    fetch,
+    headers: getHeaders(token)
+  });
 
-const token = localStorage.getItem("auth0:id_token");
-// Create an http link:
-const httpLink = new HttpLink({
-  uri: GRAPHQL_URL,
-  fetch,
-  headers: getHeaders(token)
-});
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache({
+      addTypename: true
+    })
+  });
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache({
-    addTypename: true
-  })
-});
+  return client;
+};
+
+export default makeApolloClient;
 ```
 
 Let's try to understand what is happening here. 
 
-You are creating an authLink to set headers using `setContext` method. This will be used to pass your Auth0 id_token to your client.
+You are creating an authLink to set headers using `setContext` method. This will be used to pass your Auth0 `id_token` to your client.
 
 Next, we are creating an `HttpLink` to connect ApolloClient with your GraphQL server. As you know already, our GraphQL server is running at <link>
 
-At the end, we instantiate ApolloClient by passing in our authLink and HttpLink and a new instance of `InMemoryCache` (recommended caching solution).
+At the end, we instantiate ApolloClient by passing in our authLink and HttpLink and a new instance of `InMemoryCache` (recommended caching solution). We are wrapping all of this in a function which will return the client.
 
-Finally add the following to finish the apollo set up:
+We are going to make use of this function, which returns an instance of ApolloClient configured in our routes.
+
+Open `src/routes.js` and add the following to finish the apollo set up:
 
 ```
+import { ApolloProvider } from "react-apollo";
+import makeApolloClient from "../apollo/apollo";
+
+const client = makeApolloClient();
+
 const provideClient = component => {
   return <ApolloProvider client={client}>{component}</ApolloProvider>;
 };
 ```
 
-Here we are wrapping our route with `<ApolloProvider>` passing the client as the prop. Update the route with the following code:
+Here we are wrapping our route with `<ApolloProvider>` passing the `client` as the prop. Update the routes of `/` and `/home` with the following code:
 
 ```
 <Route
@@ -114,9 +132,11 @@ Here we are wrapping our route with `<ApolloProvider>` passing the client as the
 />
 ```
 
+The only new chane is that, we are wrapping our route component with provideClient.
+
 Now, let's ensure that this client is passed on to our child components.
 
-Open `src/Home/Home.js` and in your `return`, pass client to `<TodoPrivateWrapper>` and `<TodoPublicWrapper>`
+Open `src/components/Home/Home.js` and in your `return`, pass client to `<TodoPrivateWrapper>` and `<TodoPublicWrapper>`
 
 ```
 ...

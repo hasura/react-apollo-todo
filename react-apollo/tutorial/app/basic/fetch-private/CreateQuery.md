@@ -6,9 +6,9 @@ With Apollo Client, you can send queries in 2 different ways.
 
 The recommended method is to use the render prop method, where you will just pass your GraphQL query as prop and `<Query />` component will fetch the data automatically and will present it in the component's render prop function.
 
-But before that, let's define the graphql query to be used:
+Great! Now let's define the graphql query to be used:
 
-Open `src/Todo/TodoQueries.js` and add the following code:
+Open `src/components/Todo/TodoQueries.js` and add the following code:
 
 ```
 import gql from "graphql-tag";
@@ -16,7 +16,7 @@ const QUERY_PRIVATE_TODO = gql`
   query fetch_todos($userId: String!) {
     todos(
       where: { is_public: { _eq: false }, user_id: { _eq: $userId } }
-      order_by: created_at_desc
+      order_by: { created_at: desc }
     ) {
       id
       text
@@ -36,17 +36,21 @@ We have now written the graphql query as a javascript constant using the `gql` p
 
 What does this query do? 
 ------------------------
-The query fetches `todos` with two conditions; `is_public` must be false and must be created by the logged in `user_id`. We sort the todos descending by its created_at time according to the schema. We specify which fields we need for the todos node.
+The query fetches `todos` with two conditions; `is_public` must be false and must be created by the logged in `user_id`. We sort the todos descending by its `created_at` time according to the schema. We specify which fields we need for the todos node.
+
+[Try out]() this query now!
 
 Great! The query is now ready, let's integrate it with our react code.
 
-Open `src/Todo/TodoPrivateWrapper.js` and modify the `<TodoPrivateList>` to additionally pass the client prop.
+Open `src/components/Todo/TodoPrivateWrapper.js` and modify the `<TodoPrivateList>` to additionally pass the client prop.
 
 ```
 <TodoPrivateList userId={userId} client={this.props.client} type="private" />
 ```
 
-Now open `src/Todo/TodoPrivateList.js` and add the following code below the other imports:
+Remember that we wrapped our routes with `<ApolloProvider>` and passed `client` as a prop. We are using the same client prop to send it down to the components.
+
+Now open `src/components/Todo/TodoPrivateList.js` and add the following code below the other imports:
 
 ```
 import { Query } from "react-apollo";
@@ -66,16 +70,10 @@ Now, we will wrap the component with `Query` passing our graphql query. replace 
         return <div>Loading. Please wait...</div>;
       }
       if (error) {
-        return <div>{""}</div>;
+        return <div>An error occurred</div>;
       }
       refetch();
-      // apply filters for displaying todos
-      let finalData = data.todos;
-      if (this.state.filter === "active") {
-        finalData = data.todos.filter(todo => todo.is_completed !== true);
-      } else if (this.state.filter === "completed") {
-        finalData = data.todos.filter(todo => todo.is_completed === true);
-      }
+      const finalData = data.todos;
       return (
         // paste your original return of this component.
       );
@@ -95,6 +93,22 @@ When you wrapped your return with `<Query>` component, Apollo injected props int
 `data`: An object containing the result of your GraphQL query. This will contain our actual data from the server. In our case, it will be the todo data.
 
 You can read more about other render props that Apollo passes [here](https://www.apollographql.com/docs/react/essentials/queries.html#render-prop)
+
+Using the `data` prop, we are parsing the results from the server. In our query, `data` prop has an array `todos` which can be mapped over to render each `TodoItem`.
+
+Now, lets apply some client side filtering to the todos that are displayed. Just before your `return` inside `<Query>` component, add the following code:
+
+```
+
+    let finalData = data.todos; // this has changed from const to let
+    // apply filters for displaying todos
+    if (this.state.filter === "active") {
+      finalData = data.todos.filter(todo => todo.is_completed !== true);
+    } else if (this.state.filter === "completed") {
+      finalData = data.todos.filter(todo => todo.is_completed === true);
+    }
+
+```
 
 
 

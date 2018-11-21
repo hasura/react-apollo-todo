@@ -13,7 +13,6 @@
   - [React component with styling](app/basic/ReactComponent.md)
   - [Fetch todos: query](app/basic/fetch-private/Index.md)
     - [Setup apollo](app/basic/fetch-private/SetupApollo.md)
-    - [How apollo HOC works](app/basic/fetch-private/HowApolloWorks.md)
     - [User Authentication](app/basic/fetch-private/UserAuthentication.md)
     - [Create query and render results](app/basic/fetch-private/CreateQuery.md)
     - [Handle loading/error](app/basic/fetch-private/HandleErrors.md)

@@ -1,13 +1,13 @@
 Let's define the graphql query to be used:
 
-Open `src/Todo/TodoQueries.js` and add the following code:
+Open `src/components/Todo/TodoQueries.js` and add the following code:
 
 ```
 const QUERY_PUBLIC_TODO = gql`
   query fetch_todos($todoLimit: Int, $todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: created_at_desc
+      order_by: { created_at: desc }
       limit: $todoLimit
     ) {
       id
@@ -25,7 +25,7 @@ const SUBSCRIPTION_TODO_PUBLIC_LIST = gql`
   subscription($todoId: Int) {
     todos(
       where: { is_public: { _eq: true }, id: { _gt: $todoId } }
-      order_by: created_at_desc
+      order_by: { created_at: desc }
       limit: 1
     ) {
       id
@@ -62,7 +62,7 @@ Note that our query to fetch todos, also has a nested object to fetch user infor
     }
 ```
 
-This is the power of GraphQL. You can specify any level of nesting your server supports to query exactly the data that you require without making multiple roundtrips to the server.
+This is the power of GraphQL. You can specify any level of nesting your server supports to query exactly the data that you require without making multiple roundtrips to the server. Imagine making multiple REST API calls to get this data.
 
 What does the subscription do?
 ------------------------------
@@ -70,13 +70,13 @@ Similar to the query, the subscription fetches `todos` as soon as something new 
 
 Great! The query and subscription is now ready, let's integrate it with our react code.
 
-Open `src/Todo/TodoPublicWrapper.js` and modify the `<TodoPublicList>` to additionally pass the client prop. We will use this to make query and subscribe calls.
+Open `src/components/Todo/TodoPublicWrapper.js` and modify the `<TodoPublicList>` to additionally pass the client prop. We will use this to make query and subscribe calls.
 
 ```
 <TodoPublicList userId={userId} type="public" client={this.props.client} />
 ```
 
-Now open `src/Todo/TodoPublicList.js` and add the following code below the other imports:
+Now open `src/components/Todo/TodoPublicList.js` and add the following code below the other imports:
 
 ```
 import {

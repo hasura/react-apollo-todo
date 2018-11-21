@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
-import App from "../components/App";
-import Home from "../components/Home/Home";
-import Callback from "../components/Callback/Callback";
-import Auth from "../components/Auth/Auth";
-import history from "../utils/history";
+import App from "./components/App";
+import Home from "./components/Home/Home";
+import Callback from "./components/Callback/Callback";
+import Auth from "./components/Auth/Auth";
+import history from "./utils/history";
 
 const auth = new Auth();
 
@@ -32,6 +32,7 @@ export const makeMainRoutes = () => {
           }
         />
         <Route
+          exact
           path="/callback"
           render={props => {
             handleAuthentication(props);
