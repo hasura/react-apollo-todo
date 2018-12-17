@@ -30,38 +30,10 @@ export default class Auth {
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
-          client
-            .mutate({
-              mutation: gql`
-                mutation($userId: String!, $nickname: String) {
-                  insert_users(
-                    objects: [{ auth0_id: $userId, name: $nickname }]
-                    on_conflict: {
-                      constraint: users_pkey
-                      update_columns: [last_seen, name]
-                    }
-                  ) {
-                    affected_rows
-                  }
-                }
-              `,
-              variables: {
-                userId: user.sub,
-                nickname: user.nickname
-              }
-            })
-            .then(() => {
-              // history.replace("/home");
-              window.location.href = "/home";
-            })
-            .catch(error => {
-              console.error(error);
-              // alert(JSON.stringify(error));
-            });
+          window.location.href = "/home";
         });
       } else if (err) {
         history.replace("/home");
-        // window.location.href="/home";
         console.error(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
