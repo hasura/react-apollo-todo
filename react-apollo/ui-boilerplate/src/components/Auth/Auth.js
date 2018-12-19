@@ -29,10 +29,10 @@ export default class Auth {
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
-          window.location.href = "/home";
+          window.location.href = "/";
         });
       } else if (err) {
-        history.replace("/home");
+        history.replace("/");
         console.error(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -49,7 +49,7 @@ export default class Auth {
     localStorage.setItem("auth0:expires_at", expiresAt);
     localStorage.setItem("auth0:id_token:sub", authResult.idTokenPayload.sub);
     // navigate to the home route
-    history.replace("/home");
+    history.replace("/");
   }
 
   logout() {
@@ -59,7 +59,7 @@ export default class Auth {
     localStorage.removeItem("auth0:expires_at");
     localStorage.removeItem("auth0:id_token:sub");
     // navigate to the home route
-    history.replace("/home");
+    history.replace("/");
   }
 
   isAuthenticated() {

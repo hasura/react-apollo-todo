@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
 import App from "./components/App";
-import Home from "./components/Home/Home";
 import Callback from "./components/Callback/Callback";
 import Auth from "./components/Auth/Auth";
 import history from "./utils/history";
@@ -20,15 +19,10 @@ export const makeMainRoutes = () => {
     <Router history={history}>
       <div>
         <Route
+          exact
           path="/"
           render={props =>
             <App auth={auth} {...props} />
-          }
-        />
-        <Route
-          path="/home"
-          render={props =>
-            <Home auth={auth} {...props} />
           }
         />
         <Route
