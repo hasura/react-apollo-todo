@@ -85,6 +85,7 @@ body {
   -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   opacity: 0.6;
+  font-size: 14px;
 }
 .formInput input:focus {
   outline: none;
