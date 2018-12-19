@@ -32,7 +32,6 @@ class App extends Component {
             <Navbar.Brand className="navBrand">
               GraphQL Tutorial App
             </Navbar.Brand>
-            <span className="breakWord">{localStorage.getItem("auth0:id_token")}</span>
             {!isAuthenticated() && (
               <Button
                 id="qsLoginBtn"
