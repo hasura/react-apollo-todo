@@ -1,5 +1,7 @@
 # React Apollo GraphQL Todo App
 
+Chumma commit
+
 ## Create an application in Auth0
 
 1. Create an application in Auth0 dashboard
