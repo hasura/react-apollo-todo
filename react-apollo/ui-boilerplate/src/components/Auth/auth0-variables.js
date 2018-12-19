@@ -1,7 +1,5 @@
-import { authDomain, authClientId, callbackUrl } from "../../utils/constants";
-
 export const AUTH_CONFIG = {
-  domain: authDomain,
-  clientId: authClientId,
-  callbackUrl: callbackUrl
+  domain: 'graphql-tutorials.auth0.com',
+  clientId: 'P38qnFo1lFAQJrzkun--wEzqljVNGcWW',
+  callbackUrl: 'http://localhost:3000/callback'
 };
