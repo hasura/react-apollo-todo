@@ -4,7 +4,7 @@ class OnlineUsers extends Component {
   render() {
     const data = {online_users: [{ name: "someUser1" }, { name: "someUser2" }]};
     return (
-      <div className="sliderMenu grayBgColor">
+      <div className="sliderMenu grayBgColor addPaddTopBottom">
         <div className="sliderHeader">
           Online users - {data.online_users.length}
         </div>

@@ -230,9 +230,8 @@ body {
   overflow-y: auto;
 }
 .sliderHeader {
-  padding: 10px 0;
   padding-left: 15px;
-  padding-top: 30px;
+  padding-bottom: 20px;
   text-transform: uppercase;
   font-weight: 600;
 }

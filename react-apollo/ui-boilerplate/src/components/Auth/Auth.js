@@ -22,6 +22,12 @@ export default class Auth {
     this.auth0.authorize();
   }
 
+  logout() {
+    this.unsetSession();
+    // navigate to the home route
+    history.replace("/");
+  }
+
   handleAuthentication = () => {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
@@ -29,12 +35,12 @@ export default class Auth {
         // store in db
         this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
           // Now you have the user's information
-          window.location.href = "/";
+          history.replace("/");
         });
       } else if (err) {
         history.replace("/");
         console.error(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
+        alert(`Error: ${err.error} - ${err.errorDescription}`);
       }
     });
   };
@@ -48,18 +54,14 @@ export default class Auth {
     localStorage.setItem("auth0:id_token", authResult.idToken);
     localStorage.setItem("auth0:expires_at", expiresAt);
     localStorage.setItem("auth0:id_token:sub", authResult.idTokenPayload.sub);
-    // navigate to the home route
-    history.replace("/");
   }
 
-  logout() {
+  unsetSession() {
     // Clear access token and ID token from local storage
     localStorage.removeItem("auth0:access_token");
     localStorage.removeItem("auth0:id_token");
     localStorage.removeItem("auth0:expires_at");
     localStorage.removeItem("auth0:id_token:sub");
-    // navigate to the home route
-    history.replace("/");
   }
 
   isAuthenticated() {
